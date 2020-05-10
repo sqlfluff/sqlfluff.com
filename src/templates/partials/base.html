@@ -23,7 +23,7 @@
   <link href="css/sqlfluff.css" rel="stylesheet">
 
   <!-- Nav Bar Icon -->
-  <link rel="icon" type="image/png" href="images/favicon-fluff.png">
+  <link rel="icon" type="image/png" href="images/icons/favicon-fluff.png">
 
 </head>
 
@@ -39,18 +39,17 @@
             <!--<h3 class="masthead-brand">Amshank</h3>-->
             <nav>
               <ul class="nav masthead-nav">
-                {% for pg in [["Home", "/"], ["Blog", "https://designingoverload.com?utm_source=amshank_header"]] %}
-                  {% if pg[0] == page %}
-                  <li class="active">
-                    <a href="{{pg[1]}}">{{pg[0]}}
-                      <span class="sr-only">(current)</span>
+                {% for pg in [
+                  ["Home", "/", ""],
+                  ["Source", "https://github.com/alanmcruickshank/sqlfluff", "images/icons/github.svg"],
+                  ["Docs", "https://docs.sqlfluff.com", "images/icons/readthedocs.svg"],
+                  ["Blog", "https://designingoverload.com?utm_source=sqlfluff_header", "images/icons/overload-lrg-blk-ico.png"]]
+                %}
+                  <li {% if pg[0] == page %}class="active"{% endif %}>
+                    <a href="{{pg[1]}}">{% if pg[2] %}<img src="{{pg[2]}}" />{% endif %}{{pg[0]}}
+                      {% if pg[0] == page %}<span class="sr-only">(current)</span>{% endif %}
                     </a>
                   </li>
-                  {% else %}
-                  <li>
-                    <a href="{{pg[1]}}">{{pg[0]}}</a>
-                  </li>
-                  {% endif %}
                 {% endfor %}
               </ul>
             </nav>
@@ -64,6 +63,7 @@
         <footer class="mastfoot">
           <div class="inner">
             <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, originally by <a href="https://twitter.com/mdo">@mdo</a>, adapted by <a href="http://www.amshank.com">Amshank</a>.</p>
+            <a href="https://designingoverload.com?utm_source=sqlfluff_footer"><img src="images/overload-lrg-blk.png" width=100/></a>
           </div>
         </footer>
       </div>

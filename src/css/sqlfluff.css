@@ -78,9 +78,16 @@ body {
   .masthead-nav > li {
     display: inline-block;
   }
-  .masthead-nav > li + li {
-    margin-left: 20px;
+
+  .masthead-nav > li {
+    margin-right: 10px;
   }
+  @media (min-width: 310) {
+    .masthead-nav > li {
+      margin-right: 20px;
+    }
+  }
+
   .masthead-nav > li > a {
     padding-right: 0;
     padding-left: 0;
@@ -102,6 +109,14 @@ body {
     color: #000;
     border-bottom-color: #000;
   }
+
+  .masthead-nav img {
+    width: 14px;
+    padding-top: 0px;
+    margin-right: 5px;
+    /* Hide on small displays */
+    display: none
+  }
   
   @media (min-width: 768px) {
     .masthead-brand {
@@ -109,6 +124,12 @@ body {
     }
     .masthead-nav {
       float: right;
+    }
+  }
+
+  @media (min-width: 379px) {
+    .masthead-nav img {
+      display: inline
     }
   }
   
@@ -120,12 +141,15 @@ body {
   .cover {
     padding: 0 20px;
   }
+  .cover img {
+    width: 100%;
+    max-width: 478px;
+  }
   .cover .btn-lg {
     padding: 10px 20px;
     font-weight: bold;
   }
-  
-  
+
   /*
    * Footer
    */
