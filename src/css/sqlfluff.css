@@ -150,6 +150,10 @@ body {
     font-weight: bold;
   }
 
+  .cover-icon-grid img {
+    max-width: 128px;
+  }
+
   /*
    * Footer
    */
