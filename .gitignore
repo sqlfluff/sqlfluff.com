@@ -1,0 +1,5 @@
+# Ignore NPM Modules
+node_modules
+
+# For now ignore the dist directory
+dist
