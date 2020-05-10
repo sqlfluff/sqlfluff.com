@@ -31,6 +31,8 @@ function compile(done) {
   // copy css, js and images
   gulp.src('./src/css/**/*')
     .pipe(gulp.dest('./dist/css'));
+  gulp.src('./src/js/**/*')
+    .pipe(gulp.dest('./dist/js'));
   gulp.src('./src/images/**/*')
     .pipe(gulp.dest('./dist/images'));
   done();
@@ -80,13 +82,15 @@ function modules() {
       './node_modules/@fortawesome/fontawesome-free/js/*.min.js',
     ])
     .pipe(gulp.dest('./dist/vendor/fontawesome/js'));
-  return merge(bootstrap, jquery, fontawesome_css, fontawesome_fonts, fontawesome_js);
+  return merge(
+    bootstrap, jquery, fontawesome_css, fontawesome_fonts, fontawesome_js);
 }
 
 // Watch files
 function watchFiles() {
   // Source files
   gulp.watch("./src/**/*.css", browserSyncReload);
+  gulp.watch("./src/**/*.js", browserSyncReload);
   gulp.watch("./src/**/*.html", browserSyncReload);
   // Image Files
   gulp.watch("./src/**/*.png", browserSyncReload);

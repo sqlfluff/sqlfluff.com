@@ -65,10 +65,17 @@ body {
   padding: 30px;
 }
 
+.front-codeblock {
+  font-size: small;
+}
 
 /*
  * Header
  */
+ .masthead {
+   padding-bottom: 15px;
+ }
+
  .masthead-brand {
     max-width: 120px;
     margin-top: 0px;
@@ -151,7 +158,7 @@ body {
   }
 
   .cover-icon-grid img {
-    max-width: 128px;
+    max-width: 96px;
   }
 
   /*
@@ -168,19 +175,6 @@ body {
    */
   
   @media (min-width: 768px) {
-    /* Pull out the header and footer */
-    .masthead {
-      position: fixed;
-      top: 0;
-    }
-    .mastfoot {
-      position: fixed;
-      bottom: 0;
-    }
-    /* Start the vertical centering */
-    .site-wrapper-inner {
-      vertical-align: middle;
-    }
     /* Handle the widths */
     .masthead,
     .mastfoot,
