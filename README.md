@@ -2,7 +2,7 @@
 
 Website for [sqlfluff](http://www.sqlfluff.com/), based on [startbootstrap-small-business template](https://github.com/BlackrockDigital/startbootstrap-small-business).
 
-*NB:* There is no CI set up for this repository, so deployments are currently manual.
+*NB:* This site is deployed with [Netlify](https://www.netlify.com/).
 
 ## Contributions
 
@@ -17,13 +17,6 @@ After installation, run `npm install` and then run `npm start` which will open u
 NB: If the `vendor` folder isn't updating, try removing the `dist` folder altogether and then rerunning `npm start`.
 
 You must have npm and Gulp installed globally on your machine in order to use these features.
-
-## Deployment
-
-This website is deployed as a static site on AWS S3 as a static website. If we have regular
-updates and changes to the site, then we should invest in a CI pipeline. Until then tag
-[@alanmcruickshank](https://github.com/alanmcruickshank) in your issue to upload a new
-release of the site.
 
 ## Copyright and License
 
