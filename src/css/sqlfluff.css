@@ -15,6 +15,7 @@ a:focus,
 a:hover {
   color: #333; /* IE8 proofing */
   color: rgba(0,0,0,.5);
+  text-decoration: none;  /* no underline hover */
 }
 
 /* Custom default button */
