@@ -6,23 +6,54 @@
 	<div class="inner cover">
     <h1 class="cover-heading"><img src="images/sqlfluff-wide.png" alt="sqlfluff"/><br>📜 The SQL Linter for humans.</h1>
   </div>
+    <a href="https://pypi.org/project/sqlfluff/">
+      <img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/sqlfluff?logo=pypi&style=flat-square">
+    </a>
+    <a href="https://pypi.org/project/sqlfluff/">
+      <img alt="PyPI" src="https://img.shields.io/pypi/v/sqlfluff?logo=pypi&style=flat-square">
+    </a>
+    <a href="https://github.com/sqlfluff/sqlfluff">
+      <img alt="GitHub" src="https://img.shields.io/github/license/sqlfluff/sqlfluff?style=flat-square">
+    </a>
+    <a href="https://github.com/sqlfluff/sqlfluff">
+      <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/sqlfluff/sqlfluff?logo=github&style=flat-square">
+    </a>
+    <hr>
+  <div style="text-align: justify;">
+    <p><b>SQLFluff</b> is a dialect-flexible and configurable SQL linter.
+      Designed with ELT applications in mind, <b>SQLFluff</b> also works with
+      Jinja templating and dbt. <b>SQLFluff</b> will auto-fix most linting
+      errors, allowing you to focus your time on what matters.</p>
+    </div>
   <hr>
   <div class="container front-codeblock">
         <pre><code class="language-sql line-numbers">SELECT
-  this_column,
-  my_table.THAT_COLUMN AS this_name,
+    this_column,
+    my_table.THAT_COLUMN AS this_name,
   some_number *10 AS a_bigger_number
 from my_table
 </code></pre>
-        <pre><code class="language-sqlfluff">$ sqlfluff lint test.sql
+        <pre><code class="language-sqlfluff">$ sqlfluff lint test.sql --dialect ansi
 == [test.sql] FAIL
-L:   3 | P:   5 | L028 | Qualified reference 'my_table.THAT_COLUMN'
-                       | found in a single table select this is
-                       | inconsistent with previous references.
-L:   3 | P:  14 | L014 | Inconsistent capitalisation of unquoted
-                       | identifiers.
-L:   4 | P:  18 | L006 | Operators should be followed by a space.</code></pre>
+L:   2 | P:   5 | RF03 | Unqualified reference 'this_column' found in single
+                       | table select. [references.consistent]
+L:   3 | P:   5 | RF03 | Qualified reference 'my_table.THAT_COLUMN' found in
+                       | single table select which is inconsistent with previous
+                       | references. [references.consistent]
+L:   3 | P:  14 | CP02 | Unquoted identifiers must be consistently lower case.
+                       | [capitalisation.identifiers]
+L:   4 | P:   1 | LT02 | Expected indent of 4 spaces.
+                       | [layout.indent]
+L:   4 | P:   3 | RF03 | Unqualified reference 'some_number' found in single
+                       | table select. [references.consistent]
+L:   4 | P:  16 | LT01 | Expected single whitespace between binary operator '*'
+                       | and numeric literal. [layout.spacing]
+L:   5 | P:   1 | CP01 | Keywords must be consistently upper case.
+                       | [capitalisation.keywords]
+</code></pre>
   </div>
+  <hr>
+  
 
 
 {% endblock %}
