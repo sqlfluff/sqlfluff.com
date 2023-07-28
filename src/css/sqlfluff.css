@@ -202,19 +202,20 @@ padding-bottom: 15px;
 }
 
 /*
-* Sponsor tiles
+* Landing page tiles
 */
 
-.sponsor-container {
+.flex-container {
   display: flex;
+  justify-content: center;
 }
 
-.sponsor-container > div {
+.flex-container > div {
   margin: 10px;
   padding: 20px;
   max-width: 320px;
 }
 
-.sponsor-container img {
+.flex-container img {
   width: 100%;
 }
