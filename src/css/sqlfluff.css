@@ -158,7 +158,7 @@ padding-bottom: 15px;
 .cover {
   padding: 0 20px;
 }
-.cover img {
+.cover-heading img {
   width: 100%;
   max-width: 478px;
 }
@@ -213,4 +213,8 @@ padding-bottom: 15px;
   margin: 10px;
   padding: 20px;
   max-width: 320px;
+}
+
+.sponsor-container img {
+  width: 100%;
 }
