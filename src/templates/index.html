@@ -5,7 +5,6 @@
 {% block content %}
 	<div class="inner cover">
     <h1 class="cover-heading"><img src="images/sqlfluff-wide.png" alt="sqlfluff"/><br>📜 The SQL Linter for humans.</h1>
-  </div>
     <a href="https://pypi.org/project/sqlfluff/">
       <img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/sqlfluff?logo=pypi&style=flat-square">
     </a>
@@ -18,13 +17,14 @@
     <a href="https://github.com/sqlfluff/sqlfluff">
       <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/sqlfluff/sqlfluff?logo=github&style=flat-square">
     </a>
-    <hr>
-  <div style="text-align: justify;">
+  </div>
+  <hr>
+  <div class="container" style="text-align: justify;">
     <p><b>SQLFluff</b> is a dialect-flexible and configurable SQL linter.
       Designed with ELT applications in mind, <b>SQLFluff</b> also works with
       Jinja templating and dbt. <b>SQLFluff</b> will auto-fix most linting
       errors, allowing you to focus your time on what matters.</p>
-    </div>
+  </div>
   <hr>
   <div class="container front-codeblock">
         <pre><code class="language-sql line-numbers">SELECT
@@ -51,9 +51,30 @@ L:   4 | P:  16 | LT01 | Expected single whitespace between binary operator '*'
 L:   5 | P:   1 | CP01 | Keywords must be consistently upper case.
                        | [capitalisation.keywords]
 </code></pre>
+    <hr>
+  </div>
+  <div class="container" style="text-align: justify;">
+    <h2>Sponsors</h2>
+    <p>
+      <b>SQLFluff</b> is a community run and community funded project. We're
+      grateful to individuals and organisations in the community who choose to
+      support the project. If you'd like to support the project with your
+      <b>time</b>, then head over to our <a href="https://github.com/sqlfluff/sqlfluff">GitHub repository</a>
+      and check out our <a href="https://github.com/sqlfluff/sqlfluff/blob/main/CONTRIBUTING.md">contributing guide</a>.
+      If you're better able to support the project with <b>funds</b>, then
+      you can find our sponsorship page on <a href="https://github.com/sponsors/sqlfluff">GitHub sponsors</a>.
+    </p>
+    <h3>Sponsoring Organisations</h3>
+    <div class="sponsor-container">
+      <div>
+        <a href="https://datacoves.com/">
+          <img src="images/sponsors/datacoves.png"/>
+        </a>
+        <p>
+          The turnkey analytics stack, find out more at <a href="https://datacoves.com/">Datacoves.com</a>.
+        </p>
+      </div>
+    </div>
   </div>
   <hr>
-  
-
-
 {% endblock %}
