@@ -39,3 +39,23 @@ body {
 .sqlfluff-index-blocks img {
     width: 100%;
 }
+
+.sqlfluff-code-cli {
+    line-height: 1.1;
+}
+
+.sqlfluff-code-cli .code-yellow{
+    color: #e6db74
+}
+
+.sqlfluff-code-cli .code-red{
+    color: #f92672
+}
+
+.sqlfluff-code-cli .code-blue{
+    color: #61aeee
+}
+
+.sqlfluff-code-cli .code-gray{
+    color: #5c6370
+}

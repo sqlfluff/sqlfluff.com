@@ -86,6 +86,26 @@
       using <a href="https://pip.pypa.io/">pip</a> (or your favourite python
       package manager). For more details, check out <a href="https://docs.sqlfluff.com">the docs</a>.
     </p>
+    <div  class="sqlfluff-code-cli"><pre><code><span class="code-gray">$</span> <span class="code-yellow">pip</span> install sqlfluff
+<span class="code-gray">$</span> <span class="code-yellow">echo</span> <span class="code-blue">"  SELECT a  +  b FROM tbl;  "</span> > test.sql
+<span class="code-gray">$</span> <span class="code-yellow">sqlfluff</span> lint test.sql --dialect ansi
+== [<span class="code-yellow">test.sql</span>] <span class="code-red">FAIL</span>
+<span class="code-blue">L:   1 | P:   1 | LT01 |</span> Expected only single space before 'SELECT' keyword.
+<span class="code-blue">                       |</span> Found '  '. [layout.spacing]
+<span class="code-blue">L:   1 | P:   1 | LT02 |</span> First line should not be indented.
+<span class="code-blue">                       |</span> [layout.indent]
+<span class="code-blue">L:   1 | P:   1 | LT13 |</span> Files must not begin with newlines or whitespace.
+<span class="code-blue">                       |</span> [layout.start_of_file]
+<span class="code-blue">L:   1 | P:  11 | LT01 |</span> Expected only single space before binary operator '+'.
+<span class="code-blue">                       |</span> Found '  '. [layout.spacing]
+<span class="code-blue">L:   1 | P:  14 | LT01 |</span> Expected only single space before naked identifier.
+<span class="code-blue">                       |</span> Found '  '. [layout.spacing]
+<span class="code-blue">L:   1 | P:  27 | LT01 |</span> Unnecessary trailing whitespace at end of file.
+<span class="code-blue">                       |</span> [layout.spacing]
+<span class="code-blue">L:   1 | P:  27 | LT12 |</span> Files must end with a single trailing newline.
+<span class="code-blue">                       |</span> [layout.end_of_file]
+All Finished 📜 🎉!
+      </code></pre></div>
   </div>
   <div class="post-content">
     <h2>Sponsors</h2>
