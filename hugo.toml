@@ -55,7 +55,7 @@ enableRobotsTXT = true
   CustomFooterHTML = """
     <span>
         SQLFluff Ltd. Incorporated in England. Company Number 14948332.
-        Unit 82a James Carter Road, Mildenhall,<br>Bury St. Edmunds, England, IP28 7DE
+        <br>Unit 82a James Carter Road, Mildenhall,<br>Bury St. Edmunds, England, IP28 7DE
     </span>
     <span>
         Site built and managed by <a href="https://www.a14k.co.uk/">A14K Ltd.</a>
