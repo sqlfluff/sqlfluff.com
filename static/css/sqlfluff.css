@@ -30,7 +30,7 @@ body {
     max-width: 320px;
     /* Justify text in boxes */
     text-align: justify;
-    line-height: 1.7;
+    line-height: 1.5;
     /* Rounded borders */
     border-radius: 25px;
     border: 2px solid #DDD;
