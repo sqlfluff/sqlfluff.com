@@ -1,0 +1,12 @@
+[build]
+  # https://gohugo.io/hosting-and-deployment/hosting-on-netlify/
+  # Recommended settings from docs
+  # --gc means garbage collect
+  # --minify mean it will minify any files that it can
+  command = "hugo --gc --minify"
+  publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.125.4"
+  TZ = "Europe/London"
+  
