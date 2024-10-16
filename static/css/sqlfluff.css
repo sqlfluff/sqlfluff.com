@@ -1,0 +1,41 @@
+/* Styles specific to the SQLFluff page */
+
+body {
+    /* We have a chunky footer so the lower margin needs to be a bit bigger */
+    margin-bottom: 240px;
+}
+
+.sqlfluff-shields {
+    text-align: center;
+}
+
+.sqlfluff-shields a {
+    text-decoration: none; 
+}
+
+.sqlfluff-justify {
+    text-align: justify;
+}
+
+.sqlfluff-index-blocks {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.sqlfluff-index-blocks > div {
+    margin: 10px;
+    padding: 20px;
+    max-width: 320px;
+    /* Justify text in boxes */
+    text-align: justify;
+    line-height: 1.7;
+    /* Rounded borders */
+    border-radius: 25px;
+    border: 2px solid #DDD;
+}
+  
+.sqlfluff-index-blocks img {
+    width: 100%;
+}
