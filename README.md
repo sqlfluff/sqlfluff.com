@@ -1,9 +1,14 @@
 # sqlfluff.com
 
-Website for [sqlfluff](http://www.sqlfluff.com/), based
-on [startbootstrap-small-business template](https://github.com/BlackrockDigital/startbootstrap-small-business).
+Website for [sqlfluff](http://www.sqlfluff.com/).
 
-*NB:* This site is deployed with [Netlify](https://www.netlify.com/).
+* Build with [HUGO](https://gohugo.io/).
+* Using the [gorkana](https://github.com/526avijitgupta/gokarna) theme. This
+  is installed as a git submodule, so will need updating from time to time.
+* Deployed with [Netlify](https://www.netlify.com/). We're also signed up to
+  and *Open Source* plan with netlify which requires us to credit them in the
+  site footer.
+* Favicons generated with <https://favicon.io/>.
 
 ## Contributions
 
@@ -13,18 +18,13 @@ Please raise issues and PRs for anything you normally would.
 
 ## Usage
 
-After installation, run `npm install` and then run `npm start` which will
-open up a preview of the template in your default browser, watch for changes
-to core template files, and live reload the browser when changes are saved.
-You can view the `gulpfile.js` to see which tasks are included with the dev
-environment.
+You'll need to install `hugo` locally. See <https://gohugo.io/installation/>.
 
-NB: If the `vendor` folder isn't updating, try removing the `dist` folder
-altogether and then rerunning `npm start`.
-
-You must have npm and Gulp installed globally on your machine in order to use these features.
+After installation, run `hugo server` for local development.
 
 ## Copyright and License
 
-*Boostrap Template code:* Copyright 2013-2019 Blackrock Digital LLC. Code released
-under the [MIT](https://github.com/BlackrockDigital/startbootstrap-small-business/blob/gh-pages/LICENSE) license.
+* [HUGO](https://gohugo.io/) is released under the
+  [Apache License](https://gohugo.io/about/license/).
+* [gorkana](https://github.com/526avijitgupta/gokarna) is released under the
+  [GPL-3.0 License](https://github.com/526avijitgupta/gokarna?tab=GPL-3.0-1-ov-file#readme)
