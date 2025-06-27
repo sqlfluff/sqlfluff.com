@@ -8,11 +8,7 @@
 
 <div class="post container sqlfluff-justify">
   <div class="post-content">
-    {{ .Content }}
-
-    <div class="contributors-stats">
-      <p>🎉 <span id="total-contributors">5</span> amazing contributors have helped build SQLFluff!</p>
-    </div>
+        {{ .Content }}
 
     <div class="contributors-controls">
       <label for="time-filter">Show contributions from:</label>
@@ -41,30 +37,39 @@
 <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.0/dist/js/tabulator.min.js"></script>
 
 <script>
-// Dummy contributor data
+// Dummy contributor data with time-based commit counts
 const contributorsData = [
   {
     rank: 1,
-    name: "Sarah Chen",
-    github: "sarah-chen-dev",
+    name: "Alan Cruickshank",
+    github: "alanmcruickshank",
     since: "2019-03-15",
-    commits: 1247,
-    avatar: "https://github.com/identicons/sarah-chen-dev.png"
+    commits_all: 1247,
+    commits_year: 234,
+    commits_month: 3,
+    commits_week: 12,
+    avatar: "https://github.com/alanmcruickshank.png"
   },
   {
     rank: 2,
-    name: "Marcus Rodriguez",
-    github: "mrodriguez",
+    name: "Rick Viscomi",
+    github: "tunetheweb",
     since: "2020-01-22",
-    commits: 892,
-    avatar: "https://github.com/identicons/mrodriguez.png"
+    commits_all: 892,
+    commits_year: 156,
+    commits_month: 28,
+    commits_week: 7,
+    avatar: "https://github.com/tunetheweb.png"
   },
   {
     rank: 3,
     name: "Emily Watson",
     github: "ewatson-sql",
     since: "2020-08-10",
-    commits: 634,
+    commits_all: 634,
+    commits_year: 89,
+    commits_month: 15,
+    commits_week: 4,
     avatar: "https://github.com/identicons/ewatson-sql.png"
   },
   {
@@ -72,7 +77,10 @@ const contributorsData = [
     name: "David Kumar",
     github: "dkumar-data",
     since: "2021-05-03",
-    commits: 421,
+    commits_all: 421,
+    commits_year: 67,
+    commits_month: 11,
+    commits_week: 2,
     avatar: "https://github.com/identicons/dkumar-data.png"
   },
   {
@@ -80,14 +88,45 @@ const contributorsData = [
     name: "Alex Thompson",
     github: "athompson-dev",
     since: "2022-02-14",
-    commits: 289,
+    commits_all: 289,
+    commits_year: 43,
+    commits_month: 8,
+    commits_week: 1,
     avatar: "https://github.com/identicons/athompson-dev.png"
   }
 ];
 
+// Current filter period
+let currentPeriod = 'all';
+
+// Function to get commit field based on current period
+function getCommitField(period) {
+  switch(period) {
+    case 'year': return 'commits_year';
+    case 'month': return 'commits_month';
+    case 'week': return 'commits_week';
+    default: return 'commits_all';
+  }
+}
+
+// Function to prepare data for current period
+function prepareDataForPeriod(data, period) {
+  const commitField = getCommitField(period);
+  return data
+    .map(contributor => ({
+      ...contributor,
+      commits: contributor[commitField] // Map the correct commit count to 'commits' field
+    }))
+    .sort((a, b) => b.commits - a.commits) // Sort by commits descending
+    .map((contributor, index) => ({
+      ...contributor,
+      rank: index + 1 // Recalculate rank based on current period
+    }));
+}
+
 // Initialize Tabulator
 const table = new Tabulator("#contributors-table", {
-  data: contributorsData,
+  data: prepareDataForPeriod(contributorsData, currentPeriod),
   layout: "fitColumns",
   responsiveLayout: "collapse",
   pagination: "local",
@@ -146,24 +185,48 @@ const table = new Tabulator("#contributors-table", {
   ]
 });
 
+// Function to get period text for display
+function getPeriodText(period) {
+  switch(period) {
+    case 'year': return 'this year';
+    case 'month': return 'this month';
+    case 'week': return 'this week';
+    default: return 'of all time';
+  }
+}
+
+// Function to get title text for display
+function getTitleText(period) {
+  switch(period) {
+    case 'year': return 'SQLFluff Contributors - This year';
+    case 'month': return 'SQLFluff Contributors - This month';
+    case 'week': return 'SQLFluff Contributors - This week';
+    default: return 'SQLFluff Contributors - All time';
+  }
+}
+
 // Time filter functionality
 document.getElementById('time-filter').addEventListener('change', function(e) {
   const filter = e.target.value;
-  // For now, this is just a placeholder - in a real implementation
-  // you would filter the data based on commit dates
-  console.log('Filter changed to:', filter);
+  currentPeriod = filter;
 
-  if (filter === 'all') {
-    table.clearFilter();
-  } else {
-    // Placeholder for time-based filtering
-    // In real implementation, you'd filter based on commit dates
-    table.clearFilter();
-  }
+  // Update table data with new time period
+  const newData = prepareDataForPeriod(contributorsData, currentPeriod);
+  table.replaceData(newData);
+
+  // Update the contributors count, period text, and title display
+  document.getElementById('total-contributors').textContent = newData.length;
+  document.getElementById('time-period-text').textContent = getPeriodText(currentPeriod);
+  document.getElementById('contributors-title').textContent = getTitleText(currentPeriod);
+
+  console.log('Filter changed to:', filter);
 });
 
-// Update stats
-document.getElementById('total-contributors').textContent = contributorsData.length;
+// Initialize stats and title display
+const initialData = prepareDataForPeriod(contributorsData, currentPeriod);
+document.getElementById('total-contributors').textContent = initialData.length;
+document.getElementById('time-period-text').textContent = getPeriodText(currentPeriod);
+document.getElementById('contributors-title').textContent = getTitleText(currentPeriod);
 </script>
 
 {{ end }}
