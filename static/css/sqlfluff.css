@@ -10,7 +10,7 @@ body {
 }
 
 .sqlfluff-shields a {
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 .sqlfluff-justify {
@@ -37,7 +37,7 @@ body {
     border-radius: 25px;
     border: 2px solid #DDD;
 }
-  
+
 .sqlfluff-index-blocks img {
     width: 100%;
 }
@@ -60,4 +60,153 @@ body {
 
 .sqlfluff-code-cli .code-gray{
     color: #5c6370
+}
+
+/* Contributors page styles */
+.contributors-subtitle {
+    text-align: center;
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.contributors-stats {
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 2px solid #e9ecef;
+}
+
+.contributors-stats p {
+    font-size: 1.1em;
+    margin: 0;
+    color: #495057;
+}
+
+.contributors-controls {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.contributors-controls label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.contributors-controls select {
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+}
+
+.contributors-controls select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.contributor-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.contributor-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    flex-shrink: 0;
+}
+
+.contributor-details {
+    flex-grow: 1;
+}
+
+.contributor-details a {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.contributor-details a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.contributors-note {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #007bff;
+    text-align: center;
+}
+
+.contributors-note em {
+    color: #666;
+}
+
+.contributors-note a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contributors-note a:hover {
+    text-decoration: underline;
+}
+
+/* Tabulator customizations */
+.tabulator {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tabulator .tabulator-header {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #ddd;
+}
+
+.tabulator .tabulator-header .tabulator-col {
+    border-right: 1px solid #ddd;
+}
+
+.tabulator .tabulator-row {
+    border-bottom: 1px solid #eee;
+}
+
+.tabulator .tabulator-row:hover {
+    background-color: #f8f9fa;
+}
+
+.tabulator .tabulator-cell {
+    padding: 12px 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contributor-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .contributor-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .contributors-controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .contributors-controls label {
+        margin-right: 0;
+    }
 }

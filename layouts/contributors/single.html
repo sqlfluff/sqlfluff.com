@@ -1,0 +1,169 @@
+{{ define "main" }}
+<section class="home-about">
+  <h1><img src="/img/sqlfluff-wide.png" alt="sqlfluff"/><br>{{ .Title }}</h1>
+  <p class="contributors-subtitle">{{ .Description }}</p>
+</section>
+
+<div class="flex-break"></div>
+
+<div class="post container sqlfluff-justify">
+  <div class="post-content">
+    {{ .Content }}
+
+    <div class="contributors-stats">
+      <p>🎉 <span id="total-contributors">5</span> amazing contributors have helped build SQLFluff!</p>
+    </div>
+
+    <div class="contributors-controls">
+      <label for="time-filter">Show contributions from:</label>
+      <select id="time-filter">
+        <option value="all">All time</option>
+        <option value="year">This year</option>
+        <option value="month">This month</option>
+        <option value="week">This week</option>
+      </select>
+    </div>
+
+    <div id="contributors-table"></div>
+
+    <div class="contributors-note">
+      <p><em>Want to contribute? Check out our <a href="https://github.com/sqlfluff/sqlfluff">GitHub repository</a> and <a href="https://github.com/sqlfluff/sqlfluff/blob/main/CONTRIBUTING.md">contributing guide</a>.</em></p>
+    </div>
+  </div>
+</div>
+
+{{ partial "back-to-top.html" . }}
+
+<!-- Tabulator CSS -->
+<link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator.min.css" rel="stylesheet">
+
+<!-- Tabulator JS -->
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.0/dist/js/tabulator.min.js"></script>
+
+<script>
+// Dummy contributor data
+const contributorsData = [
+  {
+    rank: 1,
+    name: "Sarah Chen",
+    github: "sarah-chen-dev",
+    since: "2019-03-15",
+    commits: 1247,
+    avatar: "https://github.com/identicons/sarah-chen-dev.png"
+  },
+  {
+    rank: 2,
+    name: "Marcus Rodriguez",
+    github: "mrodriguez",
+    since: "2020-01-22",
+    commits: 892,
+    avatar: "https://github.com/identicons/mrodriguez.png"
+  },
+  {
+    rank: 3,
+    name: "Emily Watson",
+    github: "ewatson-sql",
+    since: "2020-08-10",
+    commits: 634,
+    avatar: "https://github.com/identicons/ewatson-sql.png"
+  },
+  {
+    rank: 4,
+    name: "David Kumar",
+    github: "dkumar-data",
+    since: "2021-05-03",
+    commits: 421,
+    avatar: "https://github.com/identicons/dkumar-data.png"
+  },
+  {
+    rank: 5,
+    name: "Alex Thompson",
+    github: "athompson-dev",
+    since: "2022-02-14",
+    commits: 289,
+    avatar: "https://github.com/identicons/athompson-dev.png"
+  }
+];
+
+// Initialize Tabulator
+const table = new Tabulator("#contributors-table", {
+  data: contributorsData,
+  layout: "fitColumns",
+  responsiveLayout: "collapse",
+  pagination: "local",
+  paginationSize: 25,
+  columns: [
+    {
+      title: "#",
+      field: "rank",
+      width: 60,
+      sorter: "number",
+      headerSort: false
+    },
+    {
+      title: "Name",
+      field: "name",
+      minWidth: 200,
+      formatter: function(cell, formatterParams) {
+        const data = cell.getRow().getData();
+        return `
+          <div class="contributor-info">
+            <img src="${data.avatar}" alt="${data.name}" class="contributor-avatar">
+            <div class="contributor-details">
+              <strong>${data.name}</strong><br>
+              <a href="https://github.com/${data.github}" target="_blank" rel="noopener">@${data.github}</a>
+            </div>
+          </div>
+        `;
+      }
+    },
+    {
+      title: "Since",
+      field: "since",
+      width: 120,
+      formatter: function(cell) {
+        const date = new Date(cell.getValue());
+        return date.toLocaleDateString('en-US', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric'
+        });
+      },
+      sorter: "date"
+    },
+    {
+      title: "Commits",
+      field: "commits",
+      width: 100,
+      formatter: function(cell) {
+        return `<a href="https://github.com/sqlfluff/sqlfluff/commits?author=${cell.getRow().getData().github}" target="_blank" rel="noopener">${cell.getValue()}</a>`;
+      },
+      sorter: "number"
+    }
+  ],
+  initialSort: [
+    {column: "commits", dir: "desc"}
+  ]
+});
+
+// Time filter functionality
+document.getElementById('time-filter').addEventListener('change', function(e) {
+  const filter = e.target.value;
+  // For now, this is just a placeholder - in a real implementation
+  // you would filter the data based on commit dates
+  console.log('Filter changed to:', filter);
+
+  if (filter === 'all') {
+    table.clearFilter();
+  } else {
+    // Placeholder for time-based filtering
+    // In real implementation, you'd filter based on commit dates
+    table.clearFilter();
+  }
+});
+
+// Update stats
+document.getElementById('total-contributors').textContent = contributorsData.length;
+</script>
+
+{{ end }}
