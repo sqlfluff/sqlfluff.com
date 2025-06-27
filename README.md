@@ -21,6 +21,7 @@ Please raise issues and PRs for anything you normally would.
 You'll need to install `hugo` locally. See <https://gohugo.io/installation/>.
 
 **Important:** This project uses a git submodule for the theme. After cloning, run:
+
 ```bash
 git submodule update --init --recursive
 ```
