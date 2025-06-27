@@ -123,27 +123,7 @@ body {
     text-decoration: underline;
 }
 
-.contributors-note {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    border-left: 4px solid #007bff;
-    text-align: center;
-}
 
-.contributors-note em {
-    color: #666;
-}
-
-.contributors-note a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.contributors-note a:hover {
-    text-decoration: underline;
-}
 
 /* Tabulator customizations */
 .tabulator {
