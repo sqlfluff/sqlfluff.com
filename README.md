@@ -20,7 +20,14 @@ Please raise issues and PRs for anything you normally would.
 
 You'll need to install `hugo` locally. See <https://gohugo.io/installation/>.
 
+**Important:** This project uses a git submodule for the theme. After cloning, run:
+```bash
+git submodule update --init --recursive
+```
+
 After installation, run `hugo server` for local development.
+
+**For detailed setup instructions, see [DEVELOPMENT.md](DEVELOPMENT.md).**
 
 ## Copyright and License
 

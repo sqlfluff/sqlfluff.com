@@ -1,0 +1,62 @@
+# SQLFluff.com Hugo Website - Cursor Rules
+
+## Project Overview
+
+This is the Hugo static website for SQLFluff, a SQL linter. The site uses:
+
+- Hugo static site generator (v0.125.4)
+- Gokarna theme (git submodule)
+- Netlify for deployment
+- Custom CSS and assets
+
+## Development Commands
+
+- `hugo server` - Start local development server
+- `hugo --gc --minify` - Build for production
+- Theme is a git submodule, update with: `git submodule update --remote themes/gokarna`
+
+## File Structure Guidelines
+
+- Content files: Write in Markdown in `/content/` directory
+- Layouts: Override theme layouts in `/layouts/`
+- Static assets: Place in `/static/` directory
+- Custom CSS: Update `/static/css/sqlfluff.css`
+- Configuration: Main config in `hugo.toml`
+
+## Hugo-Specific Rules
+
+- Follow Hugo's directory structure conventions
+- Use Hugo's front matter format (YAML preferred)
+- Leverage Hugo shortcodes when possible
+- Optimize images and assets for web delivery
+- Use Hugo's built-in minification for production builds
+
+## Code Style
+
+- Use semantic HTML5 elements
+- Follow accessibility best practices
+- Keep CSS organized and use meaningful class names
+- Use Hugo's asset pipeline for optimization
+- Maintain consistency with Gokarna theme styling
+
+## Content Guidelines
+
+- Focus on SQLFluff-related content
+- Maintain professional tone aligned with SQLFluff brand
+- Ensure all links are functional and up-to-date
+- Include proper meta descriptions and keywords for SEO
+
+## Deployment Notes
+
+- Site deploys automatically via Netlify on push to main
+- Netlify config in `netlify.toml`
+- Build command: `hugo --gc --minify`
+- Publish directory: `public`
+
+## When making changes
+
+1. Test locally with `hugo server` first
+2. Check responsive design on mobile/tablet
+3. Verify all links work correctly
+4. Ensure no broken theme inheritance
+5. Test build process with `hugo --gc --minify`

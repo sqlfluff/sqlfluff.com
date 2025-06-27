@@ -1,0 +1,50 @@
+# Hugo build outputs
+public/
+resources/
+
+# Theme files (git submodule - don't edit directly)
+# Note: You can comment out the themes/ line below if you need
+# Cursor to have context about theme layouts, partials, and assets
+# themes/
+
+# Specific theme files that are less relevant for development context
+themes/*/exampleSite/
+themes/*/images/
+themes/*/.git/
+themes/*/README.md
+themes/*/LICENSE
+
+# Hugo cache
+.hugo_build.lock
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Node modules (if using npm/yarn for asset pipeline)
+node_modules/
+
+# IDE files
+.vscode/settings.json
+.idea/
+
+# Backup files
+*.bak
+*.backup
