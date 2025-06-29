@@ -83,15 +83,16 @@ body {
 
 .contributors-controls select {
     padding: 8px 12px;
-    border: 2px solid #ddd;
+    border: 2px solid var(--light-secondary-color);
     border-radius: 5px;
-    background-color: white;
+    background-color: rgb(var(--light-primary-color));
+    color: var(--light-text-color);
     font-size: 14px;
 }
 
 .contributors-controls select:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: var(--accent-color);
 }
 
 .contributor-info {
@@ -104,7 +105,7 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 2px solid #ddd;
+    border: 2px solid var(--light-secondary-color);
     flex-shrink: 0;
 }
 
@@ -113,13 +114,13 @@ body {
 }
 
 .contributor-details a {
-    color: #666;
+    color: grey;
     text-decoration: none;
     font-size: 0.9em;
 }
 
 .contributor-details a:hover {
-    color: #007bff;
+    color: var(--accent-color);
     text-decoration: underline;
 }
 
@@ -127,31 +128,38 @@ body {
 
 /* Tabulator customizations */
 .tabulator {
-    border: 2px solid #ddd;
+    border: 2px solid var(--light-secondary-color) !important;
     border-radius: 10px;
     overflow: hidden;
+    background-color: rgb(var(--light-primary-color)) !important;
+    color: var(--light-text-color) !important;
 }
 
 .tabulator .tabulator-header {
-    background-color: #f8f9fa;
-    border-bottom: 2px solid #ddd;
+    background-color: var(--light-secondary-color) !important;
+    border-bottom: 2px solid var(--light-secondary-color) !important;
 }
 
 .tabulator .tabulator-header .tabulator-col {
-    border-right: 1px solid #ddd;
+    border-right: 1px solid var(--light-secondary-color) !important;
+    background-color: var(--light-secondary-color) !important;
 }
 
 .tabulator .tabulator-row {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--light-secondary-color) !important;
+    background-color: rgb(var(--light-primary-color)) !important;
 }
 
 .tabulator .tabulator-row:hover {
-    background-color: #f8f9fa;
+    background-color: var(--light-secondary-color) !important;
 }
 
 .tabulator .tabulator-cell {
     padding: 12px 8px;
+    color: var(--light-text-color) !important;
 }
+
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -176,3 +184,97 @@ body {
         margin-right: 0;
     }
 }
+
+/*
+ * Dark mode overrides - following the exact same pattern as themes/gokarna/assets/css/dark.css
+ * These styles are automatically applied when the theme's dark.css is loaded
+ */
+
+/* GitHub usernames - simple override like blockquotes */
+.contributor-details a {
+    color: darkgrey;
+}
+
+
+
+/*
+ * Dark mode overrides for contributors page
+ * These styles are applied when the theme's dark.css is loaded
+ * Following the same pattern as themes/gokarna/assets/css/dark.css
+ */
+
+/*
+ * Dark mode styles - applied when theme's dark.css is loaded
+ */
+.tabulator {
+    border-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+    background-color: rgb(var(--dark-primary-color, var(--light-primary-color))) !important;
+    color: var(--dark-text-color, var(--light-text-color)) !important;
+}
+
+.tabulator .tabulator-header {
+    background-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+    border-bottom-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+}
+
+.tabulator .tabulator-header .tabulator-col {
+    border-right-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+    background-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+    color: var(--dark-text-color, var(--light-text-color)) !important;
+}
+
+.tabulator .tabulator-row {
+    border-bottom-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+    background-color: rgb(var(--dark-primary-color, var(--light-primary-color))) !important;
+}
+
+.tabulator .tabulator-row:hover {
+    background-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+}
+
+.tabulator .tabulator-cell {
+    color: var(--dark-text-color, var(--light-text-color)) !important;
+}
+
+.contributors-controls select {
+    background-color: var(--dark-secondary-color, rgb(var(--light-primary-color))) !important;
+    border-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+    color: var(--dark-text-color, var(--light-text-color)) !important;
+}
+
+.contributor-avatar {
+    border-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+}
+
+/* Tabulator footer/pagination styling */
+.tabulator .tabulator-footer {
+    background-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+    border-top-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+    color: var(--dark-text-color, var(--light-text-color)) !important;
+}
+
+.tabulator .tabulator-pagination {
+    background-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+    color: var(--dark-text-color, var(--light-text-color)) !important;
+}
+
+.tabulator .tabulator-page {
+    background-color: rgb(var(--dark-primary-color, var(--light-primary-color))) !important;
+    border-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+    color: var(--dark-text-color, var(--light-text-color)) !important;
+}
+
+.tabulator .tabulator-page:hover {
+    background-color: var(--dark-secondary-color, var(--light-secondary-color)) !important;
+}
+
+.tabulator .tabulator-page.active {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+}
+
+.tabulator .tabulator-page-counter {
+    color: var(--dark-text-color, var(--light-text-color)) !important;
+}
+
+
