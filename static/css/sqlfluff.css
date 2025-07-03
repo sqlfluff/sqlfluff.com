@@ -195,7 +195,15 @@ body {
     color: darkgrey;
 }
 
-
+/* GitHub username colour – follows theme pattern */
+.contributor-details a {
+    color: grey;                 /* light mode */
+}
+@media (prefers-color-scheme: dark) {
+  .contributor-details a {
+    color: darkgrey;             /* dark mode */
+  }
+}
 
 /*
  * Dark mode overrides for contributors page
