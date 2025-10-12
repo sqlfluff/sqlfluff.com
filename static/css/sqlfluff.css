@@ -42,6 +42,13 @@ body {
     width: 100%;
 }
 
+/* Sponsor logos: constrain height to 80px, preserve aspect ratio, allow narrower width */
+.sponsor-logos img {
+    max-height: 70px;
+    width: auto;        /* override generic width:100% */
+    height: auto;       /* ensure aspect ratio preserved */
+}
+
 .sqlfluff-code-cli {
     line-height: 1.1;
 }
@@ -81,4 +88,33 @@ body {
     --dark-tertiary-color: #30363d;   /* #30363d */
     /* Base text color in dark mode */
     --dark-text-color: #e6edf3;       /* slightly off-white for readability */
+}
+
+/*
+    Make sponsor logos render white in dark mode only
+    Strategy:
+    - When Gokarna's dark stylesheet is active (link#dark-theme not disabled),
+        apply a filter to the sponsor logo image to convert it to white while keeping light mode untouched.
+    - Provide a prefers-color-scheme fallback for first paint before JS toggles.
+*/
+
+/* Default: no effect in light mode */
+.dark-monochrome-invert { filter: none; }
+
+/* Robust check tied to theme toggle: only applies if dark theme link is enabled */
+html:has(link#dark-theme:not([disabled])) .dark-monochrome-invert {
+    /* Invert to white, remove color, tweak contrast/brightness for crispness */
+    filter: invert(1) grayscale(1) brightness(1.2) contrast(1.1);
+}
+
+/* Fallback for environments without :has() support before JS runs */
+@media (prefers-color-scheme: dark) {
+    .dark-monochrome-invert {
+        filter: invert(1) grayscale(1) brightness(1.2) contrast(1.1);
+    }
+}
+
+/* If user forces light theme (dark link disabled), ensure logo returns to original even if OS prefers dark */
+html:has(link#dark-theme[disabled]) .dark-monochrome-invert {
+    filter: none !important;
 }
