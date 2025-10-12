@@ -38,7 +38,7 @@ enableRobotsTXT = true
   # URL for the avatar on homepage
   avatarURL = "/img/sqlfluff-avatar.png"
   # Choose one of size-xs, size-s, size-m, size-l & size-xl. (Default: size-m)
-  avatarSize = "size-l"
+  avatarSize = "size-xl"
   # Description to display on homepage
   description = "📜 The SQL Linter for humans"
   # Keywords relevant for SEO
