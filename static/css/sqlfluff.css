@@ -61,3 +61,24 @@ body {
 .sqlfluff-code-cli .code-gray{
     color: #5c6370
 }
+
+/*
+   Gokarna dark mode overrides
+   The theme enables a separate dark stylesheet (assets/css/dark.css) that uses
+   these CSS custom properties. Overriding them here (our CSS loads after the
+   theme) changes dark-mode colors without affecting light mode.
+
+   Notes:
+   - --dark-primary-color expects an r, g, b triplet (no rgb() wrapper).
+   - To pick a hex color like #0d1117, convert to rgb: 13, 17, 23.
+*/
+:root {
+    /* Background (page, header backdrop, etc.) */
+    --dark-primary-color: 13, 17, 23; /* GitHub Dark-like: #0d1117 */
+    /* Surfaces/borders (cards, code blocks, table headers) */
+    --dark-secondary-color: #161b22;  /* #161b22 */
+    /* Subtle accents (inline code, dividers, hr) */
+    --dark-tertiary-color: #30363d;   /* #30363d */
+    /* Base text color in dark mode */
+    --dark-text-color: #e6edf3;       /* slightly off-white for readability */
+}
