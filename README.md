@@ -1,6 +1,8 @@
-# sqlfluff.com
+![SQLFluff](https://raw.githubusercontent.com/sqlfluff/sqlfluff/main/images/sqlfluff-wide.png)
 
-Website for [sqlfluff](http://www.sqlfluff.com/).
+# [sqlfluff.com](http://www.sqlfluff.com/)
+
+Website for [SQLFluff](http://www.sqlfluff.com/).
 
 * Built with [Hugo](https://gohugo.io/).
 * Using the [Gokarna](https://github.com/gokarna-theme/gokarna-hugo) theme. This
