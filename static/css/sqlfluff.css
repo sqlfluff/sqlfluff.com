@@ -37,6 +37,21 @@ body {
     border-radius: 25px;
     border: 2px solid #DDD;
 }
+
+/* Feature section icons */
+.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    margin-right: 8px;
+    line-height: 1;
+}
+
+.feature-icon svg {
+    width: 1em;
+    height: 1em;
+    stroke-width: 2;
+}
   
 .sqlfluff-index-blocks img {
     width: 100%;
