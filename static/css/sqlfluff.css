@@ -24,18 +24,18 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    gap: 40px 30px;  /* Vertical and horizontal spacing between items */
+    margin: 40px 0;  /* Breathing room above and below the section */
 }
 
 .sqlfluff-index-blocks > div {
-    margin: 10px;
-    padding: 20px;
+    margin: 0;  /* Gap handles spacing now */
+    padding: 0;  /* Remove box padding for cleaner look */
     max-width: 320px;
-    /* Justify text in boxes */
-    text-align: justify;
-    line-height: 1.5;
-    /* Rounded borders */
-    border-radius: 25px;
-    border: 2px solid #DDD;
+    /* Left-align text for readability in minimalist style */
+    text-align: left;
+    line-height: 1.6;  /* Slightly more breathing room */
+    /* No borders - pure whitespace separation */
 }
 
 /* Feature section icons */
