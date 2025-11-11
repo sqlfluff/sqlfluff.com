@@ -49,6 +49,7 @@ enableRobotsTXT = true
   socialIcons = [
     {name = "github", url = "https://github.com/sqlfluff"},
     {name = "docker", url = "https://hub.docker.com/r/sqlfluff/sqlfluff"},
+    {name = "python", url = "https://pypi.org/org/SQLFluff/"},
     {name = "twitter", url = "https://twitter.com/SQLFluff"},
     {name = "linkedin", url = "https://linkedin.com/company/sqlfluff"},
     {name = "slack", url = "https://join.slack.com/t/sqlfluff/shared_invite/zt-2qtu36kdt-OS4iONPbQ3aCz2DIbYJdWg"},
