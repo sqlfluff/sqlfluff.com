@@ -133,3 +133,18 @@ html:has(link#dark-theme:not([disabled])) .dark-monochrome-invert {
 html:has(link#dark-theme[disabled]) .dark-monochrome-invert {
     filter: none !important;
 }
+
+/* Sponsor logo swaps for explicit dark mode assets */
+.sponsor-logo-light { display: inline-block; }
+.sponsor-logo-dark { display: none; }
+
+html:has(link#dark-theme:not([disabled])) .sponsor-logo-light { display: none; }
+html:has(link#dark-theme:not([disabled])) .sponsor-logo-dark { display: inline-block; }
+
+@media (prefers-color-scheme: dark) {
+    .sponsor-logo-light { display: none; }
+    .sponsor-logo-dark { display: inline-block; }
+}
+
+html:has(link#dark-theme[disabled]) .sponsor-logo-light { display: inline-block !important; }
+html:has(link#dark-theme[disabled]) .sponsor-logo-dark { display: none !important; }
