@@ -51,8 +51,9 @@ enableRobotsTXT = true
     {name = "docker", url = "https://hub.docker.com/r/sqlfluff/sqlfluff"},
     {name = "python", url = "https://pypi.org/org/SQLFluff/"},
     {name = "twitter", url = "https://twitter.com/SQLFluff"},
+    {name = "bluesky", url = "https://bsky.app/profile/sqlfluff.com"},
     {name = "linkedin", url = "https://linkedin.com/company/sqlfluff"},
-    {name = "slack", url = "https://join.slack.com/t/sqlfluff/shared_invite/zt-2qtu36kdt-OS4iONPbQ3aCz2DIbYJdWg"},
+    {name = "slack", url = "https://join.slack.com/t/sqlfluff/shared_invite/zt-3qprhrisj-ClUo_1tLmYBzrVu5ZoDwIw"},
     {name = "stackoverflow", url = "https://stackoverflow.com/questions/tagged/sqlfluff"},
   ]
   CustomFooterHTML = """
