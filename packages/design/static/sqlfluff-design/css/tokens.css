@@ -32,7 +32,11 @@
   --sqlfluff-shadow-sm: 0 1px 2px rgb(29 37 43 / 8%);
 }
 
-:root[data-theme="dark"] {
+/* `theme.js` sets both signals. The class is also accepted so an application
+   whose framework already owns a `dark` class can adopt these tokens without
+   running the shared script. */
+:root[data-theme="dark"],
+:root.dark {
   color-scheme: dark;
   --sqlfluff-color-canvas: #0d1117;
   --sqlfluff-color-surface: #161b22;
