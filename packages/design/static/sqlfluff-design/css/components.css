@@ -23,22 +23,20 @@
 }
 
 .sqlfluff-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
+  display: block;
+  flex: 0 0 auto;
   min-width: 0;
-  color: var(--sqlfluff-color-text);
-  font-weight: 700;
   text-decoration: none;
 }
 
-.sqlfluff-brand:hover {
-  color: var(--sqlfluff-color-text);
+.sqlfluff-brand img {
+  display: block;
+  width: 132px;
+  height: auto;
 }
 
-.sqlfluff-brand img {
-  width: 38px;
-  height: 38px;
+:root[data-theme="dark"] .sqlfluff-brand img {
+  filter: grayscale(1) invert(1);
 }
 
 .sqlfluff-nav {
