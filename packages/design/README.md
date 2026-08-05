@@ -5,28 +5,44 @@ styles, assets, and browser behaviour. It is consumed directly by this Hugo site
 and is intended to be vendored into the documentation and statistics repositories
 through a pinned Git submodule.
 
-The package self-hosts IBM Plex Sans in the weights used by the shared components.
-The font files use `font-display: swap` and retain their SIL Open Font License in
-`static/sqlfluff-design/fonts/IBM-PLEX-OFL-1.1.txt`.
+## Package contents
 
-## Contract
+- `static/sqlfluff-design/css/tokens.css`: light and dark design tokens.
+- `static/sqlfluff-design/css/base.css`: IBM Plex Sans, reset, typography, focus,
+  skip-link, and reduced-motion foundations.
+- `static/sqlfluff-design/css/components.css`: shared container, header,
+  navigation, theme switcher, buttons, social links, terminal, and footer.
+- `static/sqlfluff-design/js/theme.js`: theme preference and responsive navigation
+  behaviour.
+- `static/sqlfluff-design/img/`: wordmarks, social image, favicons, and application
+  icons.
+- `static/sqlfluff-design/icons/`: shared interface and social icons.
+- `static/sqlfluff-design/fonts/`: the self-hosted IBM Plex Sans webfonts and OFL.
 
-Consumer builds should copy `static/sqlfluff-design/` into their public output and
-load the assets in this order:
+## Ownership boundary
 
-1. `css/tokens.css`
-2. `css/base.css`
-3. `css/components.css`
-4. an application-owned adapter stylesheet, when required
+The package owns visual foundations and reusable chrome. Consuming applications
+own framework templates, page content, navigation destinations and visibility,
+active-route logic, metadata, manifests, and page-specific layouts and artwork.
+For example, the SQLFluff homepage hero, feature grid, feature icons, and sponsor
+layout remain in this Hugo application even though they use shared tokens,
+buttons, and typography.
 
-Load `js/theme.js` in the document head before the stylesheets. It applies the
-shared light, dark, or automatic theme before first paint, then initializes the
-segmented theme control and responsive navigation after the DOM is ready.
+Framework-specific adapters must load after the shared styles and should not edit
+vendored package files. New styles belong here only when at least two applications
+need the same visual component or behaviour.
 
-`components.css` also provides the reusable social-link list. Consumers supply
-the semantic list markup and select an icon with a `sqlfluff-social-icon-*`
-class, keeping destinations and labels in application configuration.
+## Integration
 
-Shared selectors and custom properties are prefixed with `sqlfluff-`. Consumers
-should treat this directory as read-only and keep framework-specific templates and
-overrides in their own repositories.
+See [INTEGRATION.md](INTEGRATION.md) for the submodule workflow, asset load order,
+HTML contracts, theme cookie, adapter guidance, and verification checklist.
+
+Repository commits, and optional `design-v*` tags once introduced, version the
+package. Consumers advance their pinned submodule commit through an ordinary pull
+request; no package registry or runtime dependency on `sqlfluff.com` is required.
+
+## Licensing
+
+IBM Plex Sans uses `font-display: swap` and retains its SIL Open Font License in
+`static/sqlfluff-design/fonts/IBM-PLEX-OFL-1.1.txt`. Other asset licences and
+attributions are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

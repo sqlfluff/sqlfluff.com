@@ -10,6 +10,7 @@ disableKinds = ['taxonomy', 'term']
 [params]
   description = "The SQL linter for humans"
   metaKeywords = ["sqlfluff", "sql", "linter"]
+  showStats = false # Enable when the statistics site is ready for general use.
   socialIcons = [
     {name = "github", label = "GitHub", url = "https://github.com/sqlfluff"},
     {name = "docker", label = "Docker Hub", url = "https://hub.docker.com/r/sqlfluff/sqlfluff"},

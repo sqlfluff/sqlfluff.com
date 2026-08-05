@@ -9,6 +9,7 @@ documentation, and statistics site is described in [DESIGN_PLAN.md](DESIGN_PLAN.
 
 * Built with [Hugo](https://gohugo.io/).
 * Uses the repository-local shared design package in [`packages/design`](packages/design).
+  Consumers should follow its [integration guide](packages/design/INTEGRATION.md).
 * Deployed with [Netlify](https://www.netlify.com/). We're also signed up to
   an *Open Source* plan with Netlify, which requires us to credit them in the
   site footer.

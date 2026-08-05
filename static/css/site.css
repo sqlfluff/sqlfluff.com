@@ -48,6 +48,13 @@
   margin-top: 1.25rem;
 }
 
+.sqlfluff-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
 .sqlfluff-section {
   padding-block: 4.5rem;
   border-top: 1px solid var(--sqlfluff-color-border);
@@ -101,19 +108,19 @@
 }
 
 .sqlfluff-feature-icon-lint {
-  --sqlfluff-feature-icon: url("/sqlfluff-design/icons/search-check.svg");
+  --sqlfluff-feature-icon: url("/icons/search-check.svg");
 }
 
 .sqlfluff-feature-icon-fix {
-  --sqlfluff-feature-icon: url("/sqlfluff-design/icons/wand-sparkles.svg");
+  --sqlfluff-feature-icon: url("/icons/wand-sparkles.svg");
 }
 
 .sqlfluff-feature-icon-parse {
-  --sqlfluff-feature-icon: url("/sqlfluff-design/icons/braces.svg");
+  --sqlfluff-feature-icon: url("/icons/braces.svg");
 }
 
 .sqlfluff-feature-icon-configure {
-  --sqlfluff-feature-icon: url("/sqlfluff-design/icons/sliders-horizontal.svg");
+  --sqlfluff-feature-icon: url("/icons/sliders-horizontal.svg");
 }
 
 .sqlfluff-quickstart {

@@ -14,7 +14,9 @@
     <nav id="sqlfluff-global-nav" class="sqlfluff-nav" aria-label="Global navigation" data-sqlfluff-nav-menu>
       <a href="{{ .Site.Home.RelPermalink }}" aria-current="page">Product</a>
       <a href="{{ .Site.Params.links.docs }}">Docs</a>
-      <a href="{{ .Site.Params.links.stats }}">Stats</a>
+      {{ if .Site.Params.showStats }}
+        <a href="{{ .Site.Params.links.stats }}">Stats</a>
+      {{ end }}
       <a href="{{ .Site.Params.links.source }}">GitHub</a>
       <div class="sqlfluff-theme-control">
         <span id="sqlfluff-theme-label" class="sqlfluff-visually-hidden">Colour theme</span>

@@ -8,7 +8,9 @@
       </div>
       <nav class="sqlfluff-footer-links" aria-label="Project links">
         <a href="{{ .Site.Params.links.docs }}">Documentation</a>
-        <a href="{{ .Site.Params.links.stats }}">Project statistics</a>
+        {{ if .Site.Params.showStats }}
+          <a href="{{ .Site.Params.links.stats }}">Project statistics</a>
+        {{ end }}
         <a href="{{ .Site.Params.links.source }}">GitHub source</a>
         <a href="https://pypi.org/project/sqlfluff/">PyPI package</a>
       </nav>
