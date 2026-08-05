@@ -65,6 +65,14 @@ the stylesheets. Load application/framework adapters last:
 <link rel="stylesheet" href="/assets/application-adapter.css">
 ```
 
+The element-level rules in `base.css` sit in a `sqlfluff-base` cascade layer, so
+they are a floor rather than a ceiling: a framework which styles the same bare
+elements keeps winning no matter which file loads last. Tokens, shared component
+classes, and the utility classes are unlayered and behave normally. An adapter
+therefore does not need to reproduce framework typography to defend it, and does
+not need the shared stylesheets to load in any particular position relative to
+the framework's own bundle.
+
 Do not add `defer` to `theme.js`: its first pass applies the theme before paint.
 Control and navigation handlers are delegated from the document, so they are
 registered in the same pass and do not wait for `DOMContentLoaded`.

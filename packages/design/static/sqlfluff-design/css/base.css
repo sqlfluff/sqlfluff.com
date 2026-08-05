@@ -30,6 +30,19 @@
   font-display: swap;
 }
 
+/*
+ * Element-level foundations are layered so they act as a floor rather than a
+ * ceiling. Unlayered CSS always wins over layered CSS regardless of source
+ * order, which lets an application whose framework styles the same bare
+ * elements load this file in whatever order suits it without the shared reset
+ * overriding the framework's own typography and surfaces.
+ *
+ * Shared utility classes and the reduced-motion guard stay outside the layer:
+ * a consumer opts into those by name and they must not be overridden by
+ * accident.
+ */
+@layer sqlfluff-base {
+
 *,
 *::before,
 *::after {
@@ -135,6 +148,8 @@ select {
   cursor: pointer;
 }
 
+}
+
 .sqlfluff-visually-hidden {
   position: absolute;
   width: 1px;
@@ -164,6 +179,8 @@ select {
   transform: translateY(0);
 }
 
+@layer sqlfluff-base {
+
 @media (max-width: 720px) {
   h1 {
     font-size: 2.5rem;
@@ -172,6 +189,8 @@ select {
   h2 {
     font-size: 1.5rem;
   }
+}
+
 }
 
 @media (prefers-reduced-motion: reduce) {
