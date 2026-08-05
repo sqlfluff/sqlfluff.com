@@ -1,146 +1,100 @@
 {{ define "main" }}
-<section class="home-about">
-  <h1><img src="img/sqlfluff-wide.png" alt="sqlfluff"/><br>{{ .Site.Params.Description }}</h1>
-</section>
-
-<div class="flex-break"></div>
-
-<div class="sqlfluff-shields">
-  <a href="https://pypi.org/project/sqlfluff/">
-    <img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/sqlfluff?logo=pypi&style=flat-square">
-  </a>
-  <a href="https://pypi.org/project/sqlfluff/">
-    <img alt="PyPI" src="https://img.shields.io/pypi/v/sqlfluff?logo=pypi&style=flat-square">
-  </a>
-  <a href="https://github.com/sqlfluff/sqlfluff">
-    <img alt="GitHub" src="https://img.shields.io/github/license/sqlfluff/sqlfluff?style=flat-square">
-  </a>
-  <a href="https://github.com/sqlfluff/sqlfluff">
-    <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/sqlfluff/sqlfluff?logo=github&style=flat-square">
-  </a>
-</div>
-
-{{ if isset .Site.Params "socialicons" }}
-<div class="gk-social-icons">
-    <ul class="gk-social-icons-list">
-        {{ range .Site.Params.SocialIcons }}
-        <li class="gk-social-icon">
-            <a href="{{ .url }}" {{ if .rel }}rel="{{ .rel }}"{{ end }} aria-label="Learn more on {{ .name }}">
-                <img class="svg-inject" src="{{ relURL "svg/icons/" }}{{ .name | lower }}.svg" alt="">
-            </a>
-        </li>
-        {{ end }}
-    </ul>
-</div>
-{{ end }}
-
-<div class="post container sqlfluff-justify">
-  <div>
-    <p>
-      <b>SQLFluff</b> is an open source, dialect-flexible and configurable SQL
-      linter. Designed with ELT applications in mind, <b>SQLFluff</b> also
-      works with Jinja templating and dbt. <b>SQLFluff</b> will auto-fix most
-      linting errors, allowing you to focus your time on what matters.
+  <section class="sqlfluff-container sqlfluff-home-hero" aria-labelledby="sqlfluff-home-title">
+    <h1 id="sqlfluff-home-title">
+      <img src="{{ "sqlfluff-design/img/sqlfluff-wide.png" | relURL }}" alt="SQLFluff">
+    </h1>
+    <p class="sqlfluff-hero-tagline">The SQL linter for humans</p>
+    <p class="sqlfluff-hero-description">
+      An open source, dialect-flexible and configurable SQL linter. SQLFluff
+      works with Jinja templating and dbt, and can automatically fix most
+      linting errors.
     </p>
-  </div>
-  <div>
-    <div class="sqlfluff-index-blocks">
-      <div>
-        <h2><span class="feature-icon" data-feather='search'></span> Lint</h2>
-        <p>
-          <b>SQLFluff</b> finds issues with your SQL code and reports them back
-          to you (and your team) automatically so that your code reviews can be
-          more about function and less about form.
-        </p>
+    <div class="sqlfluff-actions">
+      <a class="sqlfluff-button sqlfluff-button-primary" href="{{ .Site.Params.links.docs }}">Read the documentation</a>
+      <a class="sqlfluff-button" href="{{ .Site.Params.links.source }}">View source</a>
+    </div>
+    <div class="sqlfluff-meta-links" aria-label="Project metadata">
+      <a href="https://pypi.org/project/sqlfluff/"><img alt="Monthly PyPI downloads" src="https://img.shields.io/pypi/dm/sqlfluff?logo=pypi&style=flat-square"></a>
+      <a href="https://pypi.org/project/sqlfluff/"><img alt="Latest PyPI version" src="https://img.shields.io/pypi/v/sqlfluff?logo=pypi&style=flat-square"></a>
+      <a href="{{ .Site.Params.links.source }}"><img alt="MIT licence" src="https://img.shields.io/github/license/sqlfluff/sqlfluff?style=flat-square"></a>
+      <a href="{{ .Site.Params.links.source }}"><img alt="GitHub stars" src="https://img.shields.io/github/stars/sqlfluff/sqlfluff?logo=github&style=flat-square"></a>
+    </div>
+  </section>
+
+  <section class="sqlfluff-section">
+    <div class="sqlfluff-container">
+      <div class="sqlfluff-section-heading">
+        <h2>One tool for consistent SQL</h2>
+        <p>Find style and syntax issues early, apply safe fixes, and adapt the rules to the way your team works.</p>
       </div>
-      <div>
-        <h2><span class="feature-icon" data-feather='edit-3'></span> Fix</h2>
-        <p>
-          <b>SQLFluff</b> saves time by fixing linting issues found in your code
-          to save you time, and make it easy to have consistent and legible SQL.
-        </p>
-      </div>
-      <div>
-        <h2><span class="feature-icon" data-feather='code'></span> Parse</h2>
-        <p>
-          <b>SQLFluff</b> parses your SQL to catch a range of syntax issues without
-          needing access to the database, so you can catch mistakes earlier in your
-          development process.
-        </p>
-      </div>
-      <div>
-        <h2><span class="feature-icon" data-feather='sliders'></span> Configure</h2>
-        <p>
-          <b>SQLFluff</b> is configurable to work with a range of SQL dialects and
-          style choices. It has opinionated defaults, so you can get going easily,
-          but a range of flexible configuration options to fit your local style.
-        </p>
+      <div class="sqlfluff-feature-grid">
+        <article class="sqlfluff-feature">
+          <h3>Lint</h3>
+          <p>Report SQL issues automatically so code reviews can focus on function rather than form.</p>
+        </article>
+        <article class="sqlfluff-feature">
+          <h3>Fix</h3>
+          <p>Correct many linting issues automatically and keep SQL consistent and legible.</p>
+        </article>
+        <article class="sqlfluff-feature">
+          <h3>Parse</h3>
+          <p>Catch syntax issues without database access, before code reaches later development stages.</p>
+        </article>
+        <article class="sqlfluff-feature">
+          <h3>Configure</h3>
+          <p>Start with opinionated defaults, then tailor dialects, rules, and formatting to local needs.</p>
+        </article>
       </div>
     </div>
-  </div>
-  <div class="post-content">
-    <h2>Getting Started</h2>
-    <p>
-      You can get started with <b>SQLFluff</b> in your project today by
-      downloading it from <a href="https://pypi.org/project/sqlfluff/">pypi</a>
-      using <a href="https://pip.pypa.io/">pip</a> (or your favourite python
-      package manager). For more details, check out <a href="https://docs.sqlfluff.com">the docs</a>.
-    </p>
-    <div  class="sqlfluff-code-cli"><pre><code><span class="code-gray">$</span> <span class="code-yellow">pip</span> install sqlfluff
-<span class="code-gray">$</span> <span class="code-yellow">echo</span> <span class="code-blue">"  SELECT a  +  b FROM tbl;  "</span> > test.sql
-<span class="code-gray">$</span> <span class="code-yellow">sqlfluff</span> lint test.sql --dialect ansi
-== [<span class="code-yellow">test.sql</span>] <span class="code-red">FAIL</span>
-<span class="code-blue">L:   1 | P:   1 | LT01 |</span> Expected only single space before 'SELECT' keyword.
-<span class="code-blue">                       |</span> Found '  '. [layout.spacing]
-<span class="code-blue">L:   1 | P:   1 | LT02 |</span> First line should not be indented.
-<span class="code-blue">                       |</span> [layout.indent]
-<span class="code-blue">L:   1 | P:   1 | LT13 |</span> Files must not begin with newlines or whitespace.
-<span class="code-blue">                       |</span> [layout.start_of_file]
-<span class="code-blue">L:   1 | P:  11 | LT01 |</span> Expected only single space before binary operator '+'.
-<span class="code-blue">                       |</span> Found '  '. [layout.spacing]
-<span class="code-blue">L:   1 | P:  14 | LT01 |</span> Expected only single space before naked identifier.
-<span class="code-blue">                       |</span> Found '  '. [layout.spacing]
-<span class="code-blue">L:   1 | P:  27 | LT01 |</span> Unnecessary trailing whitespace at end of file.
-<span class="code-blue">                       |</span> [layout.spacing]
-<span class="code-blue">L:   1 | P:  27 | LT12 |</span> Files must end with a single trailing newline.
-<span class="code-blue">                       |</span> [layout.end_of_file]
-All Finished 📜 🎉!
-      </code></pre></div>
-  </div>
-  <div class="post-content">
-    <h2>Sponsors</h2>
-    <p>
-      <b>SQLFluff</b> is a community run, and community funded, project. We're
-      grateful to individuals and organisations in the community who choose to
-      support the project. If you'd like to support the project with your
-      <b>time</b>, then head over to our <a href="https://github.com/sqlfluff/sqlfluff">GitHub repository</a>
-      and check out our <a href="https://github.com/sqlfluff/sqlfluff/blob/main/CONTRIBUTING.md">contributing guide</a>.
-      If you are better able to support the project with <b>funds</b>, then
-      you can find our sponsorship page on <a href="https://github.com/sponsors/sqlfluff">GitHub sponsors</a>.
-    </p>
-  <h3>Sponsoring Organisations</h3>
-  <div class="sqlfluff-index-blocks sponsor-logos">
-      <div>
-        <a href="https://datacoves.com/">
-          <img class="sponsor-logo-light" src="img/sponsors/datacoves.png" alt="Datacoves"/>
-          <img class="sponsor-logo-dark" src="img/sponsors/datacoves-white.png" alt="" aria-hidden="true"/>
-        </a>
-        <p>
-          A managed DataOps platform for dbt and Airflow with SQLFluff pre-configured. Deploy in your private cloud or use our SaaS - governance and best practices built in from day one. <a href="https://datacoves.com/">datacoves.com</a>
-        </p>
+  </section>
+
+  <section class="sqlfluff-section">
+    <div class="sqlfluff-container sqlfluff-quickstart">
+      <div class="sqlfluff-section-heading">
+        <h2>Getting started</h2>
+        <p>Install SQLFluff from PyPI, then lint a file using your chosen SQL dialect.</p>
+        <a href="{{ .Site.Params.links.docs }}">Continue with the installation guide</a>
       </div>
-      <div>
-        <a href="https://www.a14k.co.uk/">
-          <img src="img/sponsors/a14k.png" alt="A14K Ltd."/>
-        </a>
-        <p>
-          A14K Data Services. Data Consulting & Mentoring for UK SMEs. Find out more at <a href="https://www.a14k.co.uk/">a14k.co.uk</a>.
-        </p>
+      <div class="sqlfluff-terminal" aria-label="SQLFluff command-line example">
+        <div class="sqlfluff-terminal-header">Terminal</div>
+        <pre><code><span class="sqlfluff-code-muted">$</span> <span class="sqlfluff-code-yellow">pip</span> install sqlfluff
+<span class="sqlfluff-code-muted">$</span> <span class="sqlfluff-code-yellow">echo</span> <span class="sqlfluff-code-blue">"  SELECT a  +  b FROM tbl;  "</span> &gt; test.sql
+<span class="sqlfluff-code-muted">$</span> <span class="sqlfluff-code-yellow">sqlfluff</span> lint test.sql --dialect ansi
+== [<span class="sqlfluff-code-yellow">test.sql</span>] <span class="sqlfluff-code-red">FAIL</span>
+<span class="sqlfluff-code-blue">L:   1 | P:   1 | LT01 |</span> Expected only single space before 'SELECT' keyword.
+<span class="sqlfluff-code-blue">L:   1 | P:   1 | LT02 |</span> First line should not be indented.
+<span class="sqlfluff-code-blue">L:   1 | P:  11 | LT01 |</span> Expected only single space before binary operator '+'.
+<span class="sqlfluff-code-blue">L:   1 | P:  27 | LT12 |</span> Files must end with a single trailing newline.
+All Finished!</code></pre>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-{{ partial "back-to-top.html" . }}
-
+  <section class="sqlfluff-section">
+    <div class="sqlfluff-container">
+      <div class="sqlfluff-section-heading">
+        <h2>Sponsors</h2>
+        <p>
+          SQLFluff is community-run and community-funded. Contribute through the
+          <a href="{{ .Site.Params.links.source }}">GitHub repository</a> or support
+          ongoing work through <a href="https://github.com/sponsors/sqlfluff">GitHub Sponsors</a>.
+        </p>
+      </div>
+      <div class="sqlfluff-sponsor-grid">
+        <article class="sqlfluff-sponsor">
+          <a href="https://datacoves.com/">
+            <img class="sqlfluff-sponsor-logo sqlfluff-sponsor-logo-light" src="{{ "img/sponsors/datacoves.png" | relURL }}" alt="Datacoves">
+            <img class="sqlfluff-sponsor-logo sqlfluff-sponsor-logo-dark" src="{{ "img/sponsors/datacoves-white.png" | relURL }}" alt="Datacoves">
+          </a>
+          <p>A managed DataOps platform for dbt and Airflow with SQLFluff pre-configured. Deploy in your private cloud or use the Datacoves SaaS for governance and best practices from day one.</p>
+        </article>
+        <article class="sqlfluff-sponsor">
+          <a href="https://www.a14k.co.uk/">
+            <img class="sqlfluff-sponsor-logo" src="{{ "img/sponsors/a14k.png" | relURL }}" alt="A14K Ltd.">
+          </a>
+          <p>A14K Data Services provides data consulting and mentoring for UK SMEs.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 {{ end }}

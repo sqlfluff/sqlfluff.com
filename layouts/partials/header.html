@@ -1,0 +1,30 @@
+<header class="sqlfluff-site-header" data-sqlfluff-nav>
+  <div class="sqlfluff-container sqlfluff-header-inner">
+    <a class="sqlfluff-brand" href="{{ .Site.Home.RelPermalink }}" aria-label="SQLFluff home">
+      <img src="{{ "sqlfluff-design/img/sqlfluff-avatar.png" | relURL }}" alt="">
+      <span>SQLFluff</span>
+    </a>
+
+    <button class="sqlfluff-nav-toggle" type="button" aria-expanded="false" aria-controls="sqlfluff-global-nav" data-sqlfluff-nav-toggle>
+      <span class="sqlfluff-visually-hidden">Open navigation</span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="sqlfluff-global-nav" class="sqlfluff-nav" aria-label="Global navigation" data-sqlfluff-nav-menu>
+      <a href="{{ .Site.Home.RelPermalink }}" aria-current="page">Product</a>
+      <a href="{{ .Site.Params.links.docs }}">Docs</a>
+      <a href="{{ .Site.Params.links.stats }}">Stats</a>
+      <a href="{{ .Site.Params.links.source }}">GitHub</a>
+      <label class="sqlfluff-theme-control">
+        <span class="sqlfluff-visually-hidden">Colour theme</span>
+        <select data-sqlfluff-theme-select aria-label="Colour theme">
+          <option value="auto">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </label>
+    </nav>
+  </div>
+</header>

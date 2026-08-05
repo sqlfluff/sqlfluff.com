@@ -1,0 +1,27 @@
+<footer class="sqlfluff-site-footer">
+  <div class="sqlfluff-container">
+    <div class="sqlfluff-footer-grid">
+      <div>
+        <p class="sqlfluff-footer-title">SQLFluff</p>
+        <p class="sqlfluff-footer-copy">The open source, dialect-flexible SQL linter for humans.</p>
+      </div>
+      <nav class="sqlfluff-footer-links" aria-label="Project links">
+        <a href="{{ .Site.Params.links.docs }}">Documentation</a>
+        <a href="{{ .Site.Params.links.stats }}">Project statistics</a>
+        <a href="{{ .Site.Params.links.source }}">GitHub source</a>
+        <a href="https://pypi.org/project/sqlfluff/">PyPI package</a>
+      </nav>
+      <nav class="sqlfluff-footer-links" aria-label="Community links">
+        {{ range .Site.Params.socialIcons }}
+          <a href="{{ .url }}">{{ .label | default (.name | title) }}</a>
+        {{ end }}
+      </nav>
+    </div>
+    <div class="sqlfluff-footer-legal">
+      <span>&copy; {{ now.Year }} SQLFluff Ltd.</span>
+      <span> Incorporated in England, company number 14948332.</span>
+      <span> Unit 82a James Carter Road, Mildenhall, Bury St. Edmunds, England, IP28 7DE.</span>
+      <span> Site managed by <a href="https://www.a14k.co.uk/">A14K Ltd.</a> and powered by <a href="https://www.netlify.com/">Netlify</a>.</span>
+    </div>
+  </div>
+</footer>

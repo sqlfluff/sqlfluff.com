@@ -1,0 +1,275 @@
+.sqlfluff-container {
+  width: min(calc(100% - 3rem), var(--sqlfluff-content-width));
+  margin-inline: auto;
+}
+
+.sqlfluff-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  min-height: var(--sqlfluff-header-height);
+  background: color-mix(in srgb, var(--sqlfluff-color-canvas) 94%, transparent);
+  border-bottom: 1px solid var(--sqlfluff-color-border);
+  backdrop-filter: blur(12px);
+}
+
+.sqlfluff-header-inner {
+  position: relative;
+  display: flex;
+  min-height: var(--sqlfluff-header-height);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.sqlfluff-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  color: var(--sqlfluff-color-text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sqlfluff-brand:hover {
+  color: var(--sqlfluff-color-text);
+}
+
+.sqlfluff-brand img {
+  width: 38px;
+  height: 38px;
+}
+
+.sqlfluff-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sqlfluff-nav a {
+  padding: 0.45rem 0.65rem;
+  color: var(--sqlfluff-color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--sqlfluff-radius-sm);
+}
+
+.sqlfluff-nav a:hover,
+.sqlfluff-nav a[aria-current="page"] {
+  color: var(--sqlfluff-color-text);
+  background: var(--sqlfluff-color-surface-muted);
+}
+
+.sqlfluff-theme-control {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.35rem;
+  padding-left: 0.7rem;
+  border-left: 1px solid var(--sqlfluff-color-border);
+}
+
+.sqlfluff-theme-control select {
+  min-width: 5.25rem;
+  padding: 0.4rem 0.5rem;
+  color: var(--sqlfluff-color-text);
+  background: var(--sqlfluff-color-surface);
+  border: 1px solid var(--sqlfluff-color-border);
+  border-radius: var(--sqlfluff-radius-sm);
+}
+
+.sqlfluff-nav-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  padding: 9px;
+  color: var(--sqlfluff-color-text);
+  background: transparent;
+  border: 1px solid var(--sqlfluff-color-border);
+  border-radius: var(--sqlfluff-radius-sm);
+}
+
+.sqlfluff-nav-toggle span:not(.sqlfluff-visually-hidden) {
+  display: block;
+  height: 2px;
+  margin: 4px 0;
+  background: currentColor;
+}
+
+.sqlfluff-main {
+  min-height: 60vh;
+}
+
+.sqlfluff-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.sqlfluff-button {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  color: var(--sqlfluff-color-text);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: var(--sqlfluff-color-surface);
+  border: 1px solid var(--sqlfluff-color-border-strong);
+  border-radius: var(--sqlfluff-radius-md);
+  box-shadow: var(--sqlfluff-shadow-sm);
+}
+
+.sqlfluff-button:hover {
+  color: var(--sqlfluff-color-text);
+  background: var(--sqlfluff-color-surface-muted);
+}
+
+.sqlfluff-button-primary,
+.sqlfluff-button-primary:hover {
+  color: #ffffff;
+  background: var(--sqlfluff-color-accent);
+  border-color: var(--sqlfluff-color-accent);
+}
+
+:root[data-theme="dark"] .sqlfluff-button-primary,
+:root[data-theme="dark"] .sqlfluff-button-primary:hover {
+  color: #1d1112;
+}
+
+.sqlfluff-terminal {
+  overflow: hidden;
+  color: var(--sqlfluff-color-code-text);
+  background: var(--sqlfluff-color-code-bg);
+  border: 1px solid var(--sqlfluff-color-border);
+  border-radius: var(--sqlfluff-radius-md);
+  box-shadow: var(--sqlfluff-shadow-sm);
+}
+
+.sqlfluff-terminal-header {
+  padding: 0.6rem 1rem;
+  color: var(--sqlfluff-color-code-muted);
+  font-family: var(--sqlfluff-font-mono);
+  font-size: 0.76rem;
+  border-bottom: 1px solid #30363d;
+}
+
+.sqlfluff-terminal pre {
+  padding: 1.25rem;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.sqlfluff-code-yellow {
+  color: var(--sqlfluff-color-code-yellow);
+}
+
+.sqlfluff-code-red {
+  color: var(--sqlfluff-color-code-red);
+}
+
+.sqlfluff-code-blue {
+  color: var(--sqlfluff-color-code-blue);
+}
+
+.sqlfluff-code-muted {
+  color: var(--sqlfluff-color-code-muted);
+}
+
+.sqlfluff-site-footer {
+  padding-block: 3rem;
+  color: var(--sqlfluff-color-text-muted);
+  background: var(--sqlfluff-color-surface);
+  border-top: 1px solid var(--sqlfluff-color-border);
+}
+
+.sqlfluff-footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.sqlfluff-footer-title {
+  margin-bottom: 0.5rem;
+  color: var(--sqlfluff-color-text);
+  font-weight: 700;
+}
+
+.sqlfluff-footer-copy,
+.sqlfluff-footer-legal {
+  font-size: 0.82rem;
+}
+
+.sqlfluff-footer-links {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+}
+
+.sqlfluff-footer-links a {
+  color: var(--sqlfluff-color-text-muted);
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+
+.sqlfluff-footer-links a:hover {
+  color: var(--sqlfluff-color-text);
+}
+
+.sqlfluff-footer-legal {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--sqlfluff-color-border);
+}
+
+@media (max-width: 720px) {
+  .sqlfluff-container {
+    width: min(calc(100% - 2rem), var(--sqlfluff-content-width));
+  }
+
+  .sqlfluff-nav-toggle {
+    display: block;
+  }
+
+  .sqlfluff-nav {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 0;
+    left: 0;
+    display: none;
+    align-items: stretch;
+    padding: 0.75rem 1rem 1rem;
+    background: var(--sqlfluff-color-surface);
+    border-bottom: 1px solid var(--sqlfluff-color-border);
+    box-shadow: var(--sqlfluff-shadow-sm);
+  }
+
+  .sqlfluff-nav.is-open {
+    display: grid;
+  }
+
+  .sqlfluff-nav a {
+    min-height: 42px;
+    padding: 0.65rem;
+  }
+
+  .sqlfluff-theme-control {
+    justify-content: space-between;
+    margin: 0.35rem 0 0;
+    padding: 0.75rem 0.65rem 0;
+    border-top: 1px solid var(--sqlfluff-color-border);
+    border-left: 0;
+  }
+
+  .sqlfluff-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sqlfluff-terminal pre {
+    font-size: 0.72rem;
+  }
+}

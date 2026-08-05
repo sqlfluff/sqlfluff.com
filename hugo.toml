@@ -1,73 +1,27 @@
 baseURL = 'https://sqlfluff.com/'
 languageCode = 'en-us'
 title = 'SQLFluff'
-theme = 'gokarna'
+staticDir = ['static', 'packages/design/static']
 
 # Automatically generate robots.txt
 enableRobotsTXT = true
+disableKinds = ['taxonomy', 'term']
 
-# Icons in the menu use feather-icons: https://feathericons.com/
-# Weights are used to determine the ordering
-# pre & post define things before and after the name (HTML supported)
-# name is the display name
-[menu]
-  [[menu.main]]
-    # Unique identifier for a menu item
-    identifier = "home"
-    url = "/"
-    name = "SQLFluff"
-    weight = 1
-    
-  [[menu.main]]
-    identifier = "source"
-    name = "Source"
-    url = "https://github.com/sqlfluff/sqlfluff"
-    weight = 2
-    pre = "<span data-feather='github'></span>"
-
-  [[menu.main]]
-    identifier = "docs"
-    name = "Docs"
-    url = "https://docs.sqlfluff.com"
-    weight = 3
-    pre = "<span data-feather='book'></span>"
-
-# For more config options:
-# https://gokarna-hugo.netlify.app/posts/theme-documentation-basics/#configuration
 [params]
-  # URL for the avatar on homepage
-  avatarURL = "/img/sqlfluff-avatar.png"
-  # Choose one of size-xs, size-s, size-m, size-l & size-xl. (Default: size-m)
-  avatarSize = "size-xl"
-  # Description to display on homepage
-  description = "📜 The SQL Linter for humans"
-  # Keywords relevant for SEO
+  description = "The SQL linter for humans"
   metaKeywords = ["sqlfluff", "sql", "linter"]
-  # Footer text
-  footer = """SQLFluff Ltd."""
-  # Social Icons
   socialIcons = [
-    {name = "github", url = "https://github.com/sqlfluff"},
-    {name = "docker", url = "https://hub.docker.com/r/sqlfluff/sqlfluff"},
-    {name = "python", url = "https://pypi.org/org/SQLFluff/"},
-    {name = "twitter", url = "https://twitter.com/SQLFluff"},
-    {name = "bluesky", url = "https://bsky.app/profile/sqlfluff.com"},
-    {name = "linkedin", url = "https://linkedin.com/company/sqlfluff"},
-    {name = "slack", url = "https://join.slack.com/t/sqlfluff/shared_invite/zt-3qprhrisj-ClUo_1tLmYBzrVu5ZoDwIw"},
-    {name = "stackoverflow", url = "https://stackoverflow.com/questions/tagged/sqlfluff"},
+    {name = "github", label = "GitHub", url = "https://github.com/sqlfluff"},
+    {name = "docker", label = "Docker Hub", url = "https://hub.docker.com/r/sqlfluff/sqlfluff"},
+    {name = "python", label = "PyPI", url = "https://pypi.org/org/SQLFluff/"},
+    {name = "twitter", label = "Twitter", url = "https://twitter.com/SQLFluff"},
+    {name = "bluesky", label = "Bluesky", url = "https://bsky.app/profile/sqlfluff.com"},
+    {name = "linkedin", label = "LinkedIn", url = "https://linkedin.com/company/sqlfluff"},
+    {name = "slack", label = "Slack", url = "https://join.slack.com/t/sqlfluff/shared_invite/zt-3qprhrisj-ClUo_1tLmYBzrVu5ZoDwIw"},
+    {name = "stackoverflow", label = "Stack Overflow", url = "https://stackoverflow.com/questions/tagged/sqlfluff"},
   ]
-  CustomFooterHTML = """
-    <span>
-        SQLFluff Ltd. Incorporated in England. Company Number 14948332.
-        <br>Unit 82a James Carter Road, Mildenhall,<br>Bury St. Edmunds, England, IP28 7DE
-    </span>
-    <span>
-        Site built and managed by <a href="https://www.a14k.co.uk/">A14K Ltd.</a>
-    </span>
-    <span>
-        <a href="https://www.netlify.com/">This site is powered by Netlify</a>
-    </span>
-  """
-  CustomHeadHTML = """
-    <link rel="stylesheet" type="text/css" href="/css/sqlfluff.css" />
-  """
+
+  [params.links]
+    docs = "https://docs.sqlfluff.com"
+    stats = "https://stats.beta.sqlfluff.com"
+    source = "https://github.com/sqlfluff/sqlfluff"

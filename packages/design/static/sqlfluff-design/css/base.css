@@ -1,0 +1,152 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--sqlfluff-color-canvas);
+  color: var(--sqlfluff-color-text);
+  font-family: var(--sqlfluff-font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--sqlfluff-color-canvas);
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--sqlfluff-font-sans);
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--sqlfluff-color-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--sqlfluff-color-accent-hover);
+}
+
+:focus-visible {
+  outline: 3px solid var(--sqlfluff-color-focus);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--sqlfluff-font-mono);
+}
+
+code {
+  overflow-wrap: anywhere;
+}
+
+pre {
+  margin: 0;
+  overflow-x: auto;
+}
+
+button,
+select {
+  cursor: pointer;
+}
+
+.sqlfluff-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sqlfluff-skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.55rem 0.8rem;
+  background: var(--sqlfluff-color-text);
+  color: var(--sqlfluff-color-surface);
+  border-radius: var(--sqlfluff-radius-sm);
+  transform: translateY(-160%);
+}
+
+.sqlfluff-skip-link:focus {
+  color: var(--sqlfluff-color-surface);
+  transform: translateY(0);
+}
+
+@media (max-width: 720px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

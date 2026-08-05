@@ -1,0 +1,35 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {{ $title := .Title | default .Site.Title }}
+  {{ $description := .Description | default .Site.Params.description }}
+  {{ $socialImage := "sqlfluff-design/img/sqlfluff-avatar.png" | absURL }}
+
+  <title>{{ $title }}</title>
+  <meta name="description" content="{{ $description }}">
+  <meta name="keywords" content="{{ delimit .Site.Params.metaKeywords ", " }}">
+  <meta name="theme-color" content="#f7f8f8">
+
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ $title }}">
+  <meta property="og:description" content="{{ $description }}">
+  <meta property="og:image" content="{{ $socialImage }}">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ $title }}">
+  <meta name="twitter:description" content="{{ $description }}">
+  <meta name="twitter:image" content="{{ $socialImage }}">
+
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
+  <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+  <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
+
+  <script src="{{ "sqlfluff-design/js/theme.js" | relURL }}"></script>
+  <link rel="stylesheet" href="{{ "sqlfluff-design/css/tokens.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "sqlfluff-design/css/base.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "sqlfluff-design/css/components.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
+</head>
