@@ -116,6 +116,10 @@
   border-left: 1px solid var(--sqlfluff-color-border);
 }
 
+.sqlfluff-sponsor:first-child {
+  padding-right: 2rem;
+}
+
 .sqlfluff-sponsor-logo-link {
   display: flex;
   align-items: center;
@@ -178,6 +182,10 @@
     padding-left: 0;
     border-top: 1px solid var(--sqlfluff-color-border);
     border-left: 0;
+  }
+
+  .sqlfluff-sponsor:first-child {
+    padding-right: 0;
   }
 }
 
