@@ -97,51 +97,61 @@
   margin-bottom: 0;
 }
 
-.sqlfluff-sponsor-list-title {
-  margin-bottom: 1rem;
-  color: var(--sqlfluff-color-text-muted);
-  font-size: 1rem;
-}
-
 .sqlfluff-sponsor-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  border-block: 1px solid var(--sqlfluff-color-border);
 }
 
-.sqlfluff-sponsor-card {
+.sqlfluff-sponsor {
   display: grid;
-  grid-template-rows: 128px 1fr;
-  overflow: hidden;
-  background: var(--sqlfluff-color-surface);
-  border: 1px solid var(--sqlfluff-color-border);
-  border-radius: 8px;
+  grid-template-columns: minmax(120px, 160px) minmax(0, 1fr);
+  align-items: center;
+  gap: 1.5rem;
+  padding-block: 1.75rem;
 }
 
-.sqlfluff-sponsor-logo-stage {
+.sqlfluff-sponsor + .sqlfluff-sponsor {
+  padding-left: 2rem;
+  border-left: 1px solid var(--sqlfluff-color-border);
+}
+
+.sqlfluff-sponsor-logo-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
-  background: #fff;
-  border-bottom: 1px solid var(--sqlfluff-color-border);
+  min-width: 0;
 }
 
 .sqlfluff-sponsor-logo {
   width: auto;
-  max-width: min(100%, 260px);
-  max-height: 64px;
+  max-width: 100%;
+  max-height: 56px;
   object-fit: contain;
 }
 
 .sqlfluff-sponsor-logo-a14k {
-  max-height: 80px;
+  max-height: 72px;
+}
+
+.sqlfluff-sponsor-logo-dark {
+  display: none;
+}
+
+:root[data-theme="dark"] .sqlfluff-sponsor-logo-light {
+  display: none;
+}
+
+:root[data-theme="dark"] .sqlfluff-sponsor-logo-dark {
+  display: block;
+}
+
+:root[data-theme="dark"] .sqlfluff-sponsor-logo-a14k {
+  filter: invert(1);
 }
 
 .sqlfluff-sponsor-content {
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
+  min-width: 0;
 }
 
 .sqlfluff-sponsor-content h3 {
@@ -149,19 +159,18 @@
   font-size: 1.25rem;
 }
 
-.sqlfluff-sponsor-content p {
-  margin-bottom: 1.5rem;
-}
-
-.sqlfluff-sponsor-link {
-  align-self: flex-start;
-  margin-top: auto;
-  font-weight: 700;
+.sqlfluff-sponsor-content h3 a {
+  color: var(--sqlfluff-color-text);
   text-decoration: none;
 }
 
-.sqlfluff-sponsor-link:hover {
+.sqlfluff-sponsor-content h3 a:hover {
+  color: var(--sqlfluff-color-accent);
   text-decoration: underline;
+}
+
+.sqlfluff-sponsor-content p {
+  margin: 0;
 }
 
 @media (max-width: 900px) {
@@ -196,5 +205,18 @@
   .sqlfluff-sponsor-header {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .sqlfluff-sponsor + .sqlfluff-sponsor {
+    padding-left: 0;
+    border-top: 1px solid var(--sqlfluff-color-border);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .sqlfluff-sponsor {
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 1rem;
   }
 }
