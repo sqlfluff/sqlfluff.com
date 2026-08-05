@@ -31,8 +31,8 @@
       themeColour.setAttribute("content", theme === "dark" ? "#0d1117" : "#f7f8f8");
     }
 
-    document.querySelectorAll("[data-sqlfluff-theme-select]").forEach(function (select) {
-      select.value = preference;
+    document.querySelectorAll("[data-sqlfluff-theme-value]").forEach(function (button) {
+      button.setAttribute("aria-pressed", String(button.dataset.sqlfluffThemeValue === preference));
     });
   }
 
@@ -57,10 +57,11 @@
   }
 
   function initialiseControls() {
-    document.querySelectorAll("[data-sqlfluff-theme-select]").forEach(function (select) {
-      select.value = readPreference();
-      select.addEventListener("change", function () {
-        writePreference(select.value);
+    applyPreference(readPreference());
+
+    document.querySelectorAll("[data-sqlfluff-theme-value]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        writePreference(button.dataset.sqlfluffThemeValue);
       });
     });
 

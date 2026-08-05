@@ -17,14 +17,20 @@
       <a href="{{ .Site.Params.links.docs }}">Docs</a>
       <a href="{{ .Site.Params.links.stats }}">Stats</a>
       <a href="{{ .Site.Params.links.source }}">GitHub</a>
-      <label class="sqlfluff-theme-control">
-        <span class="sqlfluff-visually-hidden">Colour theme</span>
-        <select data-sqlfluff-theme-select aria-label="Colour theme">
-          <option value="auto">System</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </label>
+      <div class="sqlfluff-theme-control">
+        <span id="sqlfluff-theme-label" class="sqlfluff-visually-hidden">Colour theme</span>
+        <div class="sqlfluff-theme-switcher" role="group" aria-labelledby="sqlfluff-theme-label">
+          <button type="button" data-sqlfluff-theme-value="auto" aria-label="Use system theme" title="System theme" aria-pressed="false">
+            <span class="sqlfluff-theme-icon sqlfluff-theme-icon-system" aria-hidden="true"></span>
+          </button>
+          <button type="button" data-sqlfluff-theme-value="light" aria-label="Use light theme" title="Light theme" aria-pressed="false">
+            <span class="sqlfluff-theme-icon sqlfluff-theme-icon-light" aria-hidden="true"></span>
+          </button>
+          <button type="button" data-sqlfluff-theme-value="dark" aria-label="Use dark theme" title="Dark theme" aria-pressed="false">
+            <span class="sqlfluff-theme-icon sqlfluff-theme-icon-dark" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
     </nav>
   </div>
 </header>

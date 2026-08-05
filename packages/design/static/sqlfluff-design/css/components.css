@@ -70,13 +70,61 @@
   border-left: 1px solid var(--sqlfluff-color-border);
 }
 
-.sqlfluff-theme-control select {
-  min-width: 5.25rem;
-  padding: 0.4rem 0.5rem;
-  color: var(--sqlfluff-color-text);
-  background: var(--sqlfluff-color-surface);
+.sqlfluff-theme-switcher {
+  display: grid;
+  grid-template-columns: repeat(3, 30px);
+  gap: 2px;
+  padding: 2px;
+  background: var(--sqlfluff-color-surface-muted);
   border: 1px solid var(--sqlfluff-color-border);
+  border-radius: 7px;
+}
+
+.sqlfluff-theme-switcher button {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  place-items: center;
+  color: var(--sqlfluff-color-text-muted);
+  background: transparent;
+  border: 0;
   border-radius: var(--sqlfluff-radius-sm);
+}
+
+.sqlfluff-theme-switcher button:hover {
+  color: var(--sqlfluff-color-text);
+}
+
+.sqlfluff-theme-switcher button[aria-pressed="true"] {
+  color: var(--sqlfluff-color-accent);
+  background: var(--sqlfluff-color-surface);
+  box-shadow: var(--sqlfluff-shadow-sm);
+}
+
+.sqlfluff-theme-icon,
+.sqlfluff-social-icon {
+  display: block;
+  background: currentColor;
+  -webkit-mask: var(--sqlfluff-icon) center / contain no-repeat;
+  mask: var(--sqlfluff-icon) center / contain no-repeat;
+}
+
+.sqlfluff-theme-icon {
+  width: 17px;
+  height: 17px;
+}
+
+.sqlfluff-theme-icon-system {
+  --sqlfluff-icon: url("../icons/theme-system.svg");
+}
+
+.sqlfluff-theme-icon-light {
+  --sqlfluff-icon: url("../icons/theme-light.svg");
+}
+
+.sqlfluff-theme-icon-dark {
+  --sqlfluff-icon: url("../icons/theme-dark.svg");
 }
 
 .sqlfluff-nav-toggle {
@@ -138,7 +186,68 @@
 
 :root[data-theme="dark"] .sqlfluff-button-primary,
 :root[data-theme="dark"] .sqlfluff-button-primary:hover {
-  color: #1d1112;
+  color: #102725;
+}
+
+.sqlfluff-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sqlfluff-social-links a {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  color: var(--sqlfluff-color-text-muted);
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+.sqlfluff-social-links a:hover {
+  color: var(--sqlfluff-color-accent);
+  background: var(--sqlfluff-color-accent-soft);
+}
+
+.sqlfluff-social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.sqlfluff-social-icon-github {
+  --sqlfluff-icon: url("../icons/github.svg");
+}
+
+.sqlfluff-social-icon-docker {
+  --sqlfluff-icon: url("../icons/docker.svg");
+}
+
+.sqlfluff-social-icon-python {
+  --sqlfluff-icon: url("../icons/python.svg");
+}
+
+.sqlfluff-social-icon-twitter {
+  --sqlfluff-icon: url("../icons/twitter.svg");
+}
+
+.sqlfluff-social-icon-bluesky {
+  --sqlfluff-icon: url("../icons/bluesky.svg");
+}
+
+.sqlfluff-social-icon-linkedin {
+  --sqlfluff-icon: url("../icons/linkedin.svg");
+}
+
+.sqlfluff-social-icon-slack {
+  --sqlfluff-icon: url("../icons/slack.svg");
+}
+
+.sqlfluff-social-icon-stackoverflow {
+  --sqlfluff-icon: url("../icons/stackoverflow.svg");
 }
 
 .sqlfluff-terminal {
@@ -204,6 +313,10 @@
   font-size: 0.82rem;
 }
 
+.sqlfluff-footer-copy + .sqlfluff-social-links {
+  margin-top: 1rem;
+}
+
 .sqlfluff-footer-links {
   display: grid;
   align-content: start;
@@ -258,7 +371,7 @@
   }
 
   .sqlfluff-theme-control {
-    justify-content: space-between;
+    justify-content: flex-end;
     margin: 0.35rem 0 0;
     padding: 0.75rem 0.65rem 0;
     border-top: 1px solid var(--sqlfluff-color-border);

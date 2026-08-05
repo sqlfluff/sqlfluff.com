@@ -3,11 +3,12 @@
     <h1 id="sqlfluff-home-title">
       <img src="{{ "sqlfluff-design/img/sqlfluff-wide.png" | relURL }}" alt="SQLFluff">
     </h1>
-    <p class="sqlfluff-hero-tagline">The SQL linter for humans</p>
+    <p class="sqlfluff-hero-tagline">📜 The SQL Linter for humans</p>
     <p class="sqlfluff-hero-description">
-      An open source, dialect-flexible and configurable SQL linter. SQLFluff
-      works with Jinja templating and dbt, and can automatically fix most
-      linting errors.
+      <strong>SQLFluff</strong> is an open source, dialect-flexible and configurable SQL
+      linter. Designed with ELT applications in mind, <strong>SQLFluff</strong> also
+      works with Jinja templating and dbt. <strong>SQLFluff</strong> will auto-fix most
+      linting errors, allowing you to focus your time on what matters.
     </p>
     <div class="sqlfluff-actions">
       <a class="sqlfluff-button sqlfluff-button-primary" href="{{ .Site.Params.links.docs }}">Read the documentation</a>
@@ -19,6 +20,7 @@
       <a href="{{ .Site.Params.links.source }}"><img alt="MIT licence" src="https://img.shields.io/github/license/sqlfluff/sqlfluff?style=flat-square"></a>
       <a href="{{ .Site.Params.links.source }}"><img alt="GitHub stars" src="https://img.shields.io/github/stars/sqlfluff/sqlfluff?logo=github&style=flat-square"></a>
     </div>
+    {{ partial "social-links.html" . }}
   </section>
 
   <section class="sqlfluff-section">
