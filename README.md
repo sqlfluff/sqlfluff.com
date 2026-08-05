@@ -4,6 +4,9 @@
 
 Website for [SQLFluff](http://www.sqlfluff.com/).
 
+The planned migration to a shared visual system for the main site, new
+documentation, and statistics site is described in [DESIGN_PLAN.md](DESIGN_PLAN.md).
+
 * Built with [Hugo](https://gohugo.io/).
 * Using the [Gokarna](https://github.com/gokarna-theme/gokarna-hugo) theme. This
   is installed as a git submodule, so will need updating from time to time.
