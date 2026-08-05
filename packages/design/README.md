@@ -5,6 +5,10 @@ styles, assets, and browser behaviour. It is consumed directly by this Hugo site
 and is intended to be vendored into the documentation and statistics repositories
 through a pinned Git submodule.
 
+The package self-hosts IBM Plex Sans in the weights used by the shared components.
+The font files use `font-display: swap` and retain their SIL Open Font License in
+`static/sqlfluff-design/fonts/IBM-PLEX-OFL-1.1.txt`.
+
 ## Contract
 
 Consumer builds should copy `static/sqlfluff-design/` into their public output and
