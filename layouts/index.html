@@ -31,20 +31,35 @@
       </div>
       <div class="sqlfluff-feature-grid">
         <article class="sqlfluff-feature">
-          <h3>Lint</h3>
-          <p>Report SQL issues automatically so code reviews can focus on function rather than form.</p>
+          <h3><span class="sqlfluff-feature-icon sqlfluff-feature-icon-lint" aria-hidden="true"></span>Lint</h3>
+          <p>
+            <strong>SQLFluff</strong> finds issues with your SQL code and reports them back
+            to you (and your team) automatically so that your code reviews can be
+            more about function and less about form.
+          </p>
         </article>
         <article class="sqlfluff-feature">
-          <h3>Fix</h3>
-          <p>Correct many linting issues automatically and keep SQL consistent and legible.</p>
+          <h3><span class="sqlfluff-feature-icon sqlfluff-feature-icon-fix" aria-hidden="true"></span>Fix</h3>
+          <p>
+            <strong>SQLFluff</strong> saves time by fixing linting issues found in your code
+            to save you time, and make it easy to have consistent and legible SQL.
+          </p>
         </article>
         <article class="sqlfluff-feature">
-          <h3>Parse</h3>
-          <p>Catch syntax issues without database access, before code reaches later development stages.</p>
+          <h3><span class="sqlfluff-feature-icon sqlfluff-feature-icon-parse" aria-hidden="true"></span>Parse</h3>
+          <p>
+            <strong>SQLFluff</strong> parses your SQL to catch a range of syntax issues without
+            needing access to the database, so you can catch mistakes earlier in your
+            development process.
+          </p>
         </article>
         <article class="sqlfluff-feature">
-          <h3>Configure</h3>
-          <p>Start with opinionated defaults, then tailor dialects, rules, and formatting to local needs.</p>
+          <h3><span class="sqlfluff-feature-icon sqlfluff-feature-icon-configure" aria-hidden="true"></span>Configure</h3>
+          <p>
+            <strong>SQLFluff</strong> is configurable to work with a range of SQL dialects and
+            style choices. It has opinionated defaults, so you can get going easily,
+            but a range of flexible configuration options to fit your local style.
+          </p>
         </article>
       </div>
     </div>
@@ -53,9 +68,13 @@
   <section class="sqlfluff-section">
     <div class="sqlfluff-container sqlfluff-quickstart">
       <div class="sqlfluff-section-heading">
-        <h2>Getting started</h2>
-        <p>Install SQLFluff from PyPI, then lint a file using your chosen SQL dialect.</p>
-        <a href="{{ .Site.Params.links.docs }}">Continue with the installation guide</a>
+        <h2>Getting Started</h2>
+        <p>
+          You can get started with <strong>SQLFluff</strong> in your project today by
+          downloading it from <a href="https://pypi.org/project/sqlfluff/">pypi</a>
+          using <a href="https://pip.pypa.io/">pip</a> (or your favourite python
+          package manager). For more details, check out <a href="{{ .Site.Params.links.docs }}">the docs</a>.
+        </p>
       </div>
       <div class="sqlfluff-terminal" aria-label="SQLFluff command-line example">
         <div class="sqlfluff-terminal-header">Terminal</div>
@@ -64,10 +83,20 @@
 <span class="sqlfluff-code-muted">$</span> <span class="sqlfluff-code-yellow">sqlfluff</span> lint test.sql --dialect ansi
 == [<span class="sqlfluff-code-yellow">test.sql</span>] <span class="sqlfluff-code-red">FAIL</span>
 <span class="sqlfluff-code-blue">L:   1 | P:   1 | LT01 |</span> Expected only single space before 'SELECT' keyword.
+<span class="sqlfluff-code-blue">                       |</span> Found '  '. [layout.spacing]
 <span class="sqlfluff-code-blue">L:   1 | P:   1 | LT02 |</span> First line should not be indented.
+<span class="sqlfluff-code-blue">                       |</span> [layout.indent]
+<span class="sqlfluff-code-blue">L:   1 | P:   1 | LT13 |</span> Files must not begin with newlines or whitespace.
+<span class="sqlfluff-code-blue">                       |</span> [layout.start_of_file]
 <span class="sqlfluff-code-blue">L:   1 | P:  11 | LT01 |</span> Expected only single space before binary operator '+'.
+<span class="sqlfluff-code-blue">                       |</span> Found '  '. [layout.spacing]
+<span class="sqlfluff-code-blue">L:   1 | P:  14 | LT01 |</span> Expected only single space before naked identifier.
+<span class="sqlfluff-code-blue">                       |</span> Found '  '. [layout.spacing]
+<span class="sqlfluff-code-blue">L:   1 | P:  27 | LT01 |</span> Unnecessary trailing whitespace at end of file.
+<span class="sqlfluff-code-blue">                       |</span> [layout.spacing]
 <span class="sqlfluff-code-blue">L:   1 | P:  27 | LT12 |</span> Files must end with a single trailing newline.
-All Finished!</code></pre>
+<span class="sqlfluff-code-blue">                       |</span> [layout.end_of_file]
+All Finished 📜 🎉!</code></pre>
       </div>
     </div>
   </section>
@@ -78,9 +107,13 @@ All Finished!</code></pre>
         <div class="sqlfluff-section-heading">
           <h2>Sponsors</h2>
           <p>
-            SQLFluff is community-run and community-funded. Contribute through the
-            <a href="{{ .Site.Params.links.source }}">GitHub repository</a> or support
-            ongoing work directly.
+            <strong>SQLFluff</strong> is a community run, and community funded, project. We're
+            grateful to individuals and organisations in the community who choose to
+            support the project. If you'd like to support the project with your
+            <strong>time</strong>, then head over to our <a href="{{ .Site.Params.links.source }}">GitHub repository</a>
+            and check out our <a href="https://github.com/sqlfluff/sqlfluff/blob/main/CONTRIBUTING.md">contributing guide</a>.
+            If you are better able to support the project with <strong>funds</strong>, then
+            you can find our sponsorship page on <a href="https://github.com/sponsors/sqlfluff">GitHub sponsors</a>.
           </p>
         </div>
         <a class="sqlfluff-button sqlfluff-button-secondary" href="https://github.com/sponsors/sqlfluff">Become a sponsor</a>
@@ -92,8 +125,7 @@ All Finished!</code></pre>
             <img class="sqlfluff-sponsor-logo sqlfluff-sponsor-logo-dark" src="{{ "img/sponsors/datacoves-white.png" | relURL }}" alt="">
           </a>
           <div class="sqlfluff-sponsor-content">
-            <h3><a href="https://datacoves.com/">Datacoves</a></h3>
-            <p>A managed DataOps platform for dbt and Airflow with SQLFluff pre-configured. Deploy in your private cloud or use the Datacoves SaaS for governance and best practices from day one.</p>
+            <p>A managed DataOps platform for dbt and Airflow with SQLFluff pre-configured. Deploy in your private cloud or use our SaaS - governance and best practices built in from day one. <a href="https://datacoves.com/">datacoves.com</a></p>
           </div>
         </article>
         <article class="sqlfluff-sponsor">
@@ -101,8 +133,7 @@ All Finished!</code></pre>
             <img class="sqlfluff-sponsor-logo sqlfluff-sponsor-logo-a14k" src="{{ "img/sponsors/a14k.png" | relURL }}" alt="A14K Ltd.">
           </a>
           <div class="sqlfluff-sponsor-content">
-            <h3><a href="https://www.a14k.co.uk/">A14K Data Services</a></h3>
-            <p>Data consulting and mentoring for UK SMEs.</p>
+            <p>A14K Data Services. Data Consulting &amp; Mentoring for UK SMEs. Find out more at <a href="https://www.a14k.co.uk/">a14k.co.uk</a>.</p>
           </div>
         </article>
       </div>
