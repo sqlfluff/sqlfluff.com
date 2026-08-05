@@ -124,15 +124,31 @@
 }
 
 .sqlfluff-sponsor-header {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 2rem;
+  display: grid;
+  grid-template-areas:
+    "title action"
+    "copy copy";
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.85rem 2rem;
   margin-bottom: 2.5rem;
 }
 
-.sqlfluff-sponsor-header .sqlfluff-section-heading {
-  margin-bottom: 0;
+.sqlfluff-sponsor-header h2 {
+  grid-area: title;
+  margin: 0;
+}
+
+.sqlfluff-sponsor-header p {
+  grid-area: copy;
+  max-width: 920px;
+  margin: 0;
+  color: var(--sqlfluff-color-text-muted);
+}
+
+.sqlfluff-sponsor-header .sqlfluff-button {
+  grid-area: action;
+  justify-self: end;
 }
 
 .sqlfluff-sponsor-grid {
@@ -241,8 +257,16 @@
   }
 
   .sqlfluff-sponsor-header {
-    align-items: flex-start;
-    flex-direction: column;
+    grid-template-areas:
+      "title"
+      "copy"
+      "action";
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .sqlfluff-sponsor-header .sqlfluff-button {
+    justify-self: start;
   }
 }
 
