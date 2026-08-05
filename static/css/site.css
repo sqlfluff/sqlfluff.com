@@ -146,10 +146,6 @@
   display: block;
 }
 
-:root[data-theme="dark"] .sqlfluff-sponsor-logo-a14k {
-  filter: invert(1);
-}
-
 .sqlfluff-sponsor-content {
   min-width: 0;
 }

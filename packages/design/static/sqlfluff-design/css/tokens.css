@@ -11,9 +11,9 @@
   --sqlfluff-color-text-muted: #5e6a72;
   --sqlfluff-color-border: #d7dde0;
   --sqlfluff-color-border-strong: #aeb8bd;
-  --sqlfluff-color-accent: #8a5a00;
-  --sqlfluff-color-accent-hover: #6f4800;
-  --sqlfluff-color-accent-soft: #f5e8ca;
+  --sqlfluff-color-accent: #a35a00;
+  --sqlfluff-color-accent-hover: #844800;
+  --sqlfluff-color-accent-soft: #fff3df;
   --sqlfluff-color-accent-contrast: #ffffff;
   --sqlfluff-color-secondary: #315c9b;
   --sqlfluff-color-code-bg: #161b22;
