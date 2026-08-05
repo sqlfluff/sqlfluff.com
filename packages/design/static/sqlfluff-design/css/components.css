@@ -35,10 +35,6 @@
   height: auto;
 }
 
-:root[data-theme="dark"] .sqlfluff-brand img {
-  filter: grayscale(1) invert(1);
-}
-
 .sqlfluff-nav {
   display: flex;
   align-items: center;
@@ -177,14 +173,9 @@
 
 .sqlfluff-button-primary,
 .sqlfluff-button-primary:hover {
-  color: #ffffff;
+  color: var(--sqlfluff-color-accent-contrast);
   background: var(--sqlfluff-color-accent);
   border-color: var(--sqlfluff-color-accent);
-}
-
-:root[data-theme="dark"] .sqlfluff-button-primary,
-:root[data-theme="dark"] .sqlfluff-button-primary:hover {
-  color: #102725;
 }
 
 .sqlfluff-social-links {

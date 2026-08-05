@@ -11,9 +11,10 @@
   --sqlfluff-color-text-muted: #5e6a72;
   --sqlfluff-color-border: #d7dde0;
   --sqlfluff-color-border-strong: #aeb8bd;
-  --sqlfluff-color-accent: #0f766e;
-  --sqlfluff-color-accent-hover: #0b5f59;
-  --sqlfluff-color-accent-soft: #e3f3f1;
+  --sqlfluff-color-accent: #8a5a00;
+  --sqlfluff-color-accent-hover: #6f4800;
+  --sqlfluff-color-accent-soft: #f5e8ca;
+  --sqlfluff-color-accent-contrast: #ffffff;
   --sqlfluff-color-secondary: #315c9b;
   --sqlfluff-color-code-bg: #161b22;
   --sqlfluff-color-code-text: #e6edf3;
@@ -40,9 +41,10 @@
   --sqlfluff-color-text-muted: #9da7b1;
   --sqlfluff-color-border: #30363d;
   --sqlfluff-color-border-strong: #57606a;
-  --sqlfluff-color-accent: #5ac8be;
-  --sqlfluff-color-accent-hover: #83ddd4;
-  --sqlfluff-color-accent-soft: #173d3a;
+  --sqlfluff-color-accent: #f2b84b;
+  --sqlfluff-color-accent-hover: #ffd27a;
+  --sqlfluff-color-accent-soft: #382a12;
+  --sqlfluff-color-accent-contrast: #251800;
   --sqlfluff-color-secondary: #8fbaff;
   --sqlfluff-color-code-bg: #090c10;
   --sqlfluff-color-focus: #58a6ff;
