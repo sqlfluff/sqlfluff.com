@@ -60,7 +60,7 @@
 
 .sqlfluff-section-heading p,
 .sqlfluff-feature p,
-.sqlfluff-sponsor p {
+.sqlfluff-sponsor-content p {
   color: var(--sqlfluff-color-text-muted);
 }
 
@@ -85,31 +85,83 @@
   gap: 3rem;
 }
 
+.sqlfluff-sponsor-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.sqlfluff-sponsor-header .sqlfluff-section-heading {
+  margin-bottom: 0;
+}
+
+.sqlfluff-sponsor-list-title {
+  margin-bottom: 1rem;
+  color: var(--sqlfluff-color-text-muted);
+  font-size: 1rem;
+}
+
 .sqlfluff-sponsor-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 3rem;
+  gap: 1rem;
+}
+
+.sqlfluff-sponsor-card {
+  display: grid;
+  grid-template-rows: 128px 1fr;
+  overflow: hidden;
+  background: var(--sqlfluff-color-surface);
+  border: 1px solid var(--sqlfluff-color-border);
+  border-radius: 8px;
+}
+
+.sqlfluff-sponsor-logo-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: #fff;
+  border-bottom: 1px solid var(--sqlfluff-color-border);
 }
 
 .sqlfluff-sponsor-logo {
   width: auto;
-  max-width: min(100%, 280px);
-  height: 64px;
-  margin-bottom: 1rem;
+  max-width: min(100%, 260px);
+  max-height: 64px;
   object-fit: contain;
-  object-position: left center;
 }
 
-.sqlfluff-sponsor-logo-dark {
-  display: none;
+.sqlfluff-sponsor-logo-a14k {
+  max-height: 80px;
 }
 
-:root[data-theme="dark"] .sqlfluff-sponsor-logo-light {
-  display: none;
+.sqlfluff-sponsor-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
 }
 
-:root[data-theme="dark"] .sqlfluff-sponsor-logo-dark {
-  display: block;
+.sqlfluff-sponsor-content h3 {
+  margin-bottom: 0.625rem;
+  font-size: 1.25rem;
+}
+
+.sqlfluff-sponsor-content p {
+  margin-bottom: 1.5rem;
+}
+
+.sqlfluff-sponsor-link {
+  align-self: flex-start;
+  margin-top: auto;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sqlfluff-sponsor-link:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 900px) {
@@ -139,5 +191,10 @@
   .sqlfluff-feature-grid,
   .sqlfluff-sponsor-grid {
     grid-template-columns: 1fr;
+  }
+
+  .sqlfluff-sponsor-header {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
