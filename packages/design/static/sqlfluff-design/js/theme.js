@@ -68,7 +68,9 @@
 
     syncControls(preference);
 
-    subscribers.forEach(function (listener) {
+    // Iterate a snapshot: a listener which unsubscribes itself while handling
+    // the change would otherwise shift the live array and skip its neighbour.
+    subscribers.slice().forEach(function (listener) {
       try {
         listener(preference, theme);
       } catch (error) {
@@ -210,10 +212,13 @@
     },
     /** Store a preference and apply it. Invalid values fall back to `auto`. */
     set: writePreference,
-    /** Refresh `aria-pressed` after an application renders its own controls. */
-    sync: function () {
-      syncControls(readPreference());
-    },
+    /**
+     * Resynchronise shared chrome after an application mounts or replaces its
+     * own markup: `aria-pressed` on theme controls, and the scroll-aware state
+     * of any header. Without this a header mounted at the top of the page
+     * would show its separator until the reader first scrolls.
+     */
+    sync: syncRenderedChrome,
     /**
      * Observe preference changes. The listener is called immediately with the
      * current state, then on every change. Returns an unsubscribe function.

@@ -205,15 +205,21 @@ control or need to mirror the state into framework code:
 window.sqlfluffTheme.get()        // 'auto' | 'light' | 'dark'
 window.sqlfluffTheme.resolved()   // 'light' | 'dark'
 window.sqlfluffTheme.set('dark')  // store, apply, and notify
-window.sqlfluffTheme.sync()       // refresh aria-pressed on rendered controls
+window.sqlfluffTheme.sync()       // resynchronise chrome after rendering it
 window.sqlfluffTheme.subscribe(fn) // call now and on change; returns unsubscribe
 ```
 
 Client-rendered applications do not need this to make the documented markup work.
 Clicks are delegated from the document, so a control which is mounted, replaced,
-or unmounted after load behaves the same as server-rendered markup. What is not
-automatic is `aria-pressed` on controls created after the last theme change: bind
-it from `subscribe`, or call `sync` after rendering.
+or unmounted after load behaves the same as server-rendered markup.
+
+What is not automatic is state which is only recalculated when something changes:
+`aria-pressed` on controls created after the last theme change, and the
+scroll-aware `is-top` class on a header mounted since the last scroll. Call
+`sync` after rendering shared chrome, or bind `aria-pressed` from `subscribe`.
+An application which renders the shared header on every route change should call
+`sync` from that lifecycle, otherwise the header will show its separator at the
+top of the page until the reader first scrolls.
 
 ### Buttons and social links
 
