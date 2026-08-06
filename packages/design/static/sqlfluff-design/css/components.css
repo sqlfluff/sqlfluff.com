@@ -11,6 +11,17 @@
   background: color-mix(in srgb, var(--sqlfluff-color-canvas) 94%, transparent);
   border-bottom: 1px solid var(--sqlfluff-color-border);
   backdrop-filter: blur(12px);
+  transition: border-bottom-color 0.25s;
+}
+
+/*
+ * `theme.js` adds this at the top of the page, so the separator only appears
+ * once content is passing under the header. The colour is cleared rather than
+ * the border removed, so the header does not shift by a pixel as it toggles,
+ * and the background and blur stay constant either way.
+ */
+.sqlfluff-site-header.is-top {
+  border-bottom-color: transparent;
 }
 
 .sqlfluff-header-inner {

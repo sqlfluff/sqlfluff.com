@@ -149,6 +149,14 @@ the following stable classes and data attributes.
 Set `aria-current="page"` only on the active destination. Labels, destinations,
 ordering, and temporary visibility are consumer configuration, not package data.
 
+The header separator is scroll-aware. `theme.js` adds `is-top` to each
+`[data-sqlfluff-nav]` element while the page is scrolled to the top, and the
+stylesheet clears the bottom border while that class is present, so the line
+only appears once content is passing under the header. The border is the
+default state, so a reader without JavaScript keeps a separated header. A
+consumer whose framework already does this, such as VitePress, should keep its
+own implementation rather than adding a second one.
+
 ### Theme control
 
 ```html

@@ -105,6 +105,25 @@
     applyPreference(preference);
   }
 
+  // The header separator is only drawn once content has scrolled under it. The
+  // border is present by default and this removes it at the top of the page, so
+  // a reader without JavaScript keeps a separated header rather than none.
+  var scrollFrame = 0;
+
+  function syncHeaderScroll() {
+    scrollFrame = 0;
+    var isTop = (window.scrollY || window.pageYOffset || 0) <= 0;
+
+    document.querySelectorAll("[data-sqlfluff-nav]").forEach(function (header) {
+      header.classList.toggle("is-top", isTop);
+    });
+  }
+
+  function queueHeaderScroll() {
+    if (scrollFrame) return;
+    scrollFrame = window.requestAnimationFrame(syncHeaderScroll);
+  }
+
   function setMenuState(header, isOpen) {
     var toggle = header.querySelector("[data-sqlfluff-nav-toggle]");
     var menu = header.querySelector("[data-sqlfluff-nav-menu]");
@@ -166,11 +185,18 @@
     if (readPreference() === "auto") applyPreference("auto");
   });
 
-  // Server-rendered controls are not in the document while this runs in `head`.
+  window.addEventListener("scroll", queueHeaderScroll, { passive: true });
+
+  // Server-rendered chrome is not in the document while this runs in `head`.
+  function syncRenderedChrome() {
+    syncControls(readPreference());
+    syncHeaderScroll();
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () {
-      syncControls(readPreference());
-    });
+    document.addEventListener("DOMContentLoaded", syncRenderedChrome);
+  } else {
+    syncRenderedChrome();
   }
 
   window.sqlfluffTheme = {
