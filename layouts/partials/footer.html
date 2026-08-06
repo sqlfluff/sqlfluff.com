@@ -7,16 +7,25 @@
         {{ partial "social-links.html" . }}
       </div>
       <nav class="sqlfluff-footer-links" aria-label="Project links">
-        <a href="{{ .Site.Params.links.docs }}">Documentation</a>
-        {{ if .Site.Params.showStats }}
-          <a href="{{ .Site.Params.links.stats }}">Project statistics</a>
+        {{ with .Site.Params.links.docs }}
+          <a href="{{ . }}">Documentation</a>
         {{ end }}
-        <a href="{{ .Site.Params.links.source }}">GitHub source</a>
+        {{ if .Site.Params.showStats }}
+          {{ with .Site.Params.links.stats }}
+            <a href="{{ . }}">Project statistics</a>
+          {{ end }}
+        {{ end }}
+        {{ with .Site.Params.links.source }}
+          <a href="{{ . }}">GitHub source</a>
+        {{ end }}
         <a href="https://pypi.org/project/sqlfluff/">PyPI package</a>
       </nav>
       <nav class="sqlfluff-footer-links" aria-label="Community links">
         {{ range .Site.Params.socialIcons }}
-          <a href="{{ .url }}">{{ .label | default (.name | title) }}</a>
+          {{ $label := .label | default (.name | title) }}
+          {{ with .url }}
+            <a href="{{ . }}">{{ $label }}</a>
+          {{ end }}
         {{ end }}
       </nav>
     </div>

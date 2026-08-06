@@ -1,9 +1,13 @@
 <ul class="sqlfluff-social-links" aria-label="SQLFluff community links">
   {{ range .Site.Params.socialIcons }}
-    <li>
-      <a href="{{ .url }}" aria-label="{{ .label }}" title="{{ .label }}">
-        <span class="sqlfluff-social-icon sqlfluff-social-icon-{{ .name }}" aria-hidden="true"></span>
-      </a>
-    </li>
+    {{ $name := .name }}
+    {{ $label := .label | default ($name | title) }}
+    {{ with .url }}
+      <li>
+        <a href="{{ . }}" aria-label="{{ $label }}" title="{{ $label }}">
+          <span class="sqlfluff-social-icon sqlfluff-social-icon-{{ $name }}" aria-hidden="true"></span>
+        </a>
+      </li>
+    {{ end }}
   {{ end }}
 </ul>

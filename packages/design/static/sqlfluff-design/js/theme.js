@@ -13,11 +13,15 @@
   }
 
   function readCookie() {
-    var prefix = COOKIE_NAME + "=";
-    var cookie = document.cookie.split("; ").find(function (item) {
-      return item.indexOf(prefix) === 0;
-    });
-    return cookie ? decodeURIComponent(cookie.slice(prefix.length)) : "";
+    try {
+      var prefix = COOKIE_NAME + "=";
+      var cookie = document.cookie.split("; ").find(function (item) {
+        return item.indexOf(prefix) === 0;
+      });
+      return cookie ? decodeURIComponent(cookie.slice(prefix.length)) : "";
+    } catch (error) {
+      return "";
+    }
   }
 
   // Same-origin fallback for readers whose browser or privacy settings reject

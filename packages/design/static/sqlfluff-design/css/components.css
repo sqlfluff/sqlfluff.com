@@ -8,6 +8,7 @@
   top: 0;
   z-index: 20;
   min-height: var(--sqlfluff-header-height);
+  background: var(--sqlfluff-color-canvas);
   background: color-mix(in srgb, var(--sqlfluff-color-canvas) 94%, transparent);
   border-bottom: 1px solid var(--sqlfluff-color-border);
   backdrop-filter: blur(12px);
