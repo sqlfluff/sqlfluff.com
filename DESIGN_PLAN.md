@@ -8,12 +8,12 @@ work and will remain unchanged until it is replaced.
 
 ## Design ownership
 
-This repository will be the source of truth for the shared design system. An
-internal, repository-local package under `packages/design/` will contain:
+This repository is the source of truth for the shared design system. The
+internal, repository-local package under `packages/design/` contains:
 
 - design tokens for colour, typography, spacing, borders, and themes;
 - shared CSS for global chrome and reusable visual components;
-- self-hosted fonts, logos, and icons; and
+- font configuration, logos, and icons; and
 - a short contract describing common header, navigation, and footer structure.
 
 The package will not be published to a package registry. Repository commits and
@@ -25,13 +25,10 @@ small local adapters for their own layouts and behaviour.
 
 ## Main site
 
-The main site will remain a Hugo site deployed by Netlify, but will stop using
-Gokarna. Theme-provided layouts and behaviour will be replaced by small,
-project-owned Hugo layouts and partials. These will use the shared package where
-appropriate and keep marketing-only structures in this repository.
-
-Once the replacement is complete, the Gokarna Git submodule and its configuration
-will be removed.
+The main site remains a Hugo site deployed by Netlify, but no longer uses Gokarna.
+Small, project-owned Hugo layouts and partials now provide the site structure.
+They use the shared package where appropriate and keep marketing-only structures
+and styles in this repository.
 
 ## Documentation and statistics
 

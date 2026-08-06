@@ -1,0 +1,56 @@
+:root {
+  color-scheme: light dark;
+
+  --sqlfluff-font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sqlfluff-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --sqlfluff-color-canvas: #f7f8f8;
+  --sqlfluff-color-surface: #ffffff;
+  --sqlfluff-color-surface-muted: #eef1f2;
+  --sqlfluff-color-text: #1d252b;
+  --sqlfluff-color-text-muted: #5e6a72;
+  --sqlfluff-color-border: #d7dde0;
+  --sqlfluff-color-border-strong: #aeb8bd;
+  --sqlfluff-color-accent: #a35a00;
+  --sqlfluff-color-accent-hover: #844800;
+  --sqlfluff-color-accent-soft: #fff3df;
+  --sqlfluff-color-accent-contrast: #ffffff;
+  --sqlfluff-color-secondary: #315c9b;
+  --sqlfluff-color-code-bg: #161b22;
+  --sqlfluff-color-code-text: #e6edf3;
+  --sqlfluff-color-code-muted: #8b949e;
+  --sqlfluff-color-code-yellow: #e6db74;
+  --sqlfluff-color-code-red: #ff7b72;
+  --sqlfluff-color-code-blue: #79c0ff;
+  --sqlfluff-color-focus: #0969da;
+
+  --sqlfluff-content-width: 1120px;
+  --sqlfluff-reading-width: 760px;
+  --sqlfluff-header-height: 64px;
+  --sqlfluff-radius-sm: 4px;
+  --sqlfluff-radius-md: 8px;
+  --sqlfluff-shadow-sm: 0 1px 2px rgb(29 37 43 / 8%);
+}
+
+/* `theme.js` sets both signals. The class is also accepted so an application
+   whose framework already owns a `dark` class can adopt these tokens without
+   running the shared script. */
+:root[data-theme="dark"],
+:root.dark {
+  color-scheme: dark;
+  --sqlfluff-color-canvas: #0d1117;
+  --sqlfluff-color-surface: #161b22;
+  --sqlfluff-color-surface-muted: #21262d;
+  --sqlfluff-color-text: #e6edf3;
+  --sqlfluff-color-text-muted: #9da7b1;
+  --sqlfluff-color-border: #30363d;
+  --sqlfluff-color-border-strong: #57606a;
+  --sqlfluff-color-accent: #f2b84b;
+  --sqlfluff-color-accent-hover: #ffd27a;
+  --sqlfluff-color-accent-soft: #382a12;
+  --sqlfluff-color-accent-contrast: #251800;
+  --sqlfluff-color-secondary: #8fbaff;
+  --sqlfluff-color-code-bg: #090c10;
+  --sqlfluff-color-focus: #58a6ff;
+  --sqlfluff-shadow-sm: 0 1px 2px rgb(0 0 0 / 30%);
+}

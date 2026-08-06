@@ -1,0 +1,285 @@
+.sqlfluff-home-hero {
+  display: grid;
+  min-height: 510px;
+  align-content: center;
+  justify-items: center;
+  padding-block: 5rem 4rem;
+  text-align: center;
+}
+
+.sqlfluff-home-hero h1 {
+  width: min(100%, 520px);
+  margin-bottom: 1.5rem;
+}
+
+.sqlfluff-home-hero h1 img {
+  width: 100%;
+  height: auto;
+}
+
+.sqlfluff-hero-tagline {
+  margin-bottom: 1rem;
+  color: var(--sqlfluff-color-text);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.sqlfluff-hero-description {
+  max-width: 720px;
+  margin-bottom: 1.75rem;
+  color: var(--sqlfluff-color-text-muted);
+  font-size: 1.05rem;
+}
+
+.sqlfluff-meta-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+}
+
+.sqlfluff-meta-links img {
+  min-height: 20px;
+}
+
+.sqlfluff-home-hero > .sqlfluff-social-links {
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.sqlfluff-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.sqlfluff-section {
+  padding-block: 4.5rem;
+  border-top: 1px solid var(--sqlfluff-color-border);
+}
+
+.sqlfluff-section-heading {
+  max-width: var(--sqlfluff-reading-width);
+  margin-bottom: 2.25rem;
+}
+
+.sqlfluff-section-heading p,
+.sqlfluff-feature p,
+.sqlfluff-sponsor-content p {
+  color: var(--sqlfluff-color-text-muted);
+}
+
+.sqlfluff-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.sqlfluff-feature {
+  min-width: 0;
+}
+
+.sqlfluff-feature h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.8rem;
+}
+
+.sqlfluff-feature-icon {
+  display: grid;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  color: var(--sqlfluff-color-accent);
+  background: var(--sqlfluff-color-accent-soft);
+  border-radius: 7px;
+}
+
+.sqlfluff-feature-icon::before {
+  width: 20px;
+  height: 20px;
+  content: "";
+  background: currentColor;
+  mask: var(--sqlfluff-feature-icon) center / contain no-repeat;
+}
+
+.sqlfluff-feature-icon-lint {
+  --sqlfluff-feature-icon: url("/icons/search-check.svg");
+}
+
+.sqlfluff-feature-icon-fix {
+  --sqlfluff-feature-icon: url("/icons/wand-sparkles.svg");
+}
+
+.sqlfluff-feature-icon-parse {
+  --sqlfluff-feature-icon: url("/icons/braces.svg");
+}
+
+.sqlfluff-feature-icon-configure {
+  --sqlfluff-feature-icon: url("/icons/sliders-horizontal.svg");
+}
+
+.sqlfluff-quickstart {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  align-items: start;
+  gap: 3rem;
+}
+
+.sqlfluff-sponsor-header {
+  display: grid;
+  grid-template-areas:
+    "title action"
+    "copy copy";
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.85rem 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.sqlfluff-sponsor-header h2 {
+  grid-area: title;
+  margin: 0;
+}
+
+.sqlfluff-sponsor-header p {
+  grid-area: copy;
+  max-width: 920px;
+  margin: 0;
+  color: var(--sqlfluff-color-text-muted);
+}
+
+.sqlfluff-sponsor-header .sqlfluff-button {
+  grid-area: action;
+  justify-self: end;
+}
+
+.sqlfluff-sponsor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-block: 1px solid var(--sqlfluff-color-border);
+}
+
+.sqlfluff-sponsor {
+  display: grid;
+  grid-template-columns: minmax(120px, 160px) minmax(0, 1fr);
+  align-items: center;
+  gap: 1.5rem;
+  padding-block: 1.75rem;
+}
+
+.sqlfluff-sponsor + .sqlfluff-sponsor {
+  padding-left: 2rem;
+  border-left: 1px solid var(--sqlfluff-color-border);
+}
+
+.sqlfluff-sponsor:first-child {
+  padding-right: 2rem;
+}
+
+.sqlfluff-sponsor-logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.sqlfluff-sponsor-logo {
+  width: auto;
+  max-width: 100%;
+  max-height: 56px;
+  object-fit: contain;
+}
+
+.sqlfluff-sponsor-logo-a14k {
+  max-height: 72px;
+}
+
+.sqlfluff-sponsor-logo-dark {
+  display: none;
+}
+
+:root[data-theme="dark"] .sqlfluff-sponsor-logo-light {
+  display: none;
+}
+
+:root[data-theme="dark"] .sqlfluff-sponsor-logo-dark {
+  display: block;
+}
+
+.sqlfluff-sponsor-content {
+  min-width: 0;
+}
+
+.sqlfluff-sponsor-content p {
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .sqlfluff-sponsor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sqlfluff-sponsor + .sqlfluff-sponsor {
+    padding-left: 0;
+    border-top: 1px solid var(--sqlfluff-color-border);
+    border-left: 0;
+  }
+
+  .sqlfluff-sponsor:first-child {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .sqlfluff-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sqlfluff-quickstart {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .sqlfluff-home-hero {
+    min-height: 460px;
+    padding-block: 4rem 3rem;
+  }
+
+  .sqlfluff-hero-tagline {
+    font-size: 1.25rem;
+  }
+
+  .sqlfluff-section {
+    padding-block: 3.5rem;
+  }
+
+  .sqlfluff-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sqlfluff-sponsor-header {
+    grid-template-areas:
+      "title"
+      "copy"
+      "action";
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .sqlfluff-sponsor-header .sqlfluff-button {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .sqlfluff-sponsor {
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 1rem;
+  }
+}

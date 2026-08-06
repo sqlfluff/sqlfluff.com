@@ -1,0 +1,43 @@
+<header class="sqlfluff-site-header" data-sqlfluff-nav>
+  <div class="sqlfluff-container sqlfluff-header-inner">
+    <a class="sqlfluff-brand" href="{{ .Site.Home.RelPermalink }}" aria-label="SQLFluff home">
+      <img src="{{ "sqlfluff-design/img/sqlfluff-wide.png" | relURL }}" alt="">
+    </a>
+
+    <button class="sqlfluff-nav-toggle" type="button" aria-expanded="false" aria-controls="sqlfluff-global-nav" data-sqlfluff-nav-toggle>
+      <span class="sqlfluff-visually-hidden">Open navigation</span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="sqlfluff-global-nav" class="sqlfluff-nav" aria-label="Global navigation" data-sqlfluff-nav-menu>
+      <a href="{{ .Site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>SQLFluff</a>
+      {{ with .Site.Params.links.docs }}
+        <a href="{{ . }}">Docs</a>
+      {{ end }}
+      {{ if .Site.Params.showStats }}
+        {{ with .Site.Params.links.stats }}
+          <a href="{{ . }}">Stats</a>
+        {{ end }}
+      {{ end }}
+      {{ with .Site.Params.links.source }}
+        <a href="{{ . }}">GitHub</a>
+      {{ end }}
+      <div class="sqlfluff-theme-control">
+        <span id="sqlfluff-theme-label" class="sqlfluff-visually-hidden">Colour theme</span>
+        <div class="sqlfluff-theme-switcher" role="group" aria-labelledby="sqlfluff-theme-label">
+          <button type="button" data-sqlfluff-theme-value="auto" aria-label="Use system theme" title="System theme" aria-pressed="false">
+            <span class="sqlfluff-theme-icon sqlfluff-theme-icon-system" aria-hidden="true"></span>
+          </button>
+          <button type="button" data-sqlfluff-theme-value="light" aria-label="Use light theme" title="Light theme" aria-pressed="false">
+            <span class="sqlfluff-theme-icon sqlfluff-theme-icon-light" aria-hidden="true"></span>
+          </button>
+          <button type="button" data-sqlfluff-theme-value="dark" aria-label="Use dark theme" title="Dark theme" aria-pressed="false">
+            <span class="sqlfluff-theme-icon sqlfluff-theme-icon-dark" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

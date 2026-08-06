@@ -1,0 +1,39 @@
+<footer class="sqlfluff-site-footer">
+  <div class="sqlfluff-container">
+    <div class="sqlfluff-footer-grid">
+      <div>
+        <p class="sqlfluff-footer-title">SQLFluff</p>
+        <p class="sqlfluff-footer-copy">The open source, dialect-flexible SQL linter for humans.</p>
+        {{ partial "social-links.html" . }}
+      </div>
+      <nav class="sqlfluff-footer-links" aria-label="Project links">
+        {{ with .Site.Params.links.docs }}
+          <a href="{{ . }}">Documentation</a>
+        {{ end }}
+        {{ if .Site.Params.showStats }}
+          {{ with .Site.Params.links.stats }}
+            <a href="{{ . }}">Project statistics</a>
+          {{ end }}
+        {{ end }}
+        {{ with .Site.Params.links.source }}
+          <a href="{{ . }}">GitHub source</a>
+        {{ end }}
+        <a href="https://pypi.org/project/sqlfluff/">PyPI package</a>
+      </nav>
+      {{/* Keep labeled destinations as a scannable counterpart to the compact icon links. */}}
+      <nav class="sqlfluff-footer-links" aria-label="Community links">
+        {{ range .Site.Params.socialIcons }}
+          {{ $label := .label | default (.name | title) }}
+          {{ with .url }}
+            <a href="{{ . }}">{{ $label }}</a>
+          {{ end }}
+        {{ end }}
+      </nav>
+    </div>
+    <div class="sqlfluff-footer-legal">
+      <p>&copy; {{ now.Year }} SQLFluff Ltd. Incorporated in England, company number 14948332.</p>
+      <p>Unit 82a James Carter Road, Mildenhall, Bury St. Edmunds, England, IP28 7DE.</p>
+      <p>Site managed by <a href="https://www.a14k.co.uk/">A14K Ltd.</a> and powered by <a href="https://www.netlify.com/">Netlify</a>.</p>
+    </div>
+  </div>
+</footer>
