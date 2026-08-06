@@ -5,6 +5,23 @@ pinned `sqlfluff.com` Git submodule. It is intentionally framework-neutral: each
 application keeps its own templates and copies the shared static assets into its
 build output.
 
+## Adoption tiers
+
+Not every application can take the whole package. Two tiers are supported, and a
+consumer should state which one it is on:
+
+- **Foundations.** Tokens, typography, fonts, and the theme preference. The
+  application keeps its own header, navigation, and footer, and maps its
+  framework's variables onto the shared ones. This is the right tier for a
+  framework which owns its own chrome, such as VitePress or Observable.
+- **Full chrome.** Foundations plus the shared header, navigation, theme control,
+  and footer markup from section 4. This suits an application which renders its
+  own page shell, such as the Hugo site.
+
+Sections 1 to 3 and 5 to 7 apply to both tiers. Section 4 applies to full chrome,
+and to any foundations-tier consumer which adopts an individual shared component
+such as the theme control.
+
 ## 1. Pin the source
 
 Add this repository at a stable vendor path and commit the resulting gitlink:
@@ -48,8 +65,35 @@ the stylesheets. Load application/framework adapters last:
 <link rel="stylesheet" href="/assets/application-adapter.css">
 ```
 
-Do not add `defer` to `theme.js`: its first pass sets `data-theme` before paint.
-The script defers control and navigation event handlers until the DOM is ready.
+The element-level rules in `base.css` sit in a `sqlfluff-base` cascade layer, so
+they are a floor rather than a ceiling: a framework which styles the same bare
+elements keeps winning no matter which file loads last. Tokens, shared component
+classes, and the utility classes are unlayered and behave normally. An adapter
+therefore does not need to reproduce framework typography to defend it, and does
+not need the shared stylesheets to load in any particular position relative to
+the framework's own bundle.
+
+Do not add `defer` to `theme.js`: its first pass applies the theme before paint.
+Control and navigation handlers are delegated from the document, so they are
+registered in the same pass and do not wait for `DOMContentLoaded`.
+
+Because the script is render-blocking, an application which cares about the
+first-paint cost may inline its contents in `head` instead of linking it, as long
+as it still runs before the stylesheets. Read the file from the vendored
+directory at build time rather than copying it into application source.
+
+### Theme signals
+
+`theme.js` sets three things on `<html>`: `data-theme` with the resolved
+`light` or `dark` theme, `data-theme-preference` with the stored `auto`, `light`,
+or `dark` preference, and a `dark` class when the resolved theme is dark. Shared
+tokens respond to either the attribute or the class.
+
+The class exists so a framework whose own styling is keyed on `.dark` — VitePress
+prose, code blocks, and components among them — stays consistent with the shared
+tokens without a per-application shim. An application should let one owner set
+these signals. When the shared script owns them, disable the framework's own
+theme state, for example with VitePress `appearance: false`.
 
 ### Brand assets and metadata
 
@@ -105,6 +149,14 @@ the following stable classes and data attributes.
 Set `aria-current="page"` only on the active destination. Labels, destinations,
 ordering, and temporary visibility are consumer configuration, not package data.
 
+The header separator is scroll-aware. `theme.js` adds `is-top` to each
+`[data-sqlfluff-nav]` element while the page is scrolled to the top, and the
+stylesheet clears the bottom border while that class is present, so the line
+only appears once content is passing under the header. The border is the
+default state, so a reader without JavaScript keeps a separated header. A
+consumer whose framework already does this, such as VitePress, should keep its
+own implementation rather than adding a second one.
+
 ### Theme control
 
 ```html
@@ -131,8 +183,43 @@ ordering, and temporary visibility are consumer configuration, not package data.
 The script stores `sqlfluff-theme=auto|light|dark`. On `sqlfluff.com` and its
 subdomains it writes `Domain=sqlfluff.com; Path=/; SameSite=Lax; Secure` with a
 one-year lifetime. Other hosts receive a host-only cookie, with `Secure` on HTTPS.
-It sets `data-theme` and `data-theme-preference` on `<html>` and follows operating
-system changes while the preference is `auto`.
+It follows operating system changes while the preference is `auto`.
+
+A cookie is used rather than `localStorage` because it is the only channel which
+is both readable before first paint and shared between the SQLFluff subdomains;
+`localStorage` is origin-scoped, and the hidden-iframe workaround is asynchronous
+and is partitioned by current browsers. A same-origin `localStorage` copy is kept
+only as a fallback for readers whose browser rejects cookies.
+
+The cookie name and its `auto`, `light`, and `dark` vocabulary are a frozen
+compatibility contract. Consumers which publish immutable versioned builds, such
+as the documentation archive, bundle the copy of `theme.js` they were built with,
+so old builds must keep interoperating with current ones indefinitely.
+
+### Driving the theme from an application
+
+`theme.js` exposes `window.sqlfluffTheme` for applications which render their own
+control or need to mirror the state into framework code:
+
+```js
+window.sqlfluffTheme.get()        // 'auto' | 'light' | 'dark'
+window.sqlfluffTheme.resolved()   // 'light' | 'dark'
+window.sqlfluffTheme.set('dark')  // store, apply, and notify
+window.sqlfluffTheme.sync()       // resynchronise chrome after rendering it
+window.sqlfluffTheme.subscribe(fn) // call now and on change; returns unsubscribe
+```
+
+Client-rendered applications do not need this to make the documented markup work.
+Clicks are delegated from the document, so a control which is mounted, replaced,
+or unmounted after load behaves the same as server-rendered markup.
+
+What is not automatic is state which is only recalculated when something changes:
+`aria-pressed` on controls created after the last theme change, and the
+scroll-aware `is-top` class on a header mounted since the last scroll. Call
+`sync` after rendering shared chrome, or bind `aria-pressed` from `subscribe`.
+An application which renders the shared header on every route change should call
+`sync` from that lifecycle, otherwise the header will show its separator at the
+top of the page until the reader first scrolls.
 
 ### Buttons and social links
 
@@ -245,7 +332,10 @@ own schedule.
 
 - The three CSS files, theme script, fonts, wordmark, and referenced icons return
   `200` from the deployed origin.
-- Light, dark, and automatic preferences work before and after navigation.
+- Light, dark, and automatic preferences work before and after navigation,
+  including after a client-side route change in a rendered application.
+- Only one owner sets the theme signals, and the framework's own theme state is
+  disabled where the shared script owns them.
 - The preference follows the user between production SQLFluff subdomains.
 - The active navigation link is correct and the mobile menu opens, closes, and
   responds to Escape.

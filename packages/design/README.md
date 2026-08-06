@@ -13,7 +13,8 @@ through a pinned Git submodule.
 - `static/sqlfluff-design/css/components.css`: shared container, header,
   navigation, theme switcher, buttons, social links, terminal, and footer.
 - `static/sqlfluff-design/js/theme.js`: theme preference and responsive navigation
-  behaviour.
+  behaviour, delegated from the document so it also serves client-rendered
+  applications, and exposing `window.sqlfluffTheme` for framework adapters.
 - `static/sqlfluff-design/img/`: wordmarks, social image, favicons, and application
   icons.
 - `static/sqlfluff-design/icons/`: shared interface and social icons.
