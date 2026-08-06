@@ -229,7 +229,13 @@
      */
     subscribe: function (listener) {
       subscribers.push(listener);
-      listener(readPreference(), resolveTheme(readPreference()));
+      var preference = readPreference();
+
+      try {
+        listener(preference, resolveTheme(preference));
+      } catch (error) {
+        // A failing subscriber must not prevent registration and cleanup.
+      }
 
       return function () {
         var index = subscribers.indexOf(listener);
