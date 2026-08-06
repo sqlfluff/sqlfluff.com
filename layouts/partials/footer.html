@@ -20,6 +20,7 @@
         {{ end }}
         <a href="https://pypi.org/project/sqlfluff/">PyPI package</a>
       </nav>
+      {{/* Keep labeled destinations as a scannable counterpart to the compact icon links. */}}
       <nav class="sqlfluff-footer-links" aria-label="Community links">
         {{ range .Site.Params.socialIcons }}
           {{ $label := .label | default (.name | title) }}
