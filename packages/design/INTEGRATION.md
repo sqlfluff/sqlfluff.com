@@ -136,7 +136,7 @@ the following stable classes and data attributes.
     </button>
     <nav id="sqlfluff-global-nav" class="sqlfluff-nav"
       aria-label="Global navigation" data-sqlfluff-nav-menu>
-      <a href="/" aria-current="page">Product</a>
+      <a href="/" aria-current="page">SQLFluff</a>
       <a href="https://docs.sqlfluff.com">Docs</a>
       <a href="https://github.com/sqlfluff/sqlfluff">GitHub</a>
       <!-- Theme control goes here. -->
