@@ -11,13 +11,13 @@
   TZ = "Europe/London"
 
 [[redirects]]
-  from = "/stats"
-  to = "/stats/"
-  status = 301
-  force = true
-
-[[redirects]]
   from = "/stats/*"
   to = "https://brilliant-naiad-526a97.netlify.app/:splat"
   status = 200
+  force = true
+
+[[redirects]]
+  from = "/stats"
+  to = "/stats/"
+  status = 301
   force = true
