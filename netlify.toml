@@ -9,4 +9,9 @@
 [build.environment]
   HUGO_VERSION = "0.125.4"
   TZ = "Europe/London"
-  
+
+[[redirects]]
+  from = "/stats/*"
+  to = "https://brilliant-naiad-526a97.netlify.app/:splat"
+  status = 200
+  force = true

@@ -10,7 +10,7 @@ disableKinds = ['taxonomy', 'term']
 [params]
   description = "The SQL linter for humans"
   metaKeywords = ["sqlfluff", "sql", "linter"]
-  showStats = false # Enable when the statistics site is ready for general use.
+  showStats = true
   socialIcons = [
     {name = "github", label = "GitHub", url = "https://github.com/sqlfluff"},
     {name = "docker", label = "Docker Hub", url = "https://hub.docker.com/r/sqlfluff/sqlfluff"},
@@ -24,5 +24,5 @@ disableKinds = ['taxonomy', 'term']
 
   [params.links]
     docs = "https://docs.sqlfluff.com"
-    stats = "https://stats.beta.sqlfluff.com"
+    stats = "/stats/"
     source = "https://github.com/sqlfluff/sqlfluff"
