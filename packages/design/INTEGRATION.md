@@ -1,7 +1,7 @@
 # Consumer integration
 
-This guide is the implementation contract for consuming SQLFluff Design from a
-pinned `sqlfluff.com` Git submodule. It is intentionally framework-neutral: each
+This guide is the implementation contract for consuming SQLFluff Design as a
+pinned dependency on this repository. It is intentionally framework-neutral: each
 application keeps its own templates and copies the shared static assets into its
 build output.
 
@@ -24,32 +24,64 @@ such as the theme control.
 
 ## 1. Pin the source
 
-Add this repository at a stable vendor path and commit the resulting gitlink:
+The package is not published to a registry. A consumer with a Node toolchain
+depends on it directly from Git, pinned to a reviewed commit:
 
-```sh
-git submodule add https://github.com/sqlfluff/sqlfluff.com.git vendor/sqlfluff.com
-git submodule update --init vendor/sqlfluff.com
+```jsonc
+// package.json
+"devDependencies": {
+  "@sqlfluff/design": "github:sqlfluff/sqlfluff.com#<commit>&path:/packages/design"
+}
 ```
 
-CI should fail clearly when the submodule is absent. Do not initialise unrelated
-or nested submodules.
+The `&path:` suffix is required. This repository is a Hugo site with no root
+`package.json`, so the package lives in a subdirectory; without the suffix the
+whole site is installed as an unnamed package.
+
+That syntax is understood by **pnpm 9 and later**. npm and Yarn do not support
+subdirectories in Git dependencies and will fail looking for a `package.json` at
+the repository root, so a consumer using this route should require pnpm, for
+example with `"engines": { "pnpm": ">=9" }`.
+
+The lockfile records the resolved commit and, on a cold store, an integrity hash.
+Advance the pin in an ordinary pull request so the change is reviewed. Note that
+a commit reachable only from a branch which is later squash-merged and deleted
+becomes unreachable, which breaks the pin; prefer pinning commits on `main`.
+
+A consumer without a Node toolchain can instead vendor this repository as a Git
+submodule and read the same `packages/design/static/sqlfluff-design` directory.
+The rest of this guide applies unchanged either way.
 
 ## 2. Copy the assets
 
-Copy only the package's public directory into the consumer's static/public output.
+Copy only the package's asset directory into the consumer's static/public output.
 For a project whose static directory is `public/`:
 
 ```sh
-test -d vendor/sqlfluff.com/packages/design/static/sqlfluff-design
 rsync -a --delete \
-  vendor/sqlfluff.com/packages/design/static/sqlfluff-design/ \
+  node_modules/@sqlfluff/design/static/sqlfluff-design/ \
   public/sqlfluff-design/
 ```
 
+Resolve the package through its manifest rather than assuming that path, so the
+step survives a hoisted, symlinked, or otherwise relocated store:
+
+```js
+import { createRequire } from 'node:module'
+import { dirname, resolve } from 'node:path'
+
+const manifest = createRequire(import.meta.url).resolve('@sqlfluff/design/package.json')
+const assets = resolve(dirname(manifest), 'static/sqlfluff-design')
+```
+
 Run this as the consumer's `design:sync` step before local development and before
-the production build. The deployed assets must be available at
-`/sqlfluff-design/`; no application should fetch them from another SQLFluff site
-at runtime.
+the production build, and fail with actionable guidance when the package is
+missing. The deployed assets must be available at `/sqlfluff-design/`; no
+application should fetch them from another SQLFluff site at runtime.
+
+The package's `exports` map exposes `./package.json` and everything under
+`./static/`. Both are part of the consumer contract. Other files ship with the
+package but are not importable.
 
 ## 3. Load the foundations
 
@@ -311,22 +343,27 @@ footer. Promote a rule into the package only after it represents the same compon
 in at least two applications.
 
 All shared custom properties use the `--sqlfluff-` prefix and shared classes use
-`sqlfluff-`. Treat the vendored directory as read-only.
+`sqlfluff-`. Treat the installed package as read-only.
 
 ## 7. Update the pinned design
 
-Update the submodule deliberately, review the package diff, and commit only the new
-gitlink in the consumer:
+Advance the pin deliberately and review the package diff. Change the commit in the
+dependency specifier and refresh the lockfile:
 
 ```sh
-git -C vendor/sqlfluff.com fetch origin
-git -C vendor/sqlfluff.com checkout <reviewed-commit-or-design-tag>
-git add vendor/sqlfluff.com
+# after editing the pinned commit in package.json
+pnpm install
 ```
 
-Run `design:sync`, the consumer build, and visual checks before merging. This keeps
-historical deployments reproducible and lets each application adopt changes on its
-own schedule.
+Then run `design:sync`, the consumer build, and visual checks before merging. This
+keeps historical deployments reproducible and lets each application adopt changes
+on its own schedule.
+
+Compare what actually changed in the package between two pins:
+
+```sh
+git -c core.pager=cat diff <old-commit> <new-commit> -- packages/design
+```
 
 ## Verification checklist
 

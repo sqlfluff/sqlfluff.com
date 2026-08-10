@@ -32,15 +32,18 @@ and styles in this repository.
 
 ## Documentation and statistics
 
-The SQLFluff and SQLFluff Datacoves repositories will each vendor this repository
-as a Git submodule, for example at `vendor/sqlfluff.com`. Each consumer will:
+The SQLFluff and SQLFluff Datacoves repositories will each depend on this
+repository from Git, pinned to a reviewed commit. Each consumer will:
 
-- pin the submodule to a reviewed commit or `design-v*` tag;
-- initialise only the direct submodule, not nested submodules;
-- import or copy `packages/design/` during its build; and
+- declare `@sqlfluff/design` as a Git dependency on a reviewed commit or
+  `design-v*` tag, using the `&path:/packages/design` subdirectory suffix;
+- copy the package's assets into its own build output during the build; and
 - keep its VitePress or Observable adapter in the consuming repository.
 
-Design updates will be explicit pull requests which advance the submodule pointer.
+A Git submodule remains a fallback for any consumer without a Node toolchain,
+reading the same directory.
+
+Design updates will be explicit pull requests which advance the pinned commit.
 Each deployed site will bundle the selected design assets, so no site depends on
 `sqlfluff.com` at runtime and historical documentation retains its pinned design.
 
@@ -63,8 +66,8 @@ Observable with its data export and Netlify pipeline for statistics.
 - Keep global link destinations configurable at build time so beta sites can
   link to beta peers before cutover. Navigation labels, order, active state,
   and accessibility semantics should otherwise follow the shared contract.
-- Treat the vendored directory as read-only. A consumer-owned `design:sync`
-  step should validate that the submodule is present and copy only the required
+- Treat the installed package as read-only. A consumer-owned `design:sync`
+  step should validate that the package is present and copy only the required
   assets into that application's generated build directory.
 - Bundle fonts and design assets into each site, use WOFF2 with
   `font-display: swap`, and make asset paths relative to the consuming site.
@@ -77,8 +80,8 @@ Observable with its data export and Netlify pipeline for statistics.
 
 1. Establish the shared tokens, assets, chrome, and component styles.
 2. Replace Gokarna on `sqlfluff.com` and validate the design there.
-3. Add this repository as a submodule of the VitePress documentation and apply its
-   local adapter.
-4. Add the same submodule to the statistics project and apply its local adapter.
+3. Depend on this package from the VitePress documentation and apply its local
+   adapter.
+4. Add the same dependency to the statistics project and apply its local adapter.
 5. Verify navigation, light and dark themes, accessibility, and responsive layouts
    across all three sites before the documentation cutover.

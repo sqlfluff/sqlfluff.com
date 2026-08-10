@@ -2,8 +2,8 @@
 
 This internal package is the framework-neutral source of SQLFluff's shared web
 styles, assets, and browser behaviour. It is consumed directly by this Hugo site
-and is intended to be vendored into the documentation and statistics repositories
-through a pinned Git submodule.
+and by the documentation and statistics repositories, which depend on it from Git
+at a pinned commit.
 
 ## Package contents
 
@@ -35,12 +35,12 @@ need the same visual component or behaviour.
 
 ## Integration
 
-See [INTEGRATION.md](INTEGRATION.md) for the submodule workflow, asset load order,
+See [INTEGRATION.md](INTEGRATION.md) for the dependency workflow, asset load order,
 HTML contracts, theme cookie, adapter guidance, and verification checklist.
 
 Repository commits, and optional `design-v*` tags once introduced, version the
-package. Consumers advance their pinned submodule commit through an ordinary pull
-request; no package registry or runtime dependency on `sqlfluff.com` is required.
+package. Consumers advance their pinned commit through an ordinary pull request;
+no package registry or runtime dependency on `sqlfluff.com` is required.
 
 ## Licensing
 

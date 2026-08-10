@@ -2,5 +2,15 @@
   "name": "@sqlfluff/design",
   "version": "0.1.0",
   "private": true,
-  "description": "Shared visual foundations for SQLFluff web properties"
+  "description": "Shared visual foundations for SQLFluff web properties",
+  "exports": {
+    "./package.json": "./package.json",
+    "./static/*": "./static/*"
+  },
+  "files": [
+    "static",
+    "INTEGRATION.md",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md"
+  ]
 }
