@@ -20,6 +20,9 @@
         {{ with .Site.Params.links.stats }}
           <a href="{{ . }}">Stats</a>
         {{ end }}
+        {{ with .Site.Params.links.contributors }}
+          <a href="{{ . }}">Contributors</a>
+        {{ end }}
       {{ end }}
       {{ with .Site.Params.links.source }}
         <a href="{{ . }}">GitHub</a>

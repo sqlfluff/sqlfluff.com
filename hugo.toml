@@ -25,4 +25,5 @@ disableKinds = ['taxonomy', 'term']
   [params.links]
     docs = "https://docs.sqlfluff.com"
     stats = "/stats/"
+    contributors = "/stats/contributors/"
     source = "https://github.com/sqlfluff/sqlfluff"
