@@ -1,7 +1,7 @@
 baseURL = 'https://sqlfluff.com/'
 languageCode = 'en-us'
 title = 'SQLFluff'
-staticDir = ['static', 'packages/design/static']
+staticDir = ['static', 'vendor/sqlfluff-design/static']
 
 # Automatically generate robots.txt
 enableRobotsTXT = true
