@@ -7,6 +7,10 @@
         {{ partial "social-links.html" . }}
       </div>
       <nav class="sqlfluff-footer-links" aria-label="Project links">
+        {{ with .Site.GetPage "/updates" }}
+          <a href="{{ .RelPermalink }}">Updates</a>
+          {{ with .OutputFormats.Get "RSS" }}<a href="{{ .RelPermalink }}">Updates RSS feed</a>{{ end }}
+        {{ end }}
         {{ with .Site.Params.links.docs }}
           <a href="{{ . }}">Documentation</a>
         {{ end }}

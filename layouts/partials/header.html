@@ -16,6 +16,9 @@
       {{ with .Site.Params.links.docs }}
         <a href="{{ . }}">Docs</a>
       {{ end }}
+      {{ with .Site.GetPage "/updates" }}
+        <a href="{{ .RelPermalink }}"{{ if eq $.Section "updates" }} aria-current="{{ if $.IsSection }}page{{ else }}true{{ end }}"{{ end }}>Updates</a>
+      {{ end }}
       {{ if .Site.Params.showStats }}
         {{ with .Site.Params.links.stats }}
           <a href="{{ . }}">Stats</a>

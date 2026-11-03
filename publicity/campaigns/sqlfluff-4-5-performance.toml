@@ -1,0 +1,35 @@
+id = "sqlfluff-4-5-performance"
+article = "/updates/sqlfluff-4-5-performance/"
+status = "draft"
+
+[copy]
+bluesky = """
+Less waiting for SQLFluff: 4.5.0 reduces repeated work in layout rules, per-file setup costs and communication between worker processes.
+
+Here's what changed, with measurements and their context:
+https://sqlfluff.com/updates/sqlfluff-4-5-performance/
+"""
+
+linkedin = """
+SQL linting should fit into your development workflow without keeping you waiting.
+
+SQLFluff 4.5.0 includes performance improvements across layout rules, per-file setup and parallel processing, alongside improvements to the optional Rust engine.
+
+Our update explains where the savings come from, shares measurements of individual changes, and suggests how to compare timings on your own project.
+
+Read more: https://sqlfluff.com/updates/sqlfluff-4-5-performance/
+
+Thank you to everyone who contributed and reviewed the work.
+"""
+
+slack = """
+SQLFluff 4.5.0 is out, with a series of performance improvements to layout rules, file setup and parallel processing. We've written up what changed and what the contributing PRs measured:
+https://sqlfluff.com/updates/sqlfluff-4-5-performance/
+
+If you try it on your project, we'd be interested in your results. Include your SQLFluff/Python versions, parser, templater and process settings so there's useful context.
+"""
+
+x = """
+SQLFluff 4.5.0 cuts repeated work in layout rules and reduces overhead in parallel runs. See what changed and what the measurements show:
+https://sqlfluff.com/updates/sqlfluff-4-5-performance/
+"""

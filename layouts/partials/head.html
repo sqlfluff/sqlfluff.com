@@ -3,8 +3,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {{ $title := .Title | default .Site.Title }}
+  {{ if not .IsHome }}{{ $title = printf "%s | %s" $title .Site.Title }}{{ end }}
   {{ $description := .Description | default .Site.Params.description }}
   {{ $socialImage := "sqlfluff-design/img/sqlfluff-avatar.png" | absURL }}
+  {{ $card := "summary" }}
+  {{ with .Params.image }}
+    {{ $socialImage = . | absURL }}
+    {{ with $.Resources.GetMatch . }}{{ $socialImage = .Permalink }}{{ end }}
+    {{ $card = "summary_large_image" }}
+  {{ end }}
+  {{ $isArticle := and .IsPage (eq .Section "updates") }}
 
   <title>{{ $title }}</title>
   <meta name="description" content="{{ $description }}">
@@ -12,15 +20,27 @@
   <meta name="theme-color" content="#f7f8f8">
 
   <meta property="og:url" content="{{ .Permalink }}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="{{ if $isArticle }}article{{ else }}website{{ end }}">
   <meta property="og:title" content="{{ $title }}">
   <meta property="og:description" content="{{ $description }}">
   <meta property="og:image" content="{{ $socialImage }}">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  {{ with .Params.image_alt }}<meta property="og:image:alt" content="{{ . }}">{{ end }}
+  {{ if $isArticle }}
+    <meta property="article:published_time" content="{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}">
+    {{ if .Lastmod.After .PublishDate }}<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ end }}
+  {{ end }}
 
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="{{ $card }}">
   <meta name="twitter:title" content="{{ $title }}">
   <meta name="twitter:description" content="{{ $description }}">
   <meta name="twitter:image" content="{{ $socialImage }}">
+  {{ with .Params.image_alt }}<meta name="twitter:image:alt" content="{{ . }}">{{ end }}
+  {{ if or .Site.Params.noindex .Draft }}<meta name="robots" content="noindex, nofollow">{{ end }}
+
+  {{ with .Site.GetPage "/updates" }}
+    {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="SQLFluff updates" href="{{ .Permalink }}">{{ end }}
+  {{ end }}
 
   <link rel="canonical" href="{{ .Permalink }}">
   <link rel="icon" href="{{ "sqlfluff-design/img/favicon.ico" | relURL }}" sizes="any">

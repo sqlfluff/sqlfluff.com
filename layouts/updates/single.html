@@ -1,0 +1,23 @@
+{{ define "main" }}
+  <article class="sqlfluff-container sqlfluff-update-article">
+    <nav class="sqlfluff-update-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ .Site.Home.RelPermalink }}">SQLFluff</a> <span aria-hidden="true">/</span>
+      <a href="{{ "updates/" | relURL }}">Updates</a>
+    </nav>
+    {{ if .Draft }}<p class="sqlfluff-draft-notice">Draft for review &middot; this article is excluded from the production build.</p>{{ end }}
+    <header class="sqlfluff-update-header">
+      <h1>{{ .Title }}</h1>
+      <p class="sqlfluff-update-description">{{ .Description }}</p>
+      <p class="sqlfluff-update-meta">
+        <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format "2 January 2006" }}</time>
+        {{ with .Params.authors }} &middot; {{ delimit . ", " }}{{ end }}
+        {{ if .Lastmod.After .PublishDate }} &middot; Updated <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2 January 2006" }}</time>{{ end }}
+      </p>
+    </header>
+    <div class="sqlfluff-update-body">{{ .Content }}</div>
+    <footer class="sqlfluff-update-footer">
+      <a href="{{ "updates/" | relURL }}">All SQLFluff updates <span aria-hidden="true">&rarr;</span></a>
+      {{ with .Site.GetPage "/updates" }}{{ with .OutputFormats.Get "RSS" }}<a href="{{ .RelPermalink }}">Subscribe via RSS</a>{{ end }}{{ end }}
+    </footer>
+  </article>
+{{ end }}

@@ -10,6 +10,18 @@
   HUGO_VERSION = "0.125.4"
   TZ = "Europe/London"
 
+[context.deploy-preview]
+  command = "hugo --gc --minify --buildDrafts --baseURL $DEPLOY_PRIME_URL"
+
+[context.deploy-preview.environment]
+  HUGO_PARAMS_NOINDEX = "true"
+
+[context.branch-deploy]
+  command = "hugo --gc --minify --buildDrafts --baseURL $DEPLOY_PRIME_URL"
+
+[context.branch-deploy.environment]
+  HUGO_PARAMS_NOINDEX = "true"
+
 [[redirects]]
   from = "/stats/*"
   to = "https://brilliant-naiad-526a97.netlify.app/:splat"
