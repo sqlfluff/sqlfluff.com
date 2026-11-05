@@ -505,3 +505,24 @@
     gap: 1rem;
   }
 }
+
+/* Keep benchmark tables usable without widening the article on small screens. */
+.sqlfluff-update-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.sqlfluff-update-body th,
+.sqlfluff-update-body td {
+  padding: 0.65rem 0.8rem;
+  border-bottom: 1px solid var(--sqlfluff-color-border);
+}
+
+.sqlfluff-update-body th {
+  background: var(--sqlfluff-color-surface-muted);
+  white-space: nowrap;
+}
