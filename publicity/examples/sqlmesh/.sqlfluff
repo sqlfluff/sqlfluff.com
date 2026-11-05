@@ -1,0 +1,10 @@
+[sqlfluff]
+templater = sqlmesh
+dialect = duckdb
+rules = CP01
+
+[sqlfluff:templater:sqlmesh]
+project_dir = .
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = upper

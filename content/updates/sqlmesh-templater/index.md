@@ -27,30 +27,170 @@ corresponding source positions.
 That means you can bring SQLFluff's configurable SQL style checks to model SQL,
 using the dialect and rules appropriate for your team.
 
-## What configuration looks like
+## Worked example: lint a SQLMesh model
 
-With a compatible version of the plugin installed in your SQLFluff environment,
-select it in the project's `.sqlfluff` file. For a DuckDB project, the
-configuration looks like this:
+Let's check a small model that filters orders using a SQLMesh variable, then
+fix its keyword casing. Everything runs locally with DuckDB: you don't need
+warehouse credentials, an existing dataset or a SQLMesh plan.
+
+You can [download the complete example](sqlmesh-example.zip), or create the
+files below in a new `sqlmesh-example` directory.
+
+### 1. Install in a separate environment
+
+For this walkthrough, use Python 3.13 and Git. The plugin isn't currently
+available from PyPI, so this example installs it from the SQLFluff `4.5.0`
+source tag. That tag's plugin metadata requires **SQLFluff 4.2.2**; the tag
+name is not the version pip will install for the core package. Use a separate
+environment rather than changing an existing project's SQLFluff version.
+
+Create and activate a virtual environment:
+
+```sh
+python -m venv .venv
+```
+
+On macOS or Linux, run `source .venv/bin/activate`. On Windows PowerShell, run
+`.venv\Scripts\Activate.ps1`. Run the remaining commands in that environment,
+from the `sqlmesh-example` directory.
+
+Save this as `requirements.txt`:
+
+```text
+sqlfluff-templater-sqlmesh @ git+https://github.com/sqlfluff/sqlfluff.git@4.5.0#subdirectory=plugins/sqlfluff-templater-sqlmesh
+sqlmesh==0.235.4
+duckdb==1.5.6
+```
+
+Then install and check the SQLFluff version:
+
+```sh
+python -m pip install -r requirements.txt
+sqlfluff --version
+```
+
+The expected core version for this example is `4.2.2`. This source installation
+is a way to try the integration, rather than an announcement of a published
+PyPI package.
+
+### 2. Configure SQLMesh and SQLFluff
+
+Create `config.py` in the project root:
+
+```python
+from sqlmesh import Config
+
+config = Config(
+    model_defaults={"dialect": "duckdb"},
+    default_gateway="local",
+    gateways={"local": {"connection": {"type": "duckdb", "database": ":memory:"}}},
+    variables={"minimum_amount": 100},
+)
+```
+
+The `minimum_amount` variable will be used in the model's filter. The in-memory
+DuckDB gateway keeps this example independent of an external database.
+
+Next, create `.sqlfluff` alongside `config.py`:
 
 ```ini
 [sqlfluff]
 templater = sqlmesh
 dialect = duckdb
+rules = CP01
 
 [sqlfluff:templater:sqlmesh]
 project_dir = .
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = upper
 ```
 
-Run SQLFluff from the SQLMesh project root, using your project's actual dialect:
+For this example, we enable only `CP01` and explicitly require uppercase SQL
+keywords. That keeps the result focused on one check. In your own project, use
+your actual dialect and enable the rules your team wants to enforce.
+
+The project should now look like this:
+
+```text
+sqlmesh-example/
+  .sqlfluff
+  config.py
+  requirements.txt
+  models/
+    orders.sql
+```
+
+### 3. Add a model with a real SQLMesh macro
+
+Create `models/orders.sql`, deliberately leaving several query keywords lowercase:
+
+```sql
+MODEL (
+    name demo.orders,
+    kind FULL
+);
+
+SELECT
+    order_id,
+    amount
+from (values (1, 25), (2, 150)) as orders(order_id, amount)
+where amount >= @VAR('minimum_amount');
+```
+
+The query defines its input rows inline, so it has no dependency on another
+model or table. `@VAR('minimum_amount')` reads the value `100` from the SQLMesh
+configuration. If executed, the query would keep order `2`, with amount `150`.
+
+SQLFluff handles the `MODEL` header separately and substitutes the inline macro
+for linting. The surrounding SQL remains mapped to the original file, so the
+keyword diagnostics can point to the lines you edit.
+
+### 4. Lint, fix and check again
+
+Run:
 
 ```sh
-sqlfluff lint models/
+sqlfluff lint models/orders.sql
 ```
 
-The [plugin source and README](https://github.com/sqlfluff/sqlfluff/tree/4.5.0/plugins/sqlfluff-templater-sqlmesh)
-and [example project configuration](https://github.com/sqlfluff/sqlfluff/blob/4.5.0/plugins/sqlfluff-templater-sqlmesh/test/fixtures/sqlmesh/.sqlfluff)
-are useful starting points for exploring the integration.
+The result includes four `CP01` violations, at the original source positions:
+
+```text
+L:   9 | P:   1 | CP01 | Keywords must be upper case. [capitalisation.keywords]
+L:   9 | P:   7 | CP01 | Keywords must be upper case. [capitalisation.keywords]
+L:   9 | P:  33 | CP01 | Keywords must be upper case. [capitalisation.keywords]
+L:  10 | P:   1 | CP01 | Keywords must be upper case. [capitalisation.keywords]
+```
+
+These refer to `from`, `values`, `as` and `where`. A lint run with violations
+returns exit status `1`; that's expected at this step.
+
+Now apply the fixes to this disposable example and lint it again:
+
+```sh
+sqlfluff fix models/orders.sql
+sqlfluff lint models/orders.sql
+```
+
+The model should now contain:
+
+```sql
+MODEL (
+    name demo.orders,
+    kind FULL
+);
+
+SELECT
+    order_id,
+    amount
+FROM (VALUES (1, 25), (2, 150)) AS orders(order_id, amount)
+WHERE amount >= @VAR('minimum_amount');
+```
+
+The final lint run should pass with exit status `0`. The `MODEL` header and
+`@VAR('minimum_amount')` expression stay in the source file: the rendered value
+is used to analyse the query, not written back over the macro.
 
 ## Start with a representative set of models
 
@@ -61,8 +201,9 @@ can fall back to a coarser mapping. Violations in templated regions are
 suppressed by default, so a clean lint result doesn't necessarily mean every
 part of a heavily templated model was checked.
 
-Try a mix of your project's model styles, review the diagnostics, and inspect
-any proposed fixes before adopting them across the project.
+Once the example works, try `sqlfluff lint models/` on a mix of your project's
+model styles. Review the diagnostics and inspect any proposed fixes before
+adopting them across the project.
 
 If you encounter a case the templater doesn't handle well, please
 [open an issue](https://github.com/sqlfluff/sqlfluff/issues) with a minimal

@@ -86,12 +86,20 @@ Keep any generated `preview-public/` output outside Git.
   work rather than a feature introduced by 4.5.0.
 - The 4.5.0 tag contains the implementation and example configuration cited in
   the article. Source mapping limitations are described in the implementation.
-- **Resolve distribution before publishing:** on 3 November 2026,
+- **Confirm the intended distribution before publishing:** on 5 November 2026,
   `https://pypi.org/pypi/sqlfluff-templater-sqlmesh/json` returned HTTP 404.
   Repository package metadata still specifies plugin version 4.2.2 and a strict
-  `sqlfluff==4.2.2` dependency. Confirm the intended supported installation path
-  and compatible versions, then add a tested installation example or link to a
-  maintained setup guide. Do not infer PyPI availability from a merged PR.
+  `sqlfluff==4.2.2` dependency. The article now has a tested source-install
+  walkthrough from the 4.5.0 tag, explicitly retaining that dependency pin in
+  a separate environment. Confirm whether this source-install route is the
+  desired public guidance or whether package publication should happen first.
+  Do not infer PyPI availability from a merged PR.
+- The worked example is maintained in `publicity/examples/sqlmesh/` and provided
+  as `sqlmesh-example.zip` in the article page bundle. On Python 3.13.5 with
+  SQLFluff/plugin 4.2.2, SQLMesh 0.235.4 and DuckDB 1.5.6, it reports four CP01
+  violations at the documented positions, renders the variable as 100, fixes
+  only keyword casing and then passes lint. Executing the rendered query returns
+  `(2, 150)`, and a second fix leaves the file unchanged.
 - Confirm initial release attribution and contributor credits before publication.
 
 The two article dates are provisional. Publish the performance story first and
