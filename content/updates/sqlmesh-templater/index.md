@@ -33,8 +33,9 @@ Let's check a small model that filters orders using a SQLMesh variable, then
 fix its keyword casing. Everything runs locally with DuckDB: you don't need
 warehouse credentials, an existing dataset or a SQLMesh plan.
 
-You can [download the complete example](sqlmesh-example.zip), or create the
-files below in a new `sqlmesh-example` directory.
+Create the small project below by copying each block into the named file.
+For more model styles, explore the [SQLMesh test fixtures](https://github.com/sqlfluff/sqlfluff/tree/4.5.0/plugins/sqlfluff-templater-sqlmesh/test/fixtures/sqlmesh)
+and the [templater test suite](https://github.com/sqlfluff/sqlfluff/tree/4.5.0/plugins/sqlfluff-templater-sqlmesh/test).
 
 ### 1. Install in a separate environment
 
@@ -44,9 +45,12 @@ source tag. That tag's plugin metadata requires **SQLFluff 4.2.2**; the tag
 name is not the version pip will install for the core package. Use a separate
 environment rather than changing an existing project's SQLFluff version.
 
-Create and activate a virtual environment:
+Create the project directories and a virtual environment:
 
 ```sh
+mkdir sqlmesh-example
+cd sqlmesh-example
+mkdir models
 python -m venv .venv
 ```
 
@@ -110,7 +114,7 @@ For this example, we enable only `CP01` and explicitly require uppercase SQL
 keywords. That keeps the result focused on one check. In your own project, use
 your actual dialect and enable the rules your team wants to enforce.
 
-The project should now look like this:
+The complete project will look like this:
 
 ```text
 sqlmesh-example/

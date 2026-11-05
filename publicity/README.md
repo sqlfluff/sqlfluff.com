@@ -94,8 +94,10 @@ Keep any generated `preview-public/` output outside Git.
   a separate environment. Confirm whether this source-install route is the
   desired public guidance or whether package publication should happen first.
   Do not infer PyPI availability from a merged PR.
-- The worked example is maintained in `publicity/examples/sqlmesh/` and provided
-  as `sqlmesh-example.zip` in the article page bundle. On Python 3.13.5 with
+- The article contains a minimal project as copyable, named file blocks and
+  links to the upstream SQLMesh fixtures and test suite for broader examples.
+  No downloadable project or duplicate example source is maintained here.
+  On Python 3.13.5 with
   SQLFluff/plugin 4.2.2, SQLMesh 0.235.4 and DuckDB 1.5.6, it reports four CP01
   violations at the documented positions, renders the variable as 100, fixes
   only keyword casing and then passes lint. Executing the rendered query returns
