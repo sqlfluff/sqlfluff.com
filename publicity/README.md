@@ -71,8 +71,9 @@ Keep any generated `preview-public/` output outside Git.
 - Current reference release: [4.5.0, 30 October 2026](https://github.com/sqlfluff/sqlfluff/releases/tag/4.5.0).
 - The article now includes a 4.4.0-to-4.5.0 CLI lint benchmark on 72 public
   fixtures: five measured runs per release/scenario, with raw results and a
-  reproduction bundle in the article page bundle. The headline explicitly
-  scopes its 21–35% time reduction to single-process fixture tests.
+  reproduction bundle in the article page bundle. The headline leads with
+  faster layout linting; the body scopes its 21–35% total-time reduction to
+  single-process fixture tests, covering all release changes.
 - Retain the variability caveat, especially for ANSI with four workers. A
   representative real-project comparison remains deferred.
 - #8804 and #8769 are separately attributed PR measurements, not rerun
