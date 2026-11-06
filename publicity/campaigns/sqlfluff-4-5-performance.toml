@@ -1,0 +1,33 @@
+id = "sqlfluff-4-5-performance"
+article = "/updates/sqlfluff-4-5-performance/"
+status = "draft"
+
+[copy]
+bluesky = """
+Faster layout linting in SQLFluff 4.5: less repeated work on wide SELECT lists, CTEs and layout checks.
+
+See what's changed, our benchmark results and when to expect the biggest difference:
+https://sqlfluff.com/updates/sqlfluff-4-5-performance/
+"""
+
+linkedin = """
+SQLFluff 4.5 makes layout linting faster by removing repeated searches and sharing work between rules.
+
+That matters most when layout checks account for much of your linting time, such as queries with wide SELECT lists or many CTEs. The release also reduces per-file setup and worker communication overhead.
+
+Our three public fixture samples took 21–35% less total lint time with one process compared with 4.4.0. The post includes the chart, method and limitations, plus guidance on what to expect on your project.
+
+https://sqlfluff.com/updates/sqlfluff-4-5-performance/
+"""
+
+slack = """
+SQLFluff 4.5 brings faster layout linting, with less repeated work between rules and lower per-file and worker overhead.
+
+We've put together a short explanation of the changes, benchmark results and where the difference should be most noticeable:
+https://sqlfluff.com/updates/sqlfluff-4-5-performance/
+"""
+
+x = """
+Faster layout linting in SQLFluff 4.5: less repeated work in layout rules, plus lower per-file and worker overhead. See what's changed and the benchmark results:
+https://sqlfluff.com/updates/sqlfluff-4-5-performance/
+"""

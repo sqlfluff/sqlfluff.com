@@ -6,6 +6,10 @@ staticDir = ['static', 'vendor/sqlfluff-design/static']
 # Automatically generate robots.txt
 enableRobotsTXT = true
 disableKinds = ['taxonomy', 'term']
+paginate = 10
+
+[markup.highlight]
+  noClasses = false
 
 [params]
   description = "The SQL linter for humans"
