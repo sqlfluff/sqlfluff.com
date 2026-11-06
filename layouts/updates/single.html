@@ -10,7 +10,17 @@
       <p class="sqlfluff-update-description">{{ .Description }}</p>
       <p class="sqlfluff-update-meta">
         <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format "2 January 2006" }}</time>
-        {{ with .Params.authors }} &middot; {{ delimit . ", " }}{{ end }}
+        {{ with .Params.authors }}
+          &middot; By
+          {{ range $index, $authorID := . }}
+            {{ if $index }}, {{ end }}
+            {{ with index $.Site.Data.authors $authorID }}
+              <a href="{{ .url }}" rel="author">{{ .name }}</a>
+            {{ else }}
+              {{ $authorID }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
         {{ if .Lastmod.After .PublishDate }} &middot; Updated <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2 January 2006" }}</time>{{ end }}
       </p>
     </header>

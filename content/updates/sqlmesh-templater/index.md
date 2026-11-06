@@ -3,6 +3,7 @@ title: 'A SQLMesh templater for SQLFluff'
 description: Bring SQLFluff linting to SQLMesh model SQL with a templater that understands model headers and macros.
 date: 2026-11-03T08:00:00Z
 draft: true
+authors: [alanmcruickshank]
 ---
 
 If your team uses SQLMesh, there's a SQLFluff integration worth a closer look:

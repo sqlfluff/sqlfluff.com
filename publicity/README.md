@@ -19,7 +19,10 @@ back to the article. Not every release or merged PR needs an article.
 
 Keep URLs stable and omit dates from slugs. `date` is the article's publication
 date, not the release date of a feature it discusses. Describe older features
-honestly as spotlights. Optional `authors` is a list of attribution names.
+honestly as spotlights. Optional `authors` is a list of profile IDs, for example
+`authors: [alanmcruickshank]`. Add each maintainer's display name and profile URL
+once in `data/authors.toml`; their byline links stay consistent across posts.
+Multiple authors are supported. Existing plain-text names still render as text.
 Set `lastmod` only for substantive changes after publication.
 
 An AI assistant should inspect the source implementation, tests and release
