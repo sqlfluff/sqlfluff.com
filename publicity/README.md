@@ -89,23 +89,24 @@ Keep any generated `preview-public/` output outside Git.
   work rather than a feature introduced by 4.5.0.
 - The 4.5.0 tag contains the implementation and example configuration cited in
   the article. Source mapping limitations are described in the implementation.
-- **Confirm the intended distribution before publishing:** on 5 November 2026,
-  `https://pypi.org/pypi/sqlfluff-templater-sqlmesh/json` returned HTTP 404.
-  Repository package metadata still specifies plugin version 4.2.2 and a strict
-  `sqlfluff==4.2.2` dependency. The article now has a tested source-install
-  walkthrough from the 4.5.0 tag, explicitly retaining that dependency pin in
-  a separate environment. Confirm whether this source-install route is the
-  desired public guidance or whether package publication should happen first.
-  Do not infer PyPI availability from a merged PR.
+- Distribution confirmed on 8 November 2026: PyPI publishes
+  `sqlfluff-templater-sqlmesh==4.5.0`, requiring `sqlfluff==4.5.0`,
+  `sqlmesh>=0.80.0` and Python 3.10+. The walkthrough now installs the published
+  wheel rather than the source tag; it retains Python 3.13, SQLMesh 0.235.4
+  and DuckDB 1.5.6 for a reproducible example.
 - The article contains a minimal project as copyable, named file blocks and
   links to the upstream SQLMesh fixtures and test suite for broader examples.
   No downloadable project or duplicate example source is maintained here.
-  On Python 3.13.5 with
-  SQLFluff/plugin 4.2.2, SQLMesh 0.235.4 and DuckDB 1.5.6, it reports four CP01
+  The original source-install example was tested on Python 3.13.5 with
+  SQLFluff/plugin 4.2.2, SQLMesh 0.235.4 and DuckDB 1.5.6: it reports four CP01
   violations at the documented positions, renders the variable as 100, fixes
   only keyword casing and then passes lint. Executing the rendered query returns
   `(2, 150)`, and a second fix leaves the file unchanged.
 - Confirm initial release attribution and contributor credits before publication.
+- Rechecked the article's exact file blocks on 8 November 2026 in a fresh Python
+  3.13.18 environment with the PyPI plugin/core 4.5.0 and the pinned SQLMesh and
+  DuckDB versions. All four documented CP01 positions match; fixing produces
+  the documented SQL, lint then passes, and a second fix is unchanged.
 
 The two article dates are provisional. Publish the performance story first and
-choose the SQLMesh spotlight's date after its setup guidance is ready.
+choose the SQLMesh spotlight's publication date during editorial review.

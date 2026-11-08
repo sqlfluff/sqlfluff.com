@@ -11,8 +11,8 @@ the SQLMesh templater.
 
 The [initial integration](https://github.com/sqlfluff/sqlfluff/pull/7722)
 merged in August. It's part of the SQLFluff repository as a separate plugin,
-`sqlfluff-templater-sqlmesh`, bringing SQLMesh projects into SQLFluff's linting
-workflow.
+[`sqlfluff-templater-sqlmesh`](https://pypi.org/project/sqlfluff-templater-sqlmesh/),
+now available on PyPI, bringing SQLMesh projects into SQLFluff's linting workflow.
 
 ## Why a dedicated templater matters
 
@@ -40,11 +40,10 @@ and the [templater test suite](https://github.com/sqlfluff/sqlfluff/tree/4.5.0/p
 
 ### 1. Install in a separate environment
 
-For this walkthrough, use Python 3.13 and Git. The plugin isn't currently
-available from PyPI, so this example installs it from the SQLFluff `4.5.0`
-source tag. That tag's plugin metadata requires **SQLFluff 4.2.2**; the tag
-name is not the version pip will install for the core package. Use a separate
-environment rather than changing an existing project's SQLFluff version.
+For this walkthrough, use Python 3.13. The plugin is available directly from
+PyPI; no Git checkout is needed. Version **4.5.0** installs the matching
+**SQLFluff 4.5.0** core package. Use a separate environment rather than changing
+an existing project's SQLFluff version.
 
 Create the project directories and a virtual environment:
 
@@ -62,7 +61,7 @@ from the `sqlmesh-example` directory.
 Save this as `requirements.txt`:
 
 ```text
-sqlfluff-templater-sqlmesh @ git+https://github.com/sqlfluff/sqlfluff.git@4.5.0#subdirectory=plugins/sqlfluff-templater-sqlmesh
+sqlfluff-templater-sqlmesh==4.5.0
 sqlmesh==0.235.4
 duckdb==1.5.6
 ```
@@ -74,9 +73,9 @@ python -m pip install -r requirements.txt
 sqlfluff --version
 ```
 
-The expected core version for this example is `4.2.2`. This source installation
-is a way to try the integration, rather than an announcement of a published
-PyPI package.
+The expected core version for this example is `4.5.0`. For an existing SQLMesh
+environment, the package to install is `sqlfluff-templater-sqlmesh`; keep the
+plugin and SQLFluff versions compatible when updating your dependencies.
 
 ### 2. Configure SQLMesh and SQLFluff
 
@@ -217,6 +216,7 @@ Examples from real projects help improve the integration.
 
 ## Find out more
 
+- [SQLMesh templater on PyPI](https://pypi.org/project/sqlfluff-templater-sqlmesh/)
 - [Initial SQLMesh templater contribution: #7722](https://github.com/sqlfluff/sqlfluff/pull/7722)
 - [SQLMesh templater implementation in SQLFluff 4.5.0](https://github.com/sqlfluff/sqlfluff/blob/4.5.0/plugins/sqlfluff-templater-sqlmesh/sqlfluff_templater_sqlmesh/templater.py)
 - [SQLFluff documentation](https://docs.sqlfluff.com/)
