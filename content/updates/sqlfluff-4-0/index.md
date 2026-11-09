@@ -1,6 +1,6 @@
 ---
-title: 'SQLFluff 4.0: Introducing Rust-powered parsing'
-description: Optional Rust implementations of the lexer and parser open a new path for improving SQLFluff performance on larger files and projects.
+title: 'SQLFluff 4.0: Beginning the Move to Rust'
+description: Why we're introducing Rust implementations of SQLFluff's lexer and parser, and how we're approaching the transition.
 date: 2026-01-15T20:58:11Z
 draft: true
 authors: [alanmcruickshank]
@@ -9,60 +9,81 @@ authors: [alanmcruickshank]
 *Retrospective announcement, added to the Updates archive. The date above is the
 original release date; this article describes the changes introduced in 4.0.0.*
 
-SQLFluff 4.0 introduces an optional Rust implementation of its lexer and parser.
-It is a new step in improving the time it takes to check SQL, particularly for
-larger files and projects, while keeping SQLFluff's familiar linting workflow.
+SQLFluff 4.0 marks the beginning of moving some of the work inside SQLFluff
+from Python to Rust. The first routines are the lexer and parser, which turn
+SQL text into the structure used by the linting rules. In this release, the
+Rust implementations are optional and experimental.
 
-## Rust inside, the same workflow outside
+The reason for starting this work is performance. As SQL projects grow,
+the time spent checking them becomes more noticeable: in a pre-commit hook,
+while iterating on a model, or across a whole project in CI. We want SQLFluff
+to remain practical to use as those workloads get larger.
 
-Before SQLFluff can check a query, it needs to turn the source text into tokens
-and then a structure its rules can inspect. The lexer and parser do that work.
-4.0 brings Rust implementations of those stages into the project as an opt-in
-alternative to the Python implementation.
+## Why start with the lexer and parser?
 
-You still use SQLFluff's commands, configuration and linting rules. The change
-is in how part of the processing happens internally, rather than a separate tool
-or a new SQL style to adopt.
+Before a linting rule can inspect a file, SQLFluff needs to recognise its tokens
+and work out how they fit together. That involves repeated matching and walking
+through the query. On large or complex files, the cost of that work matters.
 
-## An opt-in first release
+Python has made it possible for the community to build SQLFluff's dialects,
+rules and integrations. We want to retain that flexibility while moving some
+of the repeated processing into compiled routines. Rust gives us a way to do
+that within the existing Python package, so users can continue to work through
+the same commands and configuration.
 
-At launch, Rust support is beta and must be installed explicitly. For an isolated
-environment exploring the original 4.0 release, the installation looks like:
+Changing the language of these routines is only part of the work. The Rust
+parser uses a different internal approach to matching the grammar, so it also
+needs testing and tuning in its own right. Rewriting a routine doesn't, on its
+own, establish how much faster a complete lint run will be.
+
+## Keeping dialect development in Python
+
+An important part of this approach is that the Rust parser's grammar tables are
+generated from the Python grammar definitions. Adding support for a SQL
+construct should not mean maintaining a separate definition of its syntax in
+each language.
+
+There is still maintenance work involved: changes to the parser's matching logic
+need to be reflected in both implementations. Keeping the grammar definitions
+shared reduces duplication, but it doesn't remove the need to compare behaviour
+and investigate differences.
+
+This lets us introduce Rust in stages while continuing to develop the dialects,
+linting rules and integrations in Python.
+
+## What to expect from 4.0
+
+4.0 is the first public beta of this work. The release notes report gains on
+larger files and projects, but there is also overhead in moving data between
+Python and Rust. For a small individual file, that overhead can make the Rust
+implementation slightly slower.
+
+The aim at this stage is to make the implementation available for testing and
+establish a basis for further optimisation. The benefit will depend on the
+workload, and improvements to parsing will not remove time spent elsewhere, such
+as rendering templates or evaluating linting rules.
+
+Rust support is opt-in, so an ordinary installation continues to use Python.
+For an isolated environment exploring the original release, install:
 
 ```sh
 python -m pip install 'sqlfluff[rs]==4.0.0'
 ```
 
-The release recommends testing the Rust package in a development environment
-before adopting it in production. Try representative files, compare diagnostics
-and proposed fixes, and check how it behaves with your dialect and templater.
+Try it in development before adopting it in production. Use representative
+files, compare diagnostics and proposed fixes, and keep the configuration and
+process settings the same when measuring timings. Differences in behaviour are
+useful feedback, alongside performance results.
 
-For a new installation today, follow the
-[current documentation](https://docs.sqlfluff.com/) for supported versions and
-installation options. The command above records the historical release.
-
-## Where the performance benefit matters
-
-The 4.0 release reports noticeable gains on larger files and projects. It also
-notes a trade-off: on small individual files, moving data into Rust can cost
-more than the processing saves, making those cases slightly slower.
-
-That is why a representative workload matters. A quick check of one short query
-doesn't tell you how a whole project will behave. Keep your SQL, configuration
-and process settings consistent when comparing the two implementations.
-
-The launch announcement does not establish a single percentage improvement
-for every project, and this article makes no such claim.
-
-## More in 4.0
-
-Alongside Rust support, 4.0 adds the ability to require implicit indents,
-includes fixes for `CV12` and `RF01`, and expands dialect support. For teams
-using the dbt templater, it drops support for dbt 1.4 and older and includes
-support for dbt 1.10.
+For an installation today, follow the [current documentation](https://docs.sqlfluff.com/)
+for supported versions and installation options. The command above records the
+4.0 launch.
 
 A particular thank you to [keraion](https://github.com/keraion), who led the Rust
 implementation effort, and to everyone who tested and reviewed the integration.
+
+The [4.0.0 release notes](https://github.com/sqlfluff/sqlfluff/releases/tag/4.0.0)
+cover the other changes, including the updated dbt support requirements.
 
 ## Find out more
 
