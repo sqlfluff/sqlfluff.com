@@ -1,6 +1,6 @@
 ---
-title: 'SQLFluff 2.0: Rules with names that make sense'
-description: Meaningful rule names and grouped codes replace the old Lxxx identifiers, making SQLFluff configuration easier to read, maintain and discuss.
+title: 'SQLFluff 2.0: Reorganisation of Linting Rules'
+description: Why SQLFluff's rules have been reorganised, how the new names and codes work, and what needs to change in an existing configuration.
 date: 2023-03-14T09:45:27Z
 draft: true
 authors: [alanmcruickshank]
@@ -9,35 +9,38 @@ authors: [alanmcruickshank]
 *Retrospective announcement, added to the Updates archive. The date above is the
 original release date; this article describes the changes introduced in 2.0.0.*
 
-What does `L010` check? Unless you've memorised SQLFluff's rules, the code
-doesn't help you answer that question. Nor does it tell you how that rule relates
-to `L014` or `L030`. Reading a configuration file meant repeatedly looking up
-numbers before you could understand the style it was trying to enforce.
+Until now, SQLFluff's rules have been added fairly organically, as members of
+the community implemented the checks they needed. Each new rule received the
+next available `Lxxx` code. That meant the rules were effectively in
+chronological order: the number reflected when a rule was added, rather than
+what it checked.
 
-That was poor user experience. An undifferentiated list of `Lxxx` identifiers
-was also out of step with the meaningful names and categories familiar from
-other linting tools. We wanted rules to be easier to discover, discuss and
-configure, without asking users to learn a numbering system first.
+That was a reasonable way to start, but it became less useful as the project
+grew. Related rules could be quite far apart in the list, and understanding a
+configuration file often meant looking up several codes before you could work
+out what it was doing. It also differed from the named rules and categories
+used by other linting tools.
 
-**SQLFluff 2.0 gives rules descriptive names and codes grouped by purpose.**
-The associated configuration changes are the main reason this is a major
-release: existing projects need to update how they refer to and configure rules.
+By 2.0, the set of rules had stabilised enough for us to identify useful
+groupings. We've reorganised them around those groups and given each rule a
+name. This changes how rules are referenced in configuration, which is the main
+reason for making it a major release.
 
-## Names for people, codes with context
+## Rule names and grouped codes
 
 The old `L010` becomes `CP01`, named `capitalisation.keywords`. The code is
-still short enough for terminal output or a review comment, but its prefix now
-tells you the category. The full name tells you what the rule is about.
+still short enough for terminal output or a review comment, while the prefix
+identifies the group. The name describes what the rule checks.
 
 Related checks sit together: `CP02` is `capitalisation.identifiers` and `CP03`
 is `capitalisation.functions`. The same approach applies to aliasing (`AL`),
 layout (`LT`), references (`RF`) and the other rule families.
 
-That gives a team useful vocabulary. "Configure `capitalisation.keywords`" is
-easier to reason about than "change `L010`", especially for someone encountering
-the configuration for the first time.
+The intention is to make it easier to refer to a rule without needing to
+remember its number. It also gives us a more consistent way to organise the
+configuration for related checks.
 
-## Configuration that explains itself
+## Changes to configuration
 
 Rule-specific configuration sections now use the rule's **name**, rather than
 its old code. For example, this 1.x configuration:
@@ -54,10 +57,10 @@ becomes:
 capitalisation_policy = upper
 ```
 
-The intent is visible in the file itself. Importantly, the old section name
-isn't just an alternative spelling: in 2.0, unrecognised rule configuration
-sections raise warnings and their settings are ignored. Use the full rule name
-here, rather than replacing `L010` with `CP01` in the section heading.
+The setting itself hasn't changed in this example; only the section heading
+has. In 2.0, unrecognised rule configuration sections raise warnings and their
+settings are ignored. This means you need to use the full rule name here, rather
+than simply replacing `L010` with `CP01` in the heading.
 
 Rule *selection* is more flexible. In `rules` and `exclude_rules`, you can use
 names, grouped codes or group names. For example, to select the capitalisation
@@ -79,10 +82,10 @@ In 2.0 that group selects `CP01` through `CP05`. A group expresses an ongoing
 policy, so future rules added to it may also be selected when you upgrade. Use
 individual names or codes when you want an explicit list.
 
-Legacy codes remain supported as aliases for selecting rules. However, they
-can obscure the meaning of your config, particularly where several old rules
-have been combined. We recommend moving to the new names and groups rather
-than relying on those aliases.
+Legacy codes remain supported as aliases for selecting rules, so these
+references don't all need to change immediately. However, some old rules have
+been combined, so an alias may now select a broader set of checks. It's worth
+reviewing those references as part of the upgrade.
 
 ## Rule code migration table
 
@@ -177,9 +180,9 @@ for old references too.
 
 Pay particular attention to layout settings and the many-to-one mappings above.
 Lint a representative set of files, read any configuration warnings, and review
-the changes before applying fixes across the project. This is a chance to make
-your configuration smaller and clearer, not simply exchange one list of codes
-for another.
+the changes before applying fixes across the project. Where several settings
+express the same intention, consider whether a group or a shared layout setting
+would make that easier to maintain.
 
 See the [2.0 migration guide](https://docs.sqlfluff.com/en/stable/reference/release-notes#upgrading-from-1-x-to-2-0)
 and [rule configuration documentation](https://docs.sqlfluff.com/en/stable/configuration/rules)
