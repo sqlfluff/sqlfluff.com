@@ -177,6 +177,25 @@
   margin-top: 0.5rem;
 }
 
+.sqlfluff-update-body table {
+  width: 100%;
+  margin-block: 1.5rem;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.sqlfluff-update-body th,
+.sqlfluff-update-body td {
+  padding: 0.6rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--sqlfluff-color-border);
+}
+
+.sqlfluff-update-body th {
+  background: var(--sqlfluff-color-surface-muted);
+}
+
 .sqlfluff-update-body pre {
   padding: 1.25rem;
   margin-block: 1.5rem;
