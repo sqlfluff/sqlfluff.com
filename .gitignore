@@ -5,3 +5,6 @@ resources/
 
 .DS_Store
 preview-public/
+
+# Local publisher test artifacts
+__pycache__/

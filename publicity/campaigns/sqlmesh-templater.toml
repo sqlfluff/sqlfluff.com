@@ -1,33 +1,36 @@
 id = "sqlmesh-templater"
 article = "/updates/sqlmesh-templater/"
-status = "draft"
+status = "ready"
 
 [copy]
 bluesky = """
-Using SQLMesh? SQLFluff has a dedicated templater for model SQL, with support for model headers and macros.
+SQLFluff's SQLMesh templater is now on PyPI. Our worked example uses a local DuckDB project to lint and fix model SQL containing a SQLMesh macro, with no warehouse credentials needed.
 
-Our spotlight explains the integration, configuration and current source-mapping limitations:
+Setup and coverage limits:
 https://sqlfluff.com/updates/sqlmesh-templater/
 """
 
 linkedin = """
-A SQLMesh model isn't just a plain SQL query: model headers and macros need their own handling before linting.
+The SQLMesh templater for SQLFluff is now available on PyPI as sqlfluff-templater-sqlmesh. Plugin 4.5.0 installs the matching SQLFluff 4.5.0 package.
 
-The SQLMesh templater brings that context into SQLFluff, letting teams apply their SQL style checks to model SQL. We've put together a spotlight covering how the integration works, its configuration and where source-mapping limitations affect coverage.
+The article walks through a small DuckDB project: configure SQLMesh and SQLFluff, add a model using @VAR, then lint and fix its keyword casing. The example runs locally without warehouse credentials, an existing dataset or a SQLMesh plan.
 
-Read more: https://sqlfluff.com/updates/sqlmesh-templater/
+It also explains where coverage is limited. More complex rendering can fall back to a coarse source mapping, with violations in templated regions suppressed by default. A clean result doesn't necessarily mean every part of a heavily templated model was checked.
+
+The complete example and setup instructions are here:
+https://sqlfluff.com/updates/sqlmesh-templater/
 """
 
 slack = """
-A spotlight for SQLMesh users: the SQLFluff repository includes a dedicated SQLMesh templater. Here's an overview of its configuration and current limitations:
+The SQLMesh templater is available on PyPI: sqlfluff-templater-sqlmesh. Plugin 4.5.0 installs SQLFluff 4.5.0.
+
+We've written a worked example using DuckDB and a SQLMesh @VAR macro. It takes you through configuration, the original lint diagnostics, fixes and a clean lint run, without warehouse credentials or a SQLMesh plan:
 https://sqlfluff.com/updates/sqlmesh-templater/
 
-Feedback and minimal examples from real projects are welcome, especially for model styles that don't yet map cleanly back to source.
+The post also covers source-mapping limitations. Try a representative mix of model styles before adopting it across a project; heavily templated regions may not be checked. Minimal examples of cases that don't work well are welcome.
 """
 
 x = """
-Using SQLMesh? Take a look at SQLFluff's SQLMesh templater: model headers, macros and SQL style checks in one workflow.
-
-Our spotlight covers configuration and current limitations:
+SQLFluff's SQLMesh templater is now on PyPI. Follow a local DuckDB example to configure it, lint a model using a SQLMesh macro and fix keyword casing. Includes current coverage limits:
 https://sqlfluff.com/updates/sqlmesh-templater/
 """

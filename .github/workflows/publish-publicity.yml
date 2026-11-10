@@ -1,0 +1,76 @@
+name: Publish publicity campaign
+
+on:
+  workflow_dispatch:
+    inputs:
+      campaign:
+        description: Campaign filename without .toml (for example sqlmesh-templater)
+        required: true
+        type: string
+      channels:
+        description: Where to publish
+        type: choice
+        options: [bluesky, slack, both]
+        default: bluesky
+      mode:
+        description: Dry run shows the copy without posting
+        type: choice
+        options: [dry-run, publish]
+        default: dry-run
+
+permissions:
+  contents: read
+
+# Serialize runs, including reruns, so two maintainers cannot publish concurrently.
+concurrency:
+  group: publicity-publisher
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.13'
+      - name: Test publisher
+        run: python -m unittest discover -s publicity/tests -v
+      - name: Validate campaign and preview copy
+        env:
+          CAMPAIGN: ${{ inputs.campaign }}
+          CHANNELS: ${{ inputs.channels }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python publicity/publish.py
+
+  publish:
+    needs: preview
+    if: inputs.mode == 'publish'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: publicity
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.13'
+      - name: Publish approved copy and save receipts
+        env:
+          CAMPAIGN: ${{ inputs.campaign }}
+          CHANNELS: ${{ inputs.channels }}
+          PUBLISH: 'true'
+          GITHUB_TOKEN: ${{ github.token }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          BLUESKY_IDENTIFIER: ${{ vars.BLUESKY_IDENTIFIER }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL_ID: ${{ vars.SLACK_CHANNEL_ID }}
+        run: python publicity/publish.py

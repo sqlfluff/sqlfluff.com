@@ -1,33 +1,38 @@
 id = "sqlfluff-4-5-performance"
 article = "/updates/sqlfluff-4-5-performance/"
-status = "draft"
+status = "ready"
 
 [copy]
 bluesky = """
-Faster layout linting in SQLFluff 4.5: less repeated work on wide SELECT lists, CTEs and layout checks.
+SQLFluff 4.5 cuts repeated work in layout checks. Our three public fixture samples took 21–35% less total lint time than 4.4.0 with one process and the Python parser.
 
-See what's changed, our benchmark results and when to expect the biggest difference:
+Results, method and limitations:
 https://sqlfluff.com/updates/sqlfluff-4-5-performance/
 """
 
 linkedin = """
-SQLFluff 4.5 makes layout linting faster by removing repeated searches and sharing work between rules.
+SQLFluff 4.5 removes repeated searches in layout rules and lets rules reuse work on an unchanged file. It also reduces per-file setup and communication between workers. These changes benefit the Python parser; the optional Rust engine isn't required.
 
-That matters most when layout checks account for much of your linting time, such as queries with wide SELECT lists or many CTEs. The release also reduces per-file setup and worker communication overhead.
+In our comparison with 4.4.0, median total lint time fell by 21–35% with one process across three public fixture samples. We used 72 files covering ANSI, Snowflake and T-SQL, with the raw templater and default rules.
 
-Our three public fixture samples took 21–35% less total lint time with one process compared with 4.4.0. The post includes the chart, method and limitations, plus guidance on what to expect on your project.
+Those are whole-command timings covering all release changes. They're small samples, not a prediction for your project, and we haven't measured dbt/Jinja rendering in this comparison.
 
+The article includes the results, methodology and reproduction files, plus guidance on comparing timings on your own project:
 https://sqlfluff.com/updates/sqlfluff-4-5-performance/
 """
 
 slack = """
-SQLFluff 4.5 brings faster layout linting, with less repeated work between rules and lower per-file and worker overhead.
+We've published a write-up of the performance changes in SQLFluff 4.5: less repeated work in layout checks, lower per-file setup costs and less data sent between workers. You don't need the Rust parser to benefit.
 
-We've put together a short explanation of the changes, benchmark results and where the difference should be most noticeable:
+Our three public fixture samples took 21–35% less total lint time than 4.4.0 with one process. These are small samples using the Python parser and raw templater, not measurements of a dbt project.
+
+Results and reproduction files:
 https://sqlfluff.com/updates/sqlfluff-4-5-performance/
+
+If you compare versions on your own project, we'd be interested in the results. Keep the SQL, configuration, parser and process count the same, and include the templater and Python version for context.
 """
 
 x = """
-Faster layout linting in SQLFluff 4.5: less repeated work in layout rules, plus lower per-file and worker overhead. See what's changed and the benchmark results:
+SQLFluff 4.5 cuts repeated work in layout checks. Three public fixture samples took 21–35% less total lint time than 4.4.0 with one process and the Python parser. Results and limitations:
 https://sqlfluff.com/updates/sqlfluff-4-5-performance/
 """
