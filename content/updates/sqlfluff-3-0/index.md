@@ -106,13 +106,10 @@ level from `notice` to `warning` for linting errors.
 
 ## Fixes are applied without confirmation
 
-3.0 changes the normal `sqlfluff fix` workflow so fixes are applied without the
-old confirmation step. The previous `--force` behaviour becomes the default,
-enabling reductions in memory overhead when processing larger projects.
-
-Previously SQLFluff retained the results while waiting for confirmation. Making
-the old `--force` behaviour the default allows it to apply fixes as it processes
-files, reducing the amount it needs to keep in memory for a large project.
+`sqlfluff fix` now applies fixes without asking for confirmation, making the
+previous `--force` behaviour the default. This allows fixes to be applied as
+files are processed, rather than retaining results while waiting for
+confirmation, reducing memory overhead on larger projects.
 
 If you want the previous confirmation behaviour, use `sqlfluff fix --check`.
 The `--force` option is deprecated because it is no longer needed. Review
