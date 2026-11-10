@@ -1,22 +1,26 @@
 ---
-title: 'SQLFluff 3.0: Changes to Lint Output and Fixing'
-description: Changes to the lint output format and the default behaviour of sqlfluff fix require updates to existing integrations and workflows.
+title: 'SQLFluff 3.0: Points to Spans'
+description: Changes to the lint output format and the default behaviour of sqlfluff fix require updates to existing integrations and workflows, but enable showing linting areas as a range of characters, not just a point.
 date: 2024-03-12T19:41:43Z
-draft: true
 authors: [alanmcruickshank]
 ---
 
-*Retrospective announcement, added to the Updates archive. The date above is the
-original release date; this article describes the changes introduced in 3.0.0.*
+SQLFluff is used both as a command-line tool and as a component inside other
+applications. For an editor or code review integration, knowing where an issue
+starts is useful, but it isn't enough to show which part of the SQL is affected.
+The application needs the span of the issue so it can underline the relevant
+text or highlight the affected area.
 
-SQLFluff 3.0 changes the format of lint results and the default behaviour of
-`sqlfluff fix`. These changes affect existing integrations and workflows, which
-is why we're making this a major release.
+Before 3.0, lint results reported a point position. This release extends that
+output to describe a range, and renames the existing position fields to make
+clear which end of the range they represent. That change isn't backward
+compatible for applications reading those fields, which is a reason for making
+this a major release. It gives integrations a more useful basis for presenting
+SQLFluff's findings as they develop.
 
-If you consume SQLFluff's JSON or API results, you'll need to update references
-to the position fields. If you run `sqlfluff fix` interactively, it will now
-apply fixes without asking for confirmation. The release also drops support for
-Python 3.7.
+There are other compatibility changes too, including the default behaviour of
+`sqlfluff fix` and the end of Python 3.7 support. The output change is particularly
+relevant if you're using SQLFluff to power an application.
 
 ## Changes to the lint output format
 
@@ -32,9 +36,63 @@ fields have been renamed:
 | `line_no` | `start_line_no` |
 | `line_pos` | `start_line_pos` |
 
-This gives integrations more information about where an issue occurs and how
-it might be fixed, but code that reads the old field names needs to change.
-Check scripts, editor integrations and CI tooling that consume the output.
+For example, suppose the configured style requires uppercase keywords and the
+source contains:
+
+```sql
+select 1 FROM foo;
+```
+
+Before 3.0, the relevant part of the violation record identified the start of
+`select`:
+
+```json
+{
+  "code": "CP01",
+  "line_no": 1,
+  "line_pos": 1
+}
+```
+
+In 3.0, the corresponding fields describe the whole keyword:
+
+```json
+{
+  "code": "CP01",
+  "start_line_no": 1,
+  "start_line_pos": 1,
+  "end_line_no": 1,
+  "end_line_pos": 7,
+  "start_file_pos": 0,
+  "end_file_pos": 6
+}
+```
+
+These are excerpts from a single violation record; descriptions, fix details
+and the surrounding response structure have been omitted. Line and column
+positions start at 1, while file offsets start at 0. The end position is
+exclusive: column 7 is immediately after the six characters in `select`.
+
+An application can therefore mark the affected text directly:
+
+```text
+select 1 FROM foo;
+^^^^^^
+```
+
+With only the old point position, an editor had to infer how much text to mark,
+perhaps by finding the word at the cursor. The span allows it to underline the
+whole keyword, shade a larger expression or show a range across multiple lines
+when the reported issue covers one. These diagnostic markings can sit alongside
+the editor's normal syntax colouring.
+
+The example uses plain, untemplated SQL where the source range is known.
+Integrations should still handle records without end-position fields: 3.0
+only supplies a full span where it can accurately map the location to source.
+
+Code that reads `line_no` or `line_pos` needs to switch to the new start fields.
+Applications can then use the end fields when available to display a range,
+falling back to the start position otherwise.
 
 There is also a change when linting standard input without finding violations.
 Previously the serialised response was an empty list. In 3.0 it contains a file
