@@ -1,0 +1,26 @@
+{{ define "main" }}
+  <section class="sqlfluff-container sqlfluff-updates-page" aria-labelledby="updates-title">
+    <header class="sqlfluff-updates-heading">
+      <div>
+        <h1 id="updates-title">{{ .Title }}</h1>
+        {{ .Content }}
+      </div>
+      {{ with .OutputFormats.Get "RSS" }}<a href="{{ .RelPermalink }}">Subscribe via RSS</a>{{ end }}
+    </header>
+    {{ $paginator := .Paginate .RegularPages.ByPublishDate.Reverse }}
+    <div class="sqlfluff-updates-list">
+      {{ range $paginator.Pages }}
+        {{ partial "update-card.html" (dict "page" .) }}
+      {{ else }}
+        <p>Our first update is on its way. In the meantime, see the <a href="https://github.com/sqlfluff/sqlfluff/releases">release notes</a> for recent changes.</p>
+      {{ end }}
+    </div>
+    {{ if gt $paginator.TotalPages 1 }}
+      <nav class="sqlfluff-updates-pagination" aria-label="Updates pages">
+        {{ with $paginator.Prev }}<a href="{{ .URL }}" rel="prev">Newer updates</a>{{ end }}
+        <span>Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+        {{ with $paginator.Next }}<a href="{{ .URL }}" rel="next">Older updates</a>{{ end }}
+      </nav>
+    {{ end }}
+  </section>
+{{ end }}

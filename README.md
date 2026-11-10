@@ -32,6 +32,17 @@ Clone with `git clone --recurse-submodules`, or after cloning run
 
 After installation, run `hugo server` for local development.
 
+## Updates
+
+Articles live in `content/updates/<slug>/index.md`. See
+[`publicity/README.md`](publicity/README.md) for drafting, review, publication and
+the proposed social copy accompanying each article.
+
+Run `hugo server --buildDrafts` to preview unpublished articles. Netlify deploy
+previews and branch deploys also include drafts and request that search engines
+do not index them. These previews are publicly accessible, so draft content must
+not contain confidential information. Production builds exclude drafts.
+
 ## Copyright and License
 
 * [Hugo](https://gohugo.io/) is released under the

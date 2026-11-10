@@ -101,6 +101,24 @@ All Finished 📜 🎉!</code></pre>
     </div>
   </section>
 
+  {{ $updates := where .Site.RegularPages "Section" "updates" }}
+  {{ with first 3 ($updates.ByPublishDate.Reverse) }}
+    <section class="sqlfluff-section" aria-labelledby="latest-updates-title">
+      <div class="sqlfluff-container">
+        <div class="sqlfluff-updates-heading">
+          <div>
+            <h2 id="latest-updates-title">Latest from SQLFluff</h2>
+            <p>New capabilities, practical improvements and stories from the project.</p>
+          </div>
+          <a href="{{ "updates/" | relURL }}">All updates <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div class="sqlfluff-updates-grid">
+          {{ range . }}{{ partial "update-card.html" (dict "page" . "compact" true) }}{{ end }}
+        </div>
+      </div>
+    </section>
+  {{ end }}
+
   <section class="sqlfluff-section">
     <div class="sqlfluff-container">
       <div class="sqlfluff-sponsor-header">

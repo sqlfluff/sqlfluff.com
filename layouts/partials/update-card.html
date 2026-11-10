@@ -1,0 +1,15 @@
+{{ $page := .page }}
+<article class="sqlfluff-update-card">
+  {{ with $page }}
+  <p class="sqlfluff-update-meta">
+    <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format "2 January 2006" }}</time>
+    {{ if .Draft }}<span class="sqlfluff-draft-label">Draft</span>{{ end }}
+  </p>
+  {{ if $.compact }}
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  {{ else }}
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  {{ end }}
+  <p>{{ .Description }}</p>
+  {{ end }}
+</article>

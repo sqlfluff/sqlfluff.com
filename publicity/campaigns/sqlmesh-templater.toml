@@ -1,0 +1,33 @@
+id = "sqlmesh-templater"
+article = "/updates/sqlmesh-templater/"
+status = "draft"
+
+[copy]
+bluesky = """
+Using SQLMesh? SQLFluff has a dedicated templater for model SQL, with support for model headers and macros.
+
+Our spotlight explains the integration, configuration and current source-mapping limitations:
+https://sqlfluff.com/updates/sqlmesh-templater/
+"""
+
+linkedin = """
+A SQLMesh model isn't just a plain SQL query: model headers and macros need their own handling before linting.
+
+The SQLMesh templater brings that context into SQLFluff, letting teams apply their SQL style checks to model SQL. We've put together a spotlight covering how the integration works, its configuration and where source-mapping limitations affect coverage.
+
+Read more: https://sqlfluff.com/updates/sqlmesh-templater/
+"""
+
+slack = """
+A spotlight for SQLMesh users: the SQLFluff repository includes a dedicated SQLMesh templater. Here's an overview of its configuration and current limitations:
+https://sqlfluff.com/updates/sqlmesh-templater/
+
+Feedback and minimal examples from real projects are welcome, especially for model styles that don't yet map cleanly back to source.
+"""
+
+x = """
+Using SQLMesh? Take a look at SQLFluff's SQLMesh templater: model headers, macros and SQL style checks in one workflow.
+
+Our spotlight covers configuration and current limitations:
+https://sqlfluff.com/updates/sqlmesh-templater/
+"""
