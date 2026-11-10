@@ -2,12 +2,8 @@
 title: 'SQLFluff 4.0: Beginning the Move to Rust'
 description: Why we're introducing Rust implementations of SQLFluff's lexer and parser, and how we're approaching the transition.
 date: 2026-01-15T20:58:11Z
-draft: true
 authors: [alanmcruickshank]
 ---
-
-*Retrospective announcement, added to the Updates archive. The date above is the
-original release date; this article describes the changes introduced in 4.0.0.*
 
 SQLFluff 4.0 marks the beginning of moving some of the work inside SQLFluff
 from Python to Rust. The first routines are the lexer and parser, which turn
@@ -18,6 +14,9 @@ The reason for starting this work is performance. As SQL projects grow,
 the time spent checking them becomes more noticeable: in a pre-commit hook,
 while iterating on a model, or across a whole project in CI. We want SQLFluff
 to remain practical to use as those workloads get larger.
+
+> NOTE: Rust is still an _optional_ dependency in 4.0, but we anticipate that with 5.0
+> in future, it will become the default.
 
 ## Why start with the lexer and parser?
 
