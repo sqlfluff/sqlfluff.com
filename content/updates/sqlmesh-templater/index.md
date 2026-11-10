@@ -1,8 +1,7 @@
 ---
 title: 'A SQLMesh templater for SQLFluff'
 description: Bring SQLFluff linting to SQLMesh model SQL with a templater that understands model headers and macros.
-date: 2026-11-03T08:00:00Z
-draft: true
+date: 2026-11-08T08:00:00Z
 authors: [alanmcruickshank]
 ---
 

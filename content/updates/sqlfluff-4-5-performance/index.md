@@ -2,7 +2,6 @@
 title: 'Faster layout linting in SQLFluff 4.5'
 description: SQLFluff 4.5 removes repeated work from layout checks, helping you spend less time waiting on linting for complex queries and larger projects.
 date: 2026-11-03T09:00:00Z
-draft: true
 authors: [alanmcruickshank]
 ---
 
