@@ -1,13 +1,9 @@
 ---
 title: 'SQLFluff 2.0: Reorganisation of Linting Rules'
-description: Why SQLFluff's rules have been reorganised, how the new names and codes work, and what needs to change in an existing configuration.
+description: 2.0 brings breaking changes to rule codes and classification. This update dives into why we chose to change and what the new setup is.
 date: 2023-03-14T09:45:27Z
-draft: true
 authors: [alanmcruickshank]
 ---
-
-*Retrospective announcement, added to the Updates archive. The date above is the
-original release date; this article describes the changes introduced in 2.0.0.*
 
 Until now, SQLFluff's rules have been added fairly organically, as members of
 the community implemented the checks they needed. Each new rule received the
@@ -164,6 +160,16 @@ different pieces of SQL. Nine spacing rules now map to `LT01`, while three
 indentation rules map to `LT02`. This lets one consistent layout configuration
 describe how SQL should look, instead of scattering related settings across
 several checks.
+
+For example, `L005` checked for spaces before commas, `L008` checked for a
+single space after them, and `L006` checked spacing around operators. These are
+now all handled by `LT01` (`layout.spacing`). The associated configuration is
+organised by the type of SQL element: `[sqlfluff:layout:type:comma]` can specify
+`spacing_before = touch`, meaning no space before a comma, while the same layout
+configuration system describes spacing around operators and other elements.
+This separates the choice of which checks to run from the description of the
+layout they should enforce, rather than requiring a separate rule and set of
+options for each spacing convention.
 
 For example, selecting the legacy `L005` now selects `LT01`, which checks much
 more than spacing around commas. Review the resulting scope instead of treating
