@@ -44,12 +44,14 @@ outside the public article body.
 - Merge, wait for the production deploy, and verify the article's live URL.
 - Publish approved channel text and record each resulting URL below its campaign.
 
-Campaign files are review material, not executable publication instructions.
-No workflow currently reads them and nothing posts automatically. A future
-publisher should verify the production deployment, deduplicate by campaign ID
-and channel, record success/failure independently, and retry only failed channels.
-An article correction must not automatically trigger another announcement.
-LinkedIn and X remain manual initially.
+Campaign files are reviewed alongside the article. Set `status = "ready"` after
+approval. The manually triggered **Publish publicity campaign** GitHub Action
+can then preview or publish Bluesky and Slack copy after checking the live
+article. It records each channel separately on the `publicity-state` branch
+and does not repost when articles or copy change. LinkedIn and X remain manual.
+
+See [PUBLISHING.md](PUBLISHING.md) for credentials, the dry-run/publish controls,
+and how to reconcile interrupted attempts before retrying.
 
 ## Verification
 
