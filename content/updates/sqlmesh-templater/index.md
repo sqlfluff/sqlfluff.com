@@ -13,6 +13,10 @@ merged in August. It's part of the SQLFluff repository as a separate plugin,
 [`sqlfluff-templater-sqlmesh`](https://pypi.org/project/sqlfluff-templater-sqlmesh/),
 now available on PyPI, bringing SQLMesh projects into SQLFluff's linting workflow.
 
+The [SQLMesh templater documentation](https://docs.sqlfluff.com/en/latest/configuration/templating/sqlmesh.html)
+covers installation, project configuration, supported model styles and current
+limitations.
+
 ## Why a dedicated templater matters
 
 A SQLMesh model contains more than a SQL query. It can include a `MODEL` header
@@ -215,6 +219,7 @@ Examples from real projects help improve the integration.
 
 ## Find out more
 
+- [SQLMesh templater documentation](https://docs.sqlfluff.com/en/latest/configuration/templating/sqlmesh.html)
 - [SQLMesh templater on PyPI](https://pypi.org/project/sqlfluff-templater-sqlmesh/)
 - [Initial SQLMesh templater contribution: #7722](https://github.com/sqlfluff/sqlfluff/pull/7722)
 - [SQLMesh templater implementation in SQLFluff 4.5.0](https://github.com/sqlfluff/sqlfluff/blob/4.5.0/plugins/sqlfluff-templater-sqlmesh/sqlfluff_templater_sqlmesh/templater.py)
