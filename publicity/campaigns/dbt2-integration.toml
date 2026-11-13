@@ -1,0 +1,36 @@
+id = "dbt2-integration"
+article = "/updates/dbt2-integration/"
+status = "draft"
+
+[copy]
+bluesky = """
+SQLFluff has a new experimental dbt 2 templater. Our local DuckDB benchmark cut lint time by 45–62% for one model and 7% for all 100.
+
+Installation, results and limitations:
+https://sqlfluff.com/updates/dbt2-integration/
+"""
+
+linkedin = """
+SQLFluff's new experimental dbt 2 integration uses dbt's own rendering and source traces to bring lint diagnostics back to your model files.
+
+In our local 100-model DuckDB benchmark, median CLI lint time fell by 45–62% for individual models, 37–56% for five-model selections, and 7% for the whole project. Each result uses seven measured runs; the article explains the setup, excluded source variants and limits of the comparison.
+
+Read about installation, configuration and the measurements:
+https://sqlfluff.com/updates/dbt2-integration/
+"""
+
+slack = """
+An experimental dbt 2 templater is available for SQLFluff, using dbt's rendered SQL and source traces.
+
+Our local DuckDB benchmark found the largest relative gains on small selections: 45–62% less lint time for one model, compared with 7% for all 100 models. These are pre-release-build measurements on a compatible synthetic workload, not a promise for every project.
+
+Installation, results and current scope:
+https://sqlfluff.com/updates/dbt2-integration/
+"""
+
+x = """
+SQLFluff's experimental dbt 2 templater brings source-mapped linting to Rust-based dbt. In our local DuckDB benchmark, lint time fell 45–62% for one model and 7% for all 100.
+
+Setup and benchmark details:
+https://sqlfluff.com/updates/dbt2-integration/
+"""

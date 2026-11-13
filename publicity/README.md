@@ -57,14 +57,16 @@ Use Hugo 0.125.4, matching `netlify.toml`, with the design submodule initialized
 
 ```sh
 hugo --gc --minify
-hugo --buildDrafts --destination preview-public
-hugo server --buildDrafts
+hugo --buildDrafts --buildFuture --destination preview-public
+hugo server --buildDrafts --buildFuture
 ```
 
 Check `/updates/`, `/updates/index.xml`, article pages and the homepage. Production
-must omit draft URLs from HTML, feeds and the sitemap. Preview builds should use
-their preview base URL and `HUGO_PARAMS_NOINDEX=true`. Pagination is ten articles
-per page; the homepage shows up to three; the feed contains the latest twenty.
+must omit draft URLs from HTML, feeds and the sitemap. Preview builds include
+future-dated articles so provisional publication dates remain reviewable; they
+should use their preview base URL and `HUGO_PARAMS_NOINDEX=true`. Pagination is
+ten articles per page; the homepage shows up to three; the feed contains the
+latest twenty.
 Keep any generated `preview-public/` output outside Git.
 
 ## Initial drafts: checks before publication
