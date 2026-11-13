@@ -1,7 +1,7 @@
 ---
 title: 'A new dbt 2 integration for SQLFluff'
 description: Lint dbt 2 models using dbt's own rendering, with faster feedback on small model selections and source-mapped diagnostics.
-date: 2026-11-11T09:00:00Z
+date: 2026-12-01T09:00:00Z
 draft: true
 authors: [alanmcruickshank]
 ---

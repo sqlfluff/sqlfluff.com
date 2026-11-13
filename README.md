@@ -38,10 +38,12 @@ Articles live in `content/updates/<slug>/index.md`. See
 [`publicity/README.md`](publicity/README.md) for drafting, review, publication and
 the proposed social copy accompanying each article.
 
-Run `hugo server --buildDrafts` to preview unpublished articles. Netlify deploy
-previews and branch deploys also include drafts and request that search engines
-do not index them. These previews are publicly accessible, so draft content must
-not contain confidential information. Production builds exclude drafts.
+Run `hugo server --buildDrafts --buildFuture` to preview unpublished articles,
+including those with provisional future dates. Netlify deploy previews and
+branch deploys also include drafts and future-dated articles and request that
+search engines do not index them. These previews are publicly accessible, so
+draft content must not contain confidential information. Production builds
+exclude drafts and future-dated articles.
 
 ## Copyright and License
 

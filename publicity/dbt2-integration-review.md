@@ -2,8 +2,8 @@
 
 This is a post-release announcement draft, not a statement of current availability.
 Keep the article's `draft: true` and campaign's `status = "draft"` until review is
-complete. The article date is provisional and must become the actual publication
-date when the post is published.
+complete. The provisional article date is 1 December 2026 at 09:00 UTC. Confirm
+the actual publication date when the post is published.
 
 ## Dependencies and installation
 
